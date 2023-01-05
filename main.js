@@ -1,5 +1,5 @@
 const gameEngine = new GameEngine();
-//Austin Luu
+
 const ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.downloadAll(() => {
