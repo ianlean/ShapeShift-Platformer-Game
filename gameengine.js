@@ -72,7 +72,10 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
+        this.ctx.canvas.addEventListener("keydown", event => {
+            this.keys[event.key] = true
+            console.log(this.keys)
+        });
         this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
     };
 
