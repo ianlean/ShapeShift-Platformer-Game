@@ -7,9 +7,10 @@ class Player {
         this.y = 0;
         this.speed = 1;
         this.MaxSpeed = 10;
-        this.Acceleration = 0.09;
+        this.Acceleration = .09;
         this.velocityX = 0;
         this.velocityY = 0;
+        this.shape="circle";
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
     };
     
@@ -39,13 +40,22 @@ class Player {
         }
         if(this.game.keys["d"] == false && this.game.keys["a"] == false 
         && this.game.keys["w"] == false && this.game.keys["s"] == false){
-            this.velocityX = 0;
+            this.velocityX -= this.velocityX;
             this.velocityY = 0;
         }
     
-        if(this.game.keys["Shift"]== true){ 
+        if(this.game.keys["Shift"] == true){ 
+        if(this.shape=="circle"){
             this.spritesheet = ASSET_MANAGER.getAsset("./assets/sqaurePixel.png")
-            console.log("changing shape")
+            this.shape= "square";
+        }else if(this.shape=="square"){
+            this.spritesheet = ASSET_MANAGER.getAsset("./assets/trianglePixel.png")
+            this.shape= "triangle";
+        }else if(this.shape=="triangle"){
+            this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png")
+            this.shape="circle";
+        }
+            console.log("changing shape");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
         }
         
