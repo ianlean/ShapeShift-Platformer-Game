@@ -1,10 +1,10 @@
 class Player {
 
-    constructor(game) {
+    constructor(game,x,y) {
         this.game = game;
         this.animator = new Animator(ASSET_MANAGER.getAsset("./assets/circlePixel.png"),0 , 0, 120, 120, 6, 0.2 ,1, false ,true);
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
         this.speed = 1;
         this.MaxSpeed = 10;
         this.Acceleration = .09;
