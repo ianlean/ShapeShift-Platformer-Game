@@ -37,6 +37,11 @@ class GameEngine {
     };
 
     startInput() {
+        this.keys["d"]=false;
+        this.keys["a"]=false;
+        this.keys["s"]=false;
+        this.keys["w"]=false;
+        console.log(this.keys);
         const getXandY = e => ({
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
             y: e.clientY - this.ctx.canvas.getBoundingClientRect().top

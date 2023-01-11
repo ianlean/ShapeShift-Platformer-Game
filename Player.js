@@ -15,7 +15,7 @@ class Player {
     };
     
     update() {
-        var boundingBoxPlayer = new BoundingBox(this.x,this.y,55,55);
+        var boundingBoxPlayer = new BoundingBox(this.x,this.y,30,30);
         
         if(this.game.keys["d"] == true){
             if(this.velocityX<this.MaxSpeed){
@@ -35,7 +35,7 @@ class Player {
         }
         if(this.game.keys["s"] == true){
             if(this.velocityY<this.MaxSpeed){
-            this.velocityY += this.Acceleration*2;
+            this.velocityY += this.Acceleration*5;
             }
         }
         if(this.game.keys["d"] == false && this.game.keys["a"] == false 
@@ -65,7 +65,7 @@ class Player {
     };
 
     draw(ctx){
-        ctx.drawImage(this.spritesheet, this.x, this.y);
+        ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
     };
 
     
