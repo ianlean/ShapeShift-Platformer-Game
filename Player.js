@@ -35,15 +35,18 @@ class Player {
         }
         if(this.game.keys["s"] == true){
             if(this.velocityY<this.MaxSpeed){
-            this.velocityY += this.Acceleration*5;
+            this.velocityY += this.Acceleration;
             }
         }
         if(this.game.keys["d"] == false && this.game.keys["a"] == false 
         && this.game.keys["w"] == false && this.game.keys["s"] == false){
             this.velocityX -= this.velocityX;
-            this.velocityY = 0;
+            this.velocityY -= this.velocityY;
         }
-    
+            //need to fix this if statement
+        // if (boundingBoxPlayer.collide(floor.BoundingBox)){
+        // this.velocityY=0;    
+        // }
         if(this.game.keys["Shift"] == true){ 
         if(this.shape=="circle"){
             this.spritesheet = ASSET_MANAGER.getAsset("./assets/sqaurePixel.png")
