@@ -12,5 +12,5 @@ update(){
 draw(ctx){
     ctx.drawImage(this.spritesheet, this.x, this.y, 30, 30);
 };
-
+BoundingBox = this.BoundingBox;
 }

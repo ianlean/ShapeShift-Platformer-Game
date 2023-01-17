@@ -43,8 +43,9 @@ class Player {
             this.velocityX -= this.velocityX;
             this.velocityY -= this.velocityY;
         }
-            //need to fix this if statement
-        // if (boundingBoxPlayer.collide(floor.BoundingBox)){
+        //     //need to fix this if statement
+        //     var that=this;
+        // if (boundingBoxPlayer.collide(that.BoundingBox)){
         // this.velocityY=0;    
         // }
         if(this.game.keys["Shift"] == true){ 
