@@ -19,10 +19,7 @@ class Player {
         
         this.updateBox();
 
-        //collision check
-        this.game.entities.forEach(entity => {
-            this.playerBox.collide(entity);
-        });
+        
 
         //key check
         if(this.game.keys["d"] == true){
@@ -66,7 +63,16 @@ class Player {
             console.log("changing shape");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
         }
-        
+        //collision check
+        this.game.entities.forEach(entity => {
+
+            if( this.BoundingBox.collide(entity.BoundingBox)){
+             if (entity instanceof floor){
+                 console.log("this is the floor")
+                 this.velocityY = 0
+             }
+            }
+         });
         this.x += this.velocityX;
         this.y += this.velocityY;
         //gravity and other thing effecting movement could go here
@@ -77,7 +83,7 @@ class Player {
     };
 
     updateBox() {
-        this.playerBox = new BoundingBox(this.x, this.y, 30, 30);
+        this.BoundingBox = new BoundingBox(this.x, this.y, 30, 30);
     }
 
 }
