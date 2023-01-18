@@ -9,8 +9,11 @@ class BoundingBox {
     };
 
     collide(oth) {
-        if (this.right > oth.left && this.left < oth.right && this.top < oth.bottom && this.bottom > oth.top) return true;
+        if (this.right > oth.left && this.left < oth.right && this.top < oth.bottom && this.bottom > oth.top) {
+            console.log(this + " collided with " + oth);
+            return true;
+        }
         return false;
     };
-    
+
 };

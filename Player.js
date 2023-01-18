@@ -12,11 +12,19 @@ class Player {
         this.velocityY = 0;
         this.shape="circle";
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
+        this.updateBox();
     };
     
     update() {
-        var boundingBoxPlayer = new BoundingBox(this.x,this.y,30,30);
         
+        this.updateBox();
+
+        //collision check
+        this.game.entities.forEach(entity => {
+            this.playerBox.collide(entity);
+        });
+
+        //key check
         if(this.game.keys["d"] == true){
             if(this.velocityX<this.MaxSpeed){
             this.velocityX += this.Acceleration;
@@ -43,11 +51,7 @@ class Player {
             this.velocityX -= this.velocityX;
             this.velocityY -= this.velocityY;
         }
-        //     //need to fix this if statement
-        //     var that=this;
-        // if (boundingBoxPlayer.collide(that.BoundingBox)){
-        // this.velocityY=0;    
-        // }
+        
         if(this.game.keys["Shift"] == true){ 
         if(this.shape=="circle"){
             this.spritesheet = ASSET_MANAGER.getAsset("./assets/sqaurePixel.png")
@@ -72,6 +76,8 @@ class Player {
         ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
     };
 
-    
+    updateBox() {
+        this.playerBox = new BoundingBox(this.x, this.y, 30, 30);
+    }
 
 }
