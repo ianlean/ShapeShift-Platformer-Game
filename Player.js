@@ -18,9 +18,8 @@ class Player {
     update() {
         
         this.updateBox();
-
+        this.velocityY += this.Acceleration;
         
-
         //key check
         if(this.game.keys["d"] == true){
             if(this.velocityX<this.MaxSpeed){
@@ -30,23 +29,16 @@ class Player {
         if(this.game.keys["a"] == true){
             if((-this.velocityX)<this.MaxSpeed){
             this.velocityX -= this.Acceleration;
-            console.log(this.velocityX);
             }
         }
-        if(this.game.keys["w"] == true){
-            if((-this.velocityY)<this.MaxSpeed){
-            this.velocityY -= this.Acceleration;
-            }
-        }
+       
         if(this.game.keys["s"] == true){
             if(this.velocityY<this.MaxSpeed){
             this.velocityY += this.Acceleration;
             }
         }
-        if(this.game.keys["d"] == false && this.game.keys["a"] == false 
-        && this.game.keys["w"] == false && this.game.keys["s"] == false){
+        if(this.game.keys["d"] == false && this.game.keys["a"] == false){
             this.velocityX -= this.velocityX;
-            this.velocityY -= this.velocityY;
         }
         
         if(this.game.keys["Shift"] == true){ 
@@ -69,7 +61,12 @@ class Player {
             if( this.BoundingBox.collide(entity.BoundingBox)){
              if (entity instanceof floor){
                  console.log("this is the floor")
-                 this.velocityY = 0
+                 this.velocityY = 0;
+                 if(this.game.keys["w"] == true){
+                    if((-this.velocityY)<this.MaxSpeed){
+                    this.velocityY -= 30*this.Acceleration;
+                    }
+                }
              }
             }
          });
