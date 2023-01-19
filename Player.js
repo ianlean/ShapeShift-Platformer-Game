@@ -96,6 +96,11 @@ class Player {
                     }
                 }
              }
+             if(entity instanceof spike){
+                console.log("hit a spike");
+                //todo this is where a death/loss of heart would be 
+                this.velocityY = 16;//I think this is really funny as a place holder -Damien
+             }
             }
          });
         this.x += this.velocityX;
