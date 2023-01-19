@@ -13,7 +13,7 @@ class GameEngine {
         this.click = null;
         this.mouse = null;
         this.wheel = null;
-        this.keys = {};
+        this.keys = [];
 
         // Options and the Details
         this.options = options || {
@@ -37,6 +37,11 @@ class GameEngine {
     };
 
     startInput() {
+        this.keys["d"]=false;
+        this.keys["a"]=false;
+        this.keys["s"]=false;
+        this.keys["w"]=false;
+        console.log(this.keys);
         const getXandY = e => ({
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
             y: e.clientY - this.ctx.canvas.getBoundingClientRect().top
@@ -72,7 +77,10 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
+        this.ctx.canvas.addEventListener("keydown", event => {
+            this.keys[event.key] = true
+            console.log(this.keys)
+        });
         this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
     };
 
