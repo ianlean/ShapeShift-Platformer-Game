@@ -11,6 +11,7 @@ ASSET_MANAGER.queueDownload("./assets/spikePixel.png");
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
+	ctx.imageSmoothingEnabled = false;
 	gameEngine.addEntity(new Player(gameEngine,0,0));
 	gameEngine.addEntity(new floor(gameEngine,0,120));
 	gameEngine.addEntity(new floor(gameEngine,30,120));
