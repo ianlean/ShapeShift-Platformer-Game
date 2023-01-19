@@ -15,6 +15,12 @@ class BoundingBox {
         }
         return false;
     };
+
+    draw(ctx){
+        ctx.strokeStyle = "Red";
+        ctx.lineWidth = 3;
+        ctx.strokeRect(this.left,this.top,this.width,this.height);
+    }
     
 
 };
