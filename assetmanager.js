@@ -15,7 +15,7 @@ class AssetManager {
         return this.downloadQueue.length === this.successCount + this.errorCount;
     };
 
-    downloadAll(callback) {
+    downloadAll(callback) {//todo ass audio case switch
         if (this.downloadQueue.length === 0) setTimeout(callback, 10);
         for (let i = 0; i < this.downloadQueue.length; i++) {
             const img = new Image();
@@ -42,6 +42,47 @@ class AssetManager {
 
     getAsset(path) {
         return this.cache[path];
+    };
+    
+    playAsset(path) {
+        let audio = this.cache[path];
+        audio.currentTime = 0;
+        audio.play();
+    };
+
+    muteAudio(mute) {
+        for (var key in this.cache) {
+            let asset = this.cache[key];
+            if (asset instanceof Audio) {
+                asset.muted = mute;
+            }
+        }
+    };
+
+    adjustVolume(volume) {
+        for (var key in this.cache) {
+            let asset = this.cache[key];
+            if (asset instanceof Audio) {
+                asset.volume = volume;
+            }
+        }
+    };
+
+    pauseBackgroundMusic() {
+        for (var key in this.cache) {
+            let asset = this.cache[key];
+            if (asset instanceof Audio) {
+                asset.pause();
+                asset.currentTime = 0;
+            }
+        }
+    };
+
+    autoRepeat(path) {
+        var aud = this.cache[path];
+        aud.addEventListener("ended", function () {
+            aud.play();
+        });
     };
 };
 
