@@ -42,6 +42,7 @@ class Player {
         } else { // a key is pressed so we move
             if(this.game.keys["d"] == true){
                 if(this.velocityX<this.MaxSpeed){
+                   
                 this.velocityX += this.Acceleration;
                 }
                 console.log("going right");
@@ -88,7 +89,7 @@ class Player {
 
     collisionCheck() {
     this.game.entities.forEach(entity => {
-
+        
         if( this.BoundingBox.collide(entity.BoundingBox)){
          if (entity instanceof floor){
              //console.log("this is the floor")

@@ -11,6 +11,7 @@ class floor {
     };
     draw(ctx) {
         ctx.drawImage(this.spritesheet, this.x, this.y, 30, 30);
+        //this.BoundingBox.draw(ctx);
     };
     BoundingBox = this.BoundingBox;
 

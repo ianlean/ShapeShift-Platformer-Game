@@ -7,33 +7,37 @@ class SceneManager{
         this.x = 0;
         this.score = 0;
 
-        this.player = new CharacterController(this.game,50,550);
-
-        this.elapsedTime =0;
+        this.playerCharacter = new Player(this.game,0, 0);
+        this.floor1=new floor(this.game,0,120)
+        this.elapsedTime = 0;
 
         this.spawns = [0.5,1,3,5];
-        this.randomSpawn = 0;
+        //this.randomSpawn = 0;
         
-        this.Spawn();
+        //this.Spawn();
         this.loadLevel(50,550);
 
     };
 
 
     loadLevel(x,y){
-        this.game.entities = [];
-        this.x =0;
-        this.player.x = x;
-        this.player.y = y;
-        this.player.velocity = { x: 0, y: 0 };
-   
+       this.
+        this.game.addEntity(this.playerCharacter);
+        this.game.addEntity(new Laser(this.game,1280, 70));
+        this.game.addEntity(this.floor1);
+        this.game.addEntity(new floor(this.game,30,120));
+        this.game.addEntity(new floor(this.game,60,120));
+        this.game.addEntity(new spike(this.game,90,120));
+        this.game.addEntity(new floor(this.game,120,120));
+        this.game.addEntity(new floor(this.game,150,120));
+        this.game.addEntity(new floor(this.game,180,120));
 
 
 
 
        //this.player = (new CharacterController(gameEngine),50,550)
 
-       this.game.addEntity(this.player);
+       
        //this.game.addEntity(new Tombstone(this.game,1920,700))
        
        
@@ -43,34 +47,36 @@ class SceneManager{
 
     };
     
-    Spawn(){
-        this.prevSpawn = this.randomSpawn;
+    // Spawn(){
+    //     //this.prevSpawn = this.randomSpawn;
         
-        while(this.prevSpawn === this.randomSpawn){
-            this.randomSpawn = Math.floor(Math.random() * this.spawns.length);
-        }
+    //     // while(this.prevSpawn === this.randomSpawn){
+    //     //     this.randomSpawn = Math.floor(Math.random() * this.spawns.length);
+    //     // }
 
 
 
         
 
-    };
+    // };
 
     update() {
-        let midpoint = params.canvasWidth/2;
+        let midpoint = 100;
         this.elapsedTime += this.game.clockTick;
-
+        if(this.playerCharacter.x<midpoint){
+        this.floor1.x=this.playerCharacter.x;
+        }
         
 
 
         //this.game.addEntity(new Tombstone(this.game,1920,700))
-        if(this.elapsedTime > this.spawns[this.randomSpawn]){
-            this.elapsedTime=0;
-            this.Spawn();
-            console.log("make another")
-            this.game.addEntity(new Tombstone(this.game,1920,700))
+        // if(this.elapsedTime > this.spawns[this.randomSpawn]){
+        //     this.elapsedTime=0;
+        //     //this.Spawn();
+        //     //console.log("make another")
+        //     //this.game.addEntity(new Tombstone(this.game,1920,700))
 
-        }
+        // }
 
         //if (this.x < this.player.x - midpoint) this.x = this.player.x  - midpoint;
 
