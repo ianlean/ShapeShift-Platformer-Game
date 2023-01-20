@@ -73,12 +73,6 @@ class Player {
         if(this.shape=="circle"){
             this.spritesheet = ASSET_MANAGER.getAsset("./assets/spriteSheetCircle.png")
             this.shape= "square";
-        }else if(this.shape=="square"){
-            this.spritesheet = ASSET_MANAGER.getAsset("./assets/trianglePixel.png")
-            this.shape= "triangle";
-        }else if(this.shape=="triangle"){
-            this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png")
-            this.shape="circle";
         }
             console.log("changing shape");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
