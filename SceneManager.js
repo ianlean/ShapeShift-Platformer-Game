@@ -8,6 +8,7 @@ class SceneManager{
         this.score = 0;
 
         this.playerCharacter = new Player(this.game,0, 0);
+        
         this.floor1=new floor(this.game,0,120)
         this.elapsedTime = 0;
 
@@ -61,10 +62,21 @@ class SceneManager{
     // };
 
     update() {
-        let midpoint = 100;
+        let midpoint = 200;
         this.elapsedTime += this.game.clockTick;
         if(this.playerCharacter.x<midpoint){
-        this.floor1.x=this.playerCharacter.x;
+            if(this.playerCharacter.x<=0){
+                this.playerCharacter.x=0;
+                this.floor1.x-=this.playerCharacter.velocityX;
+            }
+        //this.floor1.x=this.playerCharacter.x;
+        
+        }else{
+            this.playerCharacter.x=midpoint;
+            this.floor1.x-=this.playerCharacter.velocityX;
+            // this.game.entites.forEach(entity => {
+            //     this.entity.x-=this.playerCharacter.velocityX;
+            // });
         }
         
 

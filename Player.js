@@ -42,7 +42,6 @@ class Player {
         } else { // a key is pressed so we move
             if(this.game.keys["d"] == true){
                 if(this.velocityX<this.MaxSpeed){
-                   
                 this.velocityX += this.Acceleration;
                 }
                 console.log("going right");
