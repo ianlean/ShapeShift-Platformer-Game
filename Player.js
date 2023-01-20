@@ -80,29 +80,38 @@ class Player {
 
         
         //collision check
-        this.game.entities.forEach(entity => {
-
-            if( this.BoundingBox.collide(entity.BoundingBox)){
-             if (entity instanceof floor){
-                 console.log("this is the floor")
-                 this.velocityY = 0;
-                 if(this.game.keys["w"] == true){
-                    if((-this.velocityY)<this.MaxSpeed){
-                    this.velocityY -= 30*this.Acceleration;
-                    }
-                }
-             }
-             if(entity instanceof spike){
-                console.log("hit a spike");
-                //todo this is where a death/loss of heart would be 
-                this.velocityY = 16;//I think this is really funny as a place holder -Damien
-             }
-            }
-         });
+        this.collisionCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
         //gravity and other thing effecting movement could go here
     };
+
+    collisionCheck() {
+    this.game.entities.forEach(entity => {
+
+        if( this.BoundingBox.collide(entity.BoundingBox)){
+         if (entity instanceof floor){
+             //console.log("this is the floor")
+             this.velocityY = 0;
+             if(this.game.keys["w"] == true){
+                if((-this.velocityY)<this.MaxSpeed){
+                this.velocityY -= 30*this.Acceleration;
+                }
+            }
+         }
+         if(entity instanceof spike){
+            console.log("get fucked hippie");
+            //todo this is where a death/loss of heart would be 
+            this.velocityY = -16;//I think this is really funny as a place holder -Damien
+         }
+         if(entity instanceof Laser){
+            console.log("get fucked hippie");
+            //todo this is where a death/loss of heart would be 
+            this.velocityY = -16;//I think this is really funny as a place holder -Damien
+         }
+        }
+     });
+    }
 
     draw(ctx) {
         this.animations[this.index].drawFrame(this.game.clockTick,ctx,this.x,this.y, 1);
@@ -112,6 +121,11 @@ class Player {
 
     updateBox() {
         this.BoundingBox = new BoundingBox(this.x, this.y, 30, 30);
+    }
+
+    die() {
+        // die animation/reset game
+        
     }
 
 }

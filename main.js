@@ -13,6 +13,7 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 	gameEngine.addEntity(new Player(gameEngine,0,0));
+	gameEngine.addEntity(new Laser(gameEngine,1280, 70));
 	gameEngine.addEntity(new floor(gameEngine,0,120));
 	gameEngine.addEntity(new floor(gameEngine,30,120));
 	gameEngine.addEntity(new floor(gameEngine,60,120));
@@ -20,7 +21,7 @@ ASSET_MANAGER.downloadAll(() => {
 	gameEngine.addEntity(new floor(gameEngine,120,120));
 	gameEngine.addEntity(new floor(gameEngine,150,120));
 	gameEngine.addEntity(new floor(gameEngine,180,120));
-	// gameEngine.addEntity(new Player(gameEngine,0,0));
+	
 	gameEngine.init(ctx);
 	
 	gameEngine.start();
