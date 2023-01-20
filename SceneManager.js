@@ -21,7 +21,7 @@ class SceneManager{
 
 
     loadLevel(x,y){
-       this.
+       
         this.game.addEntity(this.playerCharacter);
         this.game.addEntity(new Laser(this.game,1280, 70));
         this.game.addEntity(this.floor1);
