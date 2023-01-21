@@ -25,6 +25,9 @@ class SceneManager{
        
         this.game.addEntity(this.playerCharacter);
         this.game.addEntity(new Laser(this.game,1280, 70));
+        this.game.addEntity(new floor(this.game,-30,120));
+        this.game.addEntity(new floor(this.game,-60,120));
+        this.game.addEntity(new floor(this.game,-90,120));
         this.game.addEntity(this.floor1);
         this.game.addEntity(new floor(this.game,30,120));
         this.game.addEntity(new floor(this.game,60,120));
@@ -70,6 +73,7 @@ class SceneManager{
        
                 for(let i=2; i<this.game.entities.length; i++ ){
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
+                this.game.entities[i].updateBox();
                 }
             }
         //this.floor1.x=this.playerCharacter.x;
@@ -79,11 +83,8 @@ class SceneManager{
             
             for(let i=2; i<this.game.entities.length; i++ ){
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
-                this.game.entities[i].BoundingBox.x -= this.playerCharacter.velocityX;
+                this.game.entities[i].updateBox();
                 }
-            // this.game.entites.forEach(entity => {
-            //     this.entity.x-=this.playerCharacter.velocityX;
-            // });
         }
         
 
