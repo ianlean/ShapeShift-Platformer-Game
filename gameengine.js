@@ -36,6 +36,11 @@ class GameEngine {
         gameLoop();
     };
 
+    end() {
+        this.running = false;
+        
+    };
+
     startInput() {
         this.keys["d"]=false;
         this.keys["a"]=false;
