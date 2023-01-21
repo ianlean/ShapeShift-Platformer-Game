@@ -70,14 +70,14 @@ class SceneManager{
         this.elapsedTime += this.game.clockTick;
         if(this.playerCharacter.y<=50){
             this.playerCharacter.y=50;
-            for(let i=2; i<this.game.entities.length; i++ ){
+            for(let i=1; i<this.game.entities.length; i++ ){
             this.game.entities[i].y -= this.playerCharacter.velocityY;
             this.game.entities[i].updateBox();
             }
         }
         if(this.playerCharacter.y>100){
             this.playerCharacter.y=100;
-            for(let i=2; i<this.game.entities.length; i++ ){
+            for(let i=1; i<this.game.entities.length; i++ ){
             this.game.entities[i].y -= this.playerCharacter.velocityY;
             this.game.entities[i].updateBox();
             }
@@ -85,7 +85,7 @@ class SceneManager{
         if(this.playerCharacter.x<midpoint){
             if(this.playerCharacter.x<=0){
                 this.playerCharacter.x=0;
-                for(let i=2; i<this.game.entities.length; i++ ){
+                for(let i=1; i<this.game.entities.length; i++ ){
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
                 this.game.entities[i].updateBox();
                 }
@@ -96,7 +96,7 @@ class SceneManager{
         }else{
             this.playerCharacter.x=midpoint;
             
-            for(let i=2; i<this.game.entities.length; i++ ){
+            for(let i=1; i<this.game.entities.length; i++ ){
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
                 this.game.entities[i].updateBox();
                 }
