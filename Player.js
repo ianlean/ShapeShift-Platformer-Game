@@ -34,7 +34,44 @@ class Player {
         this.updateBox();
         this.velocityY += this.Acceleration;
 
-        //key check
+        this.keyCheck();
+
+
+        //collision check
+        this.collisionCheck();
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+        //gravity and other thing effecting movement could go here
+    };
+
+    collisionCheck() {
+        this.game.entities.forEach(entity => {
+
+            if (this.BoundingBox.collide(entity.BoundingBox)) {
+                if (entity instanceof floor) {
+                    //console.log("this is the floor")
+                    this.velocityY = 0;
+                    if (this.game.keys["w"] == true) {
+                        if ((-this.velocityY) < this.MaxSpeed) {
+                            this.velocityY -= 30 * this.Acceleration;
+                        }
+                    }
+                }
+                if (entity instanceof spike) {
+                    console.log("get fucked hippie");
+                    //todo this is where a death/loss of heart would be 
+                    // this.velocityY = -16;//I think this is really funny as a place holder -Damien
+                }
+                if (entity instanceof Laser) {
+                    console.log("get fucked hippie");
+                    //todo this is where a death/loss of heart would be 
+                    // this.velocityY = -16;//I think this is really funny as a place holder -Damien
+                }
+            }
+        });
+    }
+
+    keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
         if (!aKeyIsPressed(this.game.keys)) { //no key is pressed so we idle
             // If the player is not pressing a key
@@ -82,40 +119,6 @@ class Player {
             console.log("changing shape");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
         }
-
-
-        //collision check
-        this.collisionCheck();
-        this.x += this.velocityX;
-        this.y += this.velocityY;
-        //gravity and other thing effecting movement could go here
-    };
-
-    collisionCheck() {
-        this.game.entities.forEach(entity => {
-
-            if (this.BoundingBox.collide(entity.BoundingBox)) {
-                if (entity instanceof floor) {
-                    //console.log("this is the floor")
-                    this.velocityY = 0;
-                    if (this.game.keys["w"] == true) {
-                        if ((-this.velocityY) < this.MaxSpeed) {
-                            this.velocityY -= 30 * this.Acceleration;
-                        }
-                    }
-                }
-                if (entity instanceof spike) {
-                    console.log("get fucked hippie");
-                    //todo this is where a death/loss of heart would be 
-                    // this.velocityY = -16;//I think this is really funny as a place holder -Damien
-                }
-                if (entity instanceof Laser) {
-                    console.log("get fucked hippie");
-                    //todo this is where a death/loss of heart would be 
-                    // this.velocityY = -16;//I think this is really funny as a place holder -Damien
-                }
-            }
-        });
     }
 
     draw(ctx) {
