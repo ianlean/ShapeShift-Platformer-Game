@@ -11,9 +11,12 @@ class spike {
     };
     draw(ctx) {
         ctx.drawImage(this.spritesheet, this.x, this.y, 30, 30);
-        //this.BoundingBox.draw(ctx);
+        this.BoundingBox.draw(ctx);
     };
-    BoundingBox = this.BoundingBox;
+    updateBox() {
+        this.BoundingBox = new BoundingBox(this.x, this.y, 33, 33);
+    }
+
 
 
 }
