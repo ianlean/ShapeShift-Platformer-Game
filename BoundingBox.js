@@ -15,7 +15,7 @@ class BoundingBox {
         }
         return false;
     };
-
+    //for debugging purposes
     draw(ctx){
         ctx.strokeStyle = "Red";
         ctx.lineWidth = 3;
