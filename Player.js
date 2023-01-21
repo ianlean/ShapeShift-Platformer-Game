@@ -45,8 +45,11 @@ class Player {
     };
 
     draw(ctx) {
+        if(this.shape=="circle"){
         this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
-        //ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
+        }else{
+            this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+        }
         this.BoundingBox.draw(ctx);
     };
 
