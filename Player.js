@@ -43,7 +43,7 @@ class Player {
     };
 
     draw(ctx) {
-        this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
         //ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
         this.BoundingBox.draw(ctx);
     };
@@ -59,11 +59,11 @@ class Player {
                 }
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
-                    // this.velocityY = -16;//I think this is really funny as a place holder -Damien
+                     this.velocityY = -16;//I think this is really funny as a place holder -Damien
                 }
                 if (entity instanceof Laser) {
                     //todo this is where a death/loss of heart would be 
-                    // this.velocityY = -16;//I think this is really funny as a place holder -Damien
+                     this.velocityY = -16;//I think this is really funny as a place holder -Damien
                 }
             }
         });
@@ -144,7 +144,7 @@ class Player {
     }
 
     updateBox() {
-        this.BoundingBox = new BoundingBox(this.x, this.y, 30, 30);
+        this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
     }
 
     die() {
