@@ -9,9 +9,9 @@ class SceneManager{
 
         this.playerCharacter = new Player(this.game,0, 0);
         
-        this.floor1=new floor(this.game,0,120)
+        this.floor1=new floor(this.game,0,120);
         this.elapsedTime = 0;
-
+        //this.level.addEntity
         this.spawns = [0.5,1,3,5];
         //this.randomSpawn = 0;
         
@@ -67,13 +67,20 @@ class SceneManager{
         if(this.playerCharacter.x<midpoint){
             if(this.playerCharacter.x<=0){
                 this.playerCharacter.x=0;
-                this.floor1.x-=this.playerCharacter.velocityX;
+       
+                for(let i=2; i<this.game.entities.length; i++ ){
+                this.game.entities[i].x -= this.playerCharacter.velocityX;
+                }
             }
         //this.floor1.x=this.playerCharacter.x;
         
         }else{
             this.playerCharacter.x=midpoint;
-            this.floor1.x-=this.playerCharacter.velocityX;
+            
+            for(let i=2; i<this.game.entities.length; i++ ){
+                this.game.entities[i].x -= this.playerCharacter.velocityX;
+                this.game.entities[i].BoundingBox.x -= this.playerCharacter.velocityX;
+                }
             // this.game.entites.forEach(entity => {
             //     this.entity.x-=this.playerCharacter.velocityX;
             // });
