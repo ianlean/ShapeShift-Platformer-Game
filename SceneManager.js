@@ -41,12 +41,12 @@ class SceneManager{
         this.game.addEntity(new floor(this.game,240,120));
         this.game.addEntity(new floor(this.game,270,120));
 
-        for (let index = 270; index < 1000; index+=30) {
+        for (let index = 270; index < 10000; index+=30) {
             this.game.addEntity(new floor(this.game,index,120));
         }
-        for (let index = 1000; index < 2000; index+=30) {
-            this.game.addEntity(new floor(this.game,index,110-index+1000));
-        }
+        // for (let index = 1000; index < 2000; index+=30) {
+        //     this.game.addEntity(new floor(this.game,index,110-index+1000));
+        // }
 
 
        //this.player = (new CharacterController(gameEngine),50,550)
@@ -92,8 +92,8 @@ class SceneManager{
             }
         }
         if(this.playerCharacter.x<midpoint){
-            if(this.playerCharacter.x<=0){
-                this.playerCharacter.x=0;
+            if(this.playerCharacter.x<=50){
+                this.playerCharacter.x=50;
                 for(let i=1; i<this.game.entities.length; i++ ){
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
                 this.game.entities[i].updateBox();
