@@ -25,17 +25,21 @@ class SceneManager{
     loadLevel(x,y){
        
         this.game.addEntity(this.playerCharacter);
-        this.game.addEntity(new Laser(this.game,1280, 70));
+        this.game.addEntity(new Laser(this.game,500, 70));
         this.game.addEntity(new floor(this.game,-30,120));
         this.game.addEntity(new floor(this.game,-60,120));
         this.game.addEntity(new floor(this.game,-90,120));
         this.game.addEntity(this.floor1);
         this.game.addEntity(new floor(this.game,30,120));
         this.game.addEntity(new floor(this.game,60,120));
+        this.game.addEntity(new floor(this.game,60,90));
         this.game.addEntity(new spike(this.game,90,120));
         this.game.addEntity(new floor(this.game,120,120));
         this.game.addEntity(new floor(this.game,150,120));
         this.game.addEntity(new floor(this.game,180,120));
+        this.game.addEntity(new floor(this.game,210,120));
+        this.game.addEntity(new floor(this.game,240,120));
+        this.game.addEntity(new floor(this.game,270,120));
 
 
 
