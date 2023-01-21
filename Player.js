@@ -59,11 +59,11 @@ class Player {
                 }
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
-                     this.velocityY = -16;//I think this is really funny as a place holder -Damien
+                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
                 }
                 if (entity instanceof Laser) {
                     //todo this is where a death/loss of heart would be 
-                     this.velocityY = -16;//I think this is really funny as a place holder -Damien
+                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
                 }
             }
         });
