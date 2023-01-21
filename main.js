@@ -7,7 +7,6 @@ ASSET_MANAGER.queueDownload("./assets/sqaurePixel.png");
 ASSET_MANAGER.queueDownload("./assets/trianglePixel.png");
 ASSET_MANAGER.queueDownload("./assets/square.png");
 ASSET_MANAGER.queueDownload("./assets/spikePixel.png");
-
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
@@ -22,7 +21,6 @@ ASSET_MANAGER.downloadAll(() => {
 	// gameEngine.addEntity(new floor(gameEngine,120,120));
 	// gameEngine.addEntity(new floor(gameEngine,150,120));
 	// gameEngine.addEntity(new floor(gameEngine,180,120));
-	
 	gameEngine.init(ctx);
 	
 	gameEngine.start();
