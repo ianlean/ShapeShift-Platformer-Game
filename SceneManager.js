@@ -17,13 +17,41 @@ class SceneManager{
         //this.randomSpawn = 0;
         
         //this.Spawn();
-        this.loadLevel(50,550);
+        this.loadLevel(levelOne, 50,550);
 
     };
 
-
-    loadLevel(x,y){
+    clearEntities() {
+        this.game.entities.forEach(function (entity) {
+            entity.removeFromWorld = true;
+        });
+    };
+    loadLevel(level, x, y){
        
+
+
+
+        this.game.addEntity(this.playerCharacter);
+
+        if (level.floor) {
+            for (var i = 0; i < level.floor.length; i++) {
+                let Floor = level.floor[i];
+                this.game.addEntity(new floor(this.game, Floor.x, Floor.y));
+            }
+        }
+        if (level.spike) {
+            for (var i = 0; i < level.spike.length; i++) {
+                let Spike = level.spike[i];
+                this.game.addEntity(new spike(this.game, Spike.x, Spike.y));
+            }
+        }
+        if (level.laser) {
+            for (var i = 0; i < level.laser.length; i++) {
+                let laser = level.laser[i];
+                this.game.addEntity(new Laser(this.game, laser.x, laser.y));
+            }
+        }
+        /*
         this.game.addEntity(this.playerCharacter);
         this.game.addEntity(new Laser(this.game,500, 70));
         this.game.addEntity(new floor(this.game,-30,120));
@@ -40,39 +68,18 @@ class SceneManager{
         this.game.addEntity(new floor(this.game,210,120));
         this.game.addEntity(new floor(this.game,240,120));
         this.game.addEntity(new floor(this.game,270,120));
-
-        for (let index = 270; index < 10000; index+=30) {
+*/
+        
+        //in final version this should be deleted 
+        for (let index = 200; index < 10000; index+=30) {
             this.game.addEntity(new floor(this.game,index,120));
         }
-        // for (let index = 1000; index < 2000; index+=30) {
-        //     this.game.addEntity(new floor(this.game,index,110-index+1000));
-        // }
-
-
-       //this.player = (new CharacterController(gameEngine),50,550)
-
-       
-       //this.game.addEntity(new Tombstone(this.game,1920,700))
-       
-       
-
 
 
 
     };
-    
-    // Spawn(){
-    //     //this.prevSpawn = this.randomSpawn;
-        
-    //     // while(this.prevSpawn === this.randomSpawn){
-    //     //     this.randomSpawn = Math.floor(Math.random() * this.spawns.length);
-    //     // }
 
 
-
-        
-
-    // };
 
     update() {
         let midpoint = 200;
@@ -110,21 +117,6 @@ class SceneManager{
                 this.game.entities[i].updateBox();
                 }
         }
-        
-//p
-
-        //this.game.addEntity(new Tombstone(this.game,1920,700))
-        // if(this.elapsedTime > this.spawns[this.randomSpawn]){
-        //     this.elapsedTime=0;
-        //     //this.Spawn();
-        //     //console.log("make another")
-        //     //this.game.addEntity(new Tombstone(this.game,1920,700))
-
-        // }
-
-        //if (this.x < this.player.x - midpoint) this.x = this.player.x  - midpoint;
-
-
 
     };
 

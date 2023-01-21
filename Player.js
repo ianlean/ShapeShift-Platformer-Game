@@ -157,7 +157,7 @@ class Player {
         if (shapeType == "Circle") {
             this.shape = "circle";
         }
-        console.log("changing shape");
+       // console.log("changing shape");
     }
 
     jumpCheck() {
