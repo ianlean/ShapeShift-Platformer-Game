@@ -41,7 +41,12 @@ class SceneManager{
         this.game.addEntity(new floor(this.game,240,120));
         this.game.addEntity(new floor(this.game,270,120));
 
-
+        for (let index = 270; index < 1000; index+=30) {
+            this.game.addEntity(new floor(this.game,index,120));
+        }
+        for (let index = 1000; index < 2000; index+=30) {
+            this.game.addEntity(new floor(this.game,index,110-index+1000));
+        }
 
 
        //this.player = (new CharacterController(gameEngine),50,550)

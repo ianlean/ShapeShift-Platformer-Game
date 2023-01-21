@@ -54,8 +54,10 @@ class Player {
             if (this.BoundingBox.collide(entity.BoundingBox)) {
                 if (entity instanceof floor) {
                     //console.log("this is the floor")
+                    if(this.BoundingBox.bottom>=entity.BoundingBox.top){
                     this.velocityY = 0;
                     this.jumpCheck();
+                    }
                 }
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
@@ -115,7 +117,7 @@ class Player {
 
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
-            this.velocityY += this.Acceleration;
+            this.velocityY += this.Acceleration*2;
         }
         console.log("going down");
         if (this.velocityX > 0) {
