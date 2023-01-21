@@ -32,7 +32,7 @@ class Player {
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
-        
+
         this.updateBox();
         this.velocityY += this.Acceleration;
 
@@ -45,10 +45,8 @@ class Player {
     };
 
     draw(ctx) {
-        if(this.shape=="circle"){
         this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
-        }
-        this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+        //ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
         this.BoundingBox.draw(ctx);
     };
 
@@ -58,18 +56,18 @@ class Player {
             if (this.BoundingBox.collide(entity.BoundingBox)) {
                 if (entity instanceof floor) {
                     //console.log("this is the floor")
-                    if(this.BoundingBox.bottom>=entity.BoundingBox.top){
-                    this.velocityY = 0;
-                    this.jumpCheck();
+                    if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
+                        this.velocityY = 0;
+                        this.jumpCheck();
                     }
                 }
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
-                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
                 }
                 if (entity instanceof Laser) {
                     //todo this is where a death/loss of heart would be 
-                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
                 }
             }
         });
@@ -102,7 +100,7 @@ class Player {
         if (this.game.keys["Shift"] == true) {
             this.shapeshift("Square");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
-        }else{
+        } else {
             this.shapeshift("Circle");
         }
     }
@@ -126,8 +124,8 @@ class Player {
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
             this.velocityY += this.Acceleration;
-            if(this.shape=="square"){
-                this.velocityY += this.Acceleration*5;
+            if (this.shape == "square") {
+                this.velocityY += this.Acceleration * 5;
                 this.anim = "Square";
 
             }
@@ -138,22 +136,22 @@ class Player {
         } else if (this.velocityX < 0) {
             this.anim = "a";
         } else {
-             if(this.shape=="square"){
+            if (this.shape == "square") {
                 this.anim = "Square";
-                
-            }else{
-                this.anim="still"
+
+            } else {
+                this.anim = "still"
             }
-            
+
         }
     }
 
     shapeshift(shapeType) {
-        if (shapeType=="Square") {
+        if (shapeType == "Square") {
             this.anim = "Square";
             this.shape = "square";
         }
-        if (shapeType=="Circle") {
+        if (shapeType == "Circle") {
             this.shape = "circle";
         }
         console.log("changing shape");
