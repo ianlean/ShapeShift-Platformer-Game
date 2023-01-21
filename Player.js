@@ -26,6 +26,8 @@ class Player {
         this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/circlePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
         //rolling left animation
         this.animations["a"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheetCircle.png"), 0, 0, 32, 32, 9, 0.1, 0, true, true);
+        //square shift
+        this.animations["Square"] = new Animator(ASSET_MANAGER.getAsset("./assets/sqaurePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, false);
     }
 
     // Try to keep this function small, extrapilate logic to other functions
@@ -89,13 +91,15 @@ class Player {
             }
             if (this.game.keys["d"] == false && this.game.keys["a"] == false) {
                 this.velocityX -= this.velocityX;
-                this.anim = "still";
+                //this.anim = "still";
             }
         }
 
         if (this.game.keys["Shift"] == true) {
-            this.shapeshift();
+            this.shapeshift("Square");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
+        }else{
+            this.shapeshift("Circle");
         }
     }
 
@@ -117,7 +121,12 @@ class Player {
 
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
-            this.velocityY += this.Acceleration*2;
+            this.velocityY += this.Acceleration;
+            if(this.shape=="square"){
+                this.velocityY += this.Acceleration*5;
+                this.anim = "Square";
+
+            }
         }
         console.log("going down");
         if (this.velocityX > 0) {
@@ -125,14 +134,23 @@ class Player {
         } else if (this.velocityX < 0) {
             this.anim = "a";
         } else {
-            this.anim = "still";
+             if(this.shape=="square"){
+                this.anim = "Square";
+                
+            }else{
+                this.anim="still"
+            }
+            
         }
     }
 
-    shapeshift() {
-        if (this.shape == "circle") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./assets/spriteSheetCircle.png")
+    shapeshift(shapeType) {
+        if (shapeType=="Square") {
+            this.anim = "Square";
             this.shape = "square";
+        }
+        if (shapeType=="Circle") {
+            this.shape = "circle";
         }
         console.log("changing shape");
     }
