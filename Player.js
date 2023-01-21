@@ -43,7 +43,7 @@ class Player {
     };
 
     draw(ctx) {
-        this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/2), ctx, this.x, this.y, .5);
+        this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
         //ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
         this.BoundingBox.draw(ctx);
     };

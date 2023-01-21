@@ -111,7 +111,7 @@ class SceneManager{
                 }
         }
         
-
+//p
 
         //this.game.addEntity(new Tombstone(this.game,1920,700))
         // if(this.elapsedTime > this.spawns[this.randomSpawn]){
