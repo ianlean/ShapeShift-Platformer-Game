@@ -45,8 +45,11 @@ class Player {
     };
 
     draw(ctx) {
-        this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5);
-        //ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
+        if(this.shape=="circle"){
+        this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
+        }else{
+            this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+        }
         this.BoundingBox.draw(ctx);
     };
 
@@ -91,7 +94,9 @@ class Player {
             }
             if (this.game.keys["d"] == false && this.game.keys["a"] == false) {
                 this.velocityX -= this.velocityX;
-                //this.anim = "still";
+                if(this.shape=="circle"){
+                this.anim = "still";
+                }
             }
         }
 
@@ -152,7 +157,7 @@ class Player {
         if (shapeType == "Circle") {
             this.shape = "circle";
         }
-        console.log("changing shape");
+       // console.log("changing shape");
     }
 
     jumpCheck() {
