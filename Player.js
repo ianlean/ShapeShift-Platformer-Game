@@ -84,7 +84,7 @@ class Player {
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys)) { //no key is pressed so we idle
+        if (!aKeyIsPressed(this.game.keys)||this.dead) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
         } else { // a key is pressed so we move
