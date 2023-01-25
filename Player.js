@@ -17,6 +17,7 @@ class Player {
         this.animations = [];
         this.createAnimations();
         this.updateBox();
+        this.dead = false;
     };
 
     createAnimations() {
@@ -49,6 +50,9 @@ class Player {
         this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
         }else{
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+        }
+        if(this.dead){
+            ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
         }
         this.BoundingBox.draw(ctx);
     };
@@ -177,7 +181,8 @@ class Player {
     die() {
         // die animation/reset game
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
-        ASSET_MANAGER.playAsset("./assets/Sad Violin - Sound Effect (HD).mp3")
+        this.dead = true;
+        
     }
 
 }
