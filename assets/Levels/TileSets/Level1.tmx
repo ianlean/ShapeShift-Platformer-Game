@@ -4,81 +4,81 @@
   <export target="Level1..tmj" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="GHZ.tsx"/>
- <tileset firstgid="205" source="Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1.tsx"/>
- <tileset firstgid="15613" source="Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1 - No Tree.tsx"/>
+ <tileset firstgid="201" source="Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1.tsx"/>
+ <tileset firstgid="201" source="Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1 - No Tree.tsx"/>
  <layer id="1" name="Tile Layer 1" width="32" height="20" offsetx="-544" offsety="128">
   <data encoding="base64" compression="zlib">
    <chunk x="-48" y="-32" width="16" height="16">
-   eJxjYBgFo2Bkg6Bo8vFQ1w8ANdgojQ==
+   eJxjYBgFo2BkAzl58vFQ1w8AIyUOTQ==
   </chunk>
    <chunk x="-32" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDokY0B5PsrQQ==
+   eJxjYBgFo2DkAjn5kY0BuykPQQ==
   </chunk>
    <chunk x="-16" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDokY0B5PsrQQ==
+   eJxjYBgFo2DkAjn5kY0BuykPQQ==
   </chunk>
    <chunk x="0" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDokY0B5PsrQQ==
+   eJxjYBgFo2DkAjn5kY0BuykPQQ==
   </chunk>
    <chunk x="16" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDokY0B5PsrQQ==
+   eJxjYBgFo2DkAjn5kY0BuykPQQ==
   </chunk>
    <chunk x="32" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDokY0B5PsrQQ==
+   eJxjYBgFo2DkAjn5kY0BuykPQQ==
   </chunk>
    <chunk x="48" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDokY0B5PsrQQ==
+   eJxjYBgFo2DkAjn5kY0BuykPQQ==
   </chunk>
    <chunk x="64" y="-32" width="16" height="16">
-   eJxjYBgFo2DkgqDoka0fALMjArU=
+   eJxjYBgFo2DkAjn5ka0fAJwEAPU=
   </chunk>
    <chunk x="-48" y="-16" width="16" height="16">
-   eJxjYGBgCIomHzOM6h/VP8T1r8ghHveUA3ERQ0M3EHcBMUj/y1ziMV8pQ8PZYoaGM0B8uhiinymPNAwygxeIeUrJ0w/DvmUMDQCbeq+W
+   eJxjYGBgkJMnHzOM6h/VP8T1lxgQjyOsgdiMoSEciMOAGKR/qyHx+JYFQ8NMc4aGGUA83Ryi/5whaRhkxk0gvmFBnn4YlrRiaAAAy/ZkeA==
   </chunk>
    <chunk x="-32" y="-16" width="16" height="16">
-   eJzty7ERglAURNE7jJGiXRmpCakFECgGMkD6QlE7sCJQG8AK7ML9Q8IHO4DgJHdnoz1Ek8lIlWfsIv2u5jaucpN7gX2O0DXLoE6xKh3+1dzGU17ylm/iW+ewyLC5NLH/V3MboSxl1bK+bY5t5HHw/2poYyfBqfXv/wMmCL+G
+   eJzty7ERglAURNHbApGYYAEGSiIMtiFiB7TxmgC1Aa3ANhwjFaph/5DwwQ4kOMnd2WgF0Wz2p/IddpBxV3MbRynktMfuWxh6pVAnWJVM/2pu4ywXucoj9gUZfFLsLbe1/1dzG19ppO3ZWJhhCyk3/l8NbSzlGfd+/Tv7rGNy
   </chunk>
    <chunk x="-16" y="-16" width="16" height="16">
-   eJwLimZgCBrFo3iEYtZSBgY2IGYHYo5S0vW7lTEwuAOxBxB7lpGun6+UoaGjnIGhsxxiDqnuAemHYdcy0t0DAPYYrhQ=
+   eJyTk2dgkBvFo3iE4osWDAyXgPgyEF+xIF2/kBUDgzAQiwCxqBXp+m9ZMDSEWDMwhFpDzCHVPSD9MCxoRbp7AAKpSgg=
   </chunk>
    <chunk x="0" y="-16" width="16" height="16">
-   eJwLimZgCBrFo3gUk4oboHhA9HOUMjSwlxKlvwELZvAsY2jwAGIAvcqzQw==
+   eJyTk2dgkBvFo3gUk4oboHhA9F+xYGi4bEGU/gYsmEHUiqFBBIgBmCBFQQ==
   </chunk>
    <chunk x="16" y="-16" width="16" height="16">
-   eJwLimZgCBrFo3jk4gYQ5ihlaGAHYjYgZgViFiBekcPAQAjD9HuWMTR4ALE7ELsBsSsQv8xlYCCEYfaB9HWWMzR0ADFfKQMDsRjZPlL0wTAATsG9dA==
+   eJyTk2dgkBvFo3jk4gYQvmLB0HAZiC8B8UUgvgDEJQYMDIQwTL+oFUODCBALA7EQEAsC8VZDBgZCGGYfSF+oNUNDCBDfsmBgIBYj20eKPhgGAHN2bFU=
   </chunk>
    <chunk x="32" y="-16" width="16" height="16">
-   eJwLimZgCBrFo3iE4hU5lOGXuZRhvtKBxQAWCrjB
+   eJyTk2dgkBvFo3iE4hIDyvBWQ8rwLYuBxQCdM2ih
   </chunk>
    <chunk x="48" y="-16" width="16" height="16">
-   eJwLimZgCBrFo3iE4hU5lOGXuZRhvtKBxQAWCrjB
+   eJyTk2dgkBvFo3iE4hIDyvBWQ8rwLYuBxQCdM2ih
   </chunk>
    <chunk x="64" y="-16" width="16" height="16">
-   eJwLimagCASN6h/VP4T1r8ihTP/LXMr085UOrH4Av5ILjQ==
+   eJyTk2egCMiN6h/VP4T1lxhQpn+rIWX6b1kMrH4AocIGiw==
   </chunk>
    <chunk x="-48" y="0" width="16" height="16">
-   eJxjYGBgYMojD/eVMzQwUKAfhEf1j+ofaP0jGQAAs+tP1g==
+   eJxjYGBgOGdIHo6yZmhgoEA/CI/qH9U/0PpHMgAAixqzYw==
   </chunk>
    <chunk x="-32" y="0" width="16" height="16">
-   eJzrLWdo6AHi2zkMDMgYKMbQC8R9QMyUB8F8pQwN6BgmRwwe1T+qf7DpZxjhAAAWmX20
+   eJyLtGZoiADi5QYMDMgYKMYQCcRRQHzOEIJvWTA0oGOYHDF4VP+o/sGmn2GEAwD759/9
   </chunk>
    <chunk x="-16" y="0" width="16" height="16">
-   eJzjK2Vo4EPDHeUMDJ1A7F7GwMBaysDABsTsQMwBxNxAzAPEQdEQjK4XGbsC9buVQczxAGJPIPYBYt8y4vSju6cHiHuBuK+cNP3Y8Kj+Uf0gPNIBAL5ktN4=
+   eJy7ZcHQcAsNh1gzMIQCsbAVA8NFCwaGS0B8GYivAPF1IL4BxHLyEIyuFxkLAvULWUHMEQFiUSCWAGJJK+L0o7snAogjgTjKmjT92PCo/lH9IDzSAQBG4vlF
   </chunk>
    <chunk x="0" y="0" width="16" height="16">
-   eJwLimZgCMKDeUoZGriBmAOI2YGYDYhZgdi9jKGhs5yhAZ9eEPYFqvMBYk8g9iiD6HMDYlcg5ivFrxeE+4B29AJxTznEvo5yiD4YJqQfWS02PKp/ZOsf6QAABX2Asg==
+   eJyTk2dgkMODb1gwNFwH4itAfBmILwHxRSAWtmJoCLVmaMCnF4QlgeokgFgUiEWsIPqEgFgQiG9Z4NcLwlFAOyKBOMIaYl+INUQfDBPSj6wWGx7VP7L1j3QAAD/ZfmA=
   </chunk>
    <chunk x="16" y="0" width="16" height="16">
-   eJzrKGdo4CtlYBjFo3gk4pEOAA3kYz0=
+   eJwLsWZouGXBwDCKR/FIxCMdAABFqs1+
   </chunk>
    <chunk x="32" y="0" width="16" height="16">
-   eJzjK2Vg4BvFo3iE4pEOAB8qYkE=
+   eJy7ZcHAcGsUj+IRikc6AABTLc2B
   </chunk>
    <chunk x="48" y="0" width="16" height="16">
-   eJzjK2Vg4BvFo3iE4pEOAB8qYkE=
+   eJy7ZcHAcGsUj+IRikc6AABTLc2B
   </chunk>
    <chunk x="64" y="0" width="16" height="16">
-   eJzjK2WgCPCN6h/VP4T1j3QAAB30BiU=
+   eJy7ZcFAEbg1qn9U/xDWP9IBALpPDNk=
   </chunk>
   </data>
  </layer>
@@ -96,7 +96,7 @@
    <polygon points="0,0 32.6667,-4 48,-7.33333 61.3333,-13.3333 76,-22.6667 85.3333,-34 93.3333,-44.6667 97.3333,-52.6667 100,-62 100,-76 100.667,-94.6667 100,-115.333 101.333,-132.667 128.667,-132 127.333,-76.6667 128.667,20.6667 0,21.3333"/>
   </object>
  </objectgroup>
- <objectgroup id="6" name="Small Ramp" visible="0">
+ <objectgroup id="6" name="Small Ramp">
   <object id="16" x="-704.5" y="197.75">
    <polygon points="0,0 32.75,1.75 39.75,1.25 48,-1 56.5,-3.75 64.75,-8.5 72,-13.75 80.25,-20.5 84,-24 86.5,-27 90.5,-32.25 93.5,-38 96,-42.75 96.25,27 0.25,27"/>
   </object>
