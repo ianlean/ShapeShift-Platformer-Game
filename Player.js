@@ -67,10 +67,12 @@ class Player {
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.die()
                 }
                 if (entity instanceof Laser) {
                     //todo this is where a death/loss of heart would be 
                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.die()
                 }
             }
         });
@@ -174,7 +176,8 @@ class Player {
 
     die() {
         // die animation/reset game
-
+        ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
+        ASSET_MANAGER.playAsset("./assets/Sad Violin - Sound Effect (HD).mp3")
     }
 
 }
