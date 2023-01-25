@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="7" nextobjectid="18">
  <editorsettings>
-  <export target="Level1..js" format="js"/>
+  <export target="Level1..tmj" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="GHZ.tsx"/>
  <tileset firstgid="205" source="Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1.tsx"/>
@@ -96,7 +96,7 @@
    <polygon points="0,0 32.6667,-4 48,-7.33333 61.3333,-13.3333 76,-22.6667 85.3333,-34 93.3333,-44.6667 97.3333,-52.6667 100,-62 100,-76 100.667,-94.6667 100,-115.333 101.333,-132.667 128.667,-132 127.333,-76.6667 128.667,20.6667 0,21.3333"/>
   </object>
  </objectgroup>
- <objectgroup id="6" name="Small Ramp">
+ <objectgroup id="6" name="Small Ramp" visible="0">
   <object id="16" x="-704.5" y="197.75">
    <polygon points="0,0 32.75,1.75 39.75,1.25 48,-1 56.5,-3.75 64.75,-8.5 72,-13.75 80.25,-20.5 84,-24 86.5,-27 90.5,-32.25 93.5,-38 96,-42.75 96.25,27 0.25,27"/>
   </object>
