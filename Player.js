@@ -17,6 +17,7 @@ class Player {
         this.animations = [];
         this.createAnimations();
         this.updateBox();
+        this.dead = false;
     };
 
     createAnimations() {
@@ -50,6 +51,9 @@ class Player {
         }else{
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
         }
+        if(this.dead){
+            ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
+        }
         this.BoundingBox.draw(ctx);
     };
 
@@ -67,10 +71,12 @@ class Player {
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.die()
                 }
                 if (entity instanceof Laser) {
                     //todo this is where a death/loss of heart would be 
                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.die()
                 }
             }
         });
@@ -78,7 +84,7 @@ class Player {
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys)) { //no key is pressed so we idle
+        if (!aKeyIsPressed(this.game.keys)||this.dead) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
         } else { // a key is pressed so we move
@@ -174,7 +180,9 @@ class Player {
 
     die() {
         // die animation/reset game
-
+        ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
+        this.dead = true;
+        
     }
 
 }

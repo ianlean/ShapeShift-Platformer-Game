@@ -8,7 +8,7 @@ class SceneManager{
         this.y = 0;
         this.score = 0;
 
-        this.playerCharacter = new Player(this.game,0, 0);
+        this.playerCharacter = new Player(this.game,-60, 0);
         
         this.floor1=new floor(this.game,0,120);
         this.elapsedTime = 0;
