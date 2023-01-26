@@ -1,4 +1,3 @@
-
 class SceneManager {
 
     constructor(game) {
@@ -30,7 +29,7 @@ class SceneManager {
 
 
     loadLevel(level, x, y) {
-        console.log(level.background)
+        console.log(level)
 
         this.game.addEntity(new Background(ASSET_MANAGER.getAsset(level.background), x, y, 1000, 1000))
 
