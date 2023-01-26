@@ -17,6 +17,7 @@ class Player {
         this.animations = [];
         this.createAnimations();
         this.updateBox();
+        this.dead = false;
     };
 
     createAnimations() {
@@ -26,6 +27,8 @@ class Player {
         this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/circlePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
         //rolling left animation
         this.animations["a"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheetCircle.png"), 0, 0, 32, 32, 9, 0.1, 0, true, true);
+        //square shift
+        this.animations["Square"] = new Animator(ASSET_MANAGER.getAsset("./assets/sqaurePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, false);
     }
 
     // Try to keep this function small, extrapilate logic to other functions
@@ -43,8 +46,14 @@ class Player {
     };
 
     draw(ctx) {
-        this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
-        //ctx.drawImage(this.spritesheet, this.x, this.y,30,30);
+        if(this.shape=="circle"){
+        this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
+        }else{
+            this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+        }
+        if(this.dead){
+            ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
+        }
         this.BoundingBox.draw(ctx);
     };
 
@@ -54,16 +63,20 @@ class Player {
             if (this.BoundingBox.collide(entity.BoundingBox)) {
                 if (entity instanceof floor) {
                     //console.log("this is the floor")
-                    this.velocityY = 0;
-                    this.jumpCheck();
+                    if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
+                        this.velocityY = 0;
+                        this.jumpCheck();
+                    }
                 }
                 if (entity instanceof spike) {
                     //todo this is where a death/loss of heart would be 
-                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.die()
                 }
                 if (entity instanceof Laser) {
                     //todo this is where a death/loss of heart would be 
-                     this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
+                    this.die()
                 }
             }
         });
@@ -71,7 +84,7 @@ class Player {
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys)) { //no key is pressed so we idle
+        if (!aKeyIsPressed(this.game.keys)||this.dead) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
         } else { // a key is pressed so we move
@@ -87,13 +100,17 @@ class Player {
             }
             if (this.game.keys["d"] == false && this.game.keys["a"] == false) {
                 this.velocityX -= this.velocityX;
+                if(this.shape=="circle"){
                 this.anim = "still";
+                }
             }
         }
 
         if (this.game.keys["Shift"] == true) {
-            this.shapeshift();
+            this.shapeshift("Square");
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
+        } else {
+            this.shapeshift("Circle");
         }
     }
 
@@ -116,6 +133,11 @@ class Player {
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
             this.velocityY += this.Acceleration;
+            if (this.shape == "square") {
+                this.velocityY += this.Acceleration * 5;
+                this.anim = "Square";
+
+            }
         }
         console.log("going down");
         if (this.velocityX > 0) {
@@ -123,20 +145,29 @@ class Player {
         } else if (this.velocityX < 0) {
             this.anim = "a";
         } else {
-            this.anim = "still";
+            if (this.shape == "square") {
+                this.anim = "Square";
+
+            } else {
+                this.anim = "still"
+            }
+
         }
     }
 
-    shapeshift() {
-        if (this.shape == "circle") {
-            this.spritesheet = ASSET_MANAGER.getAsset("./assets/spriteSheetCircle.png")
+    shapeshift(shapeType) {
+        if (shapeType == "Square") {
+            this.anim = "Square";
             this.shape = "square";
         }
-        console.log("changing shape");
+        if (shapeType == "Circle") {
+            this.shape = "circle";
+        }
+       // console.log("changing shape");
     }
 
     jumpCheck() {
-        if (this.game.keys["w"] == true) {
+        if (this.game.keys[" "] == true) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 30 * this.Acceleration;
             }
@@ -149,7 +180,9 @@ class Player {
 
     die() {
         // die animation/reset game
-
+        ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
+        this.dead = true;
+        
     }
 
 }

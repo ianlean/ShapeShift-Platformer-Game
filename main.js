@@ -7,20 +7,14 @@ ASSET_MANAGER.queueDownload("./assets/sqaurePixel.png");
 ASSET_MANAGER.queueDownload("./assets/trianglePixel.png");
 ASSET_MANAGER.queueDownload("./assets/square.png");
 ASSET_MANAGER.queueDownload("./assets/spikePixel.png");
+ASSET_MANAGER.queueDownload("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
+ASSET_MANAGER.queueDownload("./assets/Sad Violin - Sound Effect (HD).mp3")
+ASSET_MANAGER.queueDownload("./assets/Dead.png");
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 	new SceneManager(gameEngine)
-	// gameEngine.addEntity(new Player(gameEngine,0,0));
-	// gameEngine.addEntity(new Laser(gameEngine,1280, 70));
-	// gameEngine.addEntity(new floor(gameEngine,0,120));
-	// gameEngine.addEntity(new floor(gameEngine,30,120));
-	// gameEngine.addEntity(new floor(gameEngine,60,120));
-	// gameEngine.addEntity(new spike(gameEngine,90,120));
-	// gameEngine.addEntity(new floor(gameEngine,120,120));
-	// gameEngine.addEntity(new floor(gameEngine,150,120));
-	// gameEngine.addEntity(new floor(gameEngine,180,120));
 	gameEngine.init(ctx);
 	
 	gameEngine.start();
