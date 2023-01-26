@@ -60,7 +60,7 @@ class Player {
     collisionCheck() {
         this.game.entities.forEach(entity => {
 
-            if (this.BoundingBox.collide(entity.BoundingBox)) {
+            if (!(entity instanceof Background) && this.BoundingBox.collide(entity.BoundingBox)) {
                 if (entity instanceof floor) {
                     //console.log("this is the floor")
                     if (this.BoundingBox.bottom >= entity.BoundingBox.top) {

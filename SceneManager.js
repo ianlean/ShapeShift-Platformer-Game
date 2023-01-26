@@ -6,16 +6,14 @@ class SceneManager {
         this.x = 0;
         this.y = 0;
         this.score = 0;
+        this.background;
 
         this.playerCharacter = new Player(this.game, -60, 0);
 
         this.floor1 = new floor(this.game, 0, 120);
         this.elapsedTime = 0;
-        //this.level.addEntity
         this.spawns = [0.5, 1, 3, 5];
-        //this.randomSpawn = 0;
 
-        //this.Spawn();
         this.loadLevel(level1, 50, 550);
 
     };
@@ -29,9 +27,28 @@ class SceneManager {
 
 
     loadLevel(level, x, y) {
+        var floors = 1
+        var bigRamp = 2
+        var smallRamp = 3
+        var slope = 4
+
         console.log(level)
 
-        this.game.addEntity(new Background(ASSET_MANAGER.getAsset(level.background), x, y, 1000, 1000))
+        this.game.addEntity(this.playerCharacter);
+
+        this.background = new Background(level.background, -35, -380, 3616, 1024)
+
+        
+        level.data["layers"][floors]["objects"].forEach(f => {
+            console.log(f)
+            var fl = new floor(this.game, f["x"] + 510, f["y"] - 510, f["width"], f["height"])
+            this.game.addEntity(fl)
+            console.log(fl)
+        });
+        
+        this.game.addEntity(this.background)
+        console.log(level.data["layers"][floors]["objects"])
+        
 
         // if (level.floor) {
         //     for (var i = 0; i < level.floor.length; i++) {
@@ -39,20 +56,20 @@ class SceneManager {
         //         this.game.addEntity(new floor(this.game, Floor.x, Floor.y));
         //     }
         // }
-        // if (level.spike) {
-        //     for (var i = 0; i < level.spike.length; i++) {
-        //         let Spike = level.spike[i];
-        //         this.game.addEntity(new spike(this.game, Spike.x, Spike.y));
-        //     }
-        // }
-        // if (level.laser) {
-        //     for (var i = 0; i < level.laser.length; i++) {
-        //         let laser = level.laser[i];
-        //         this.game.addEntity(new Laser(this.game, laser.x, laser.y));
-        //     }
-        // }
+        if (level.spike) {
+            for (var i = 0; i < level.spike.length; i++) {
+                let Spike = level.spike[i];
+                this.game.addEntity(new spike(this.game, Spike.x, Spike.y));
+            }
+        }
+        if (level.laser) {
+            for (var i = 0; i < level.laser.length; i++) {
+                let laser = level.laser[i];
+                this.game.addEntity(new Laser(this.game, laser.x, laser.y));
+            }
+        }
 
-        this.game.addEntity(this.playerCharacter);
+        
     };
 
 
@@ -97,7 +114,7 @@ class SceneManager {
     };
 
     draw(ctx) {
-
+        this.background.draw(ctx)
     };
 
 };
