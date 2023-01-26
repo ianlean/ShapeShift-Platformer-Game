@@ -104,6 +104,8 @@ class Player {
                 this.anim = "still";
                 }
             }
+            // console.log("x: " + this.x)
+            // console.log("y: " + this.y)
         }
 
         if (this.game.keys["Shift"] == true) {

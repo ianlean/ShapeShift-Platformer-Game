@@ -27,23 +27,41 @@ class SceneManager {
 
 
     loadLevel(level, x, y) {
-        var floors = 1
-        var bigRamp = 2
-        var smallRamp = 3
-        var slope = 4
+        var layers = level.data["layers"]
+        var spikes = layers.findIndex(l => l["name"] == "Spikes")
+        var floors = layers.findIndex(l => l["name"] == "Floor")
+        var bigRamp = layers.findIndex(l => l["name"] == "Big Ramp")
+        var smallRamp = layers.findIndex(l => l["name"] == "Small Ramp")
+        var slope = layers.findIndex(l => l["name"] == "Slope")
 
         console.log(level)
 
         this.game.addEntity(this.playerCharacter);
 
-        this.background = new Background(level.background, -35, -380, 3616, 1024)
+        this.background = new Background(level.background, -35, -445, 3552, 1024)
 
+        var i = level.data["layers"].findIndex(l => l["name"] == "Floor")
         
-        level.data["layers"][floors]["objects"].forEach(f => {
-            console.log(f)
-            var fl = new floor(this.game, f["x"] + 510, f["y"] - 510, f["width"], f["height"])
-            this.game.addEntity(fl)
-            console.log(fl)
+        if(floors > -1) {
+            layers[floors]["objects"].forEach(f => {
+                console.log(f)
+                var fl = new floor(this.game, f["x"] - 35, f["y"] - 443, f["width"], f["height"])
+                this.game.addEntity(fl)
+                console.log(fl)
+            });
+        }
+
+        if(spikes > -1) {
+            layers[spikes]["objects"].forEach(s => {
+                console.log(s)
+                var sp = new spike(this.game, s["x"] - 35, s["y"] - 443, s["width"], s["height"])
+                this.game.addEntity(sp)
+                console.log(sp)
+            })
+        }
+
+        level.data["layers"][spikes]["objects"].forEach(f => {
+
         });
         
         this.game.addEntity(this.background)

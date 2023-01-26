@@ -1,131 +1,54 @@
-
 var level1 = {
     background: "./assets/Levels/Level1/Level1.png",
     data: {
         "compressionlevel": -1,
-        "editorsettings":
-        {
-            "export":
-            {
-                "format": "json"
-            }
-        },
         "height": 32,
-        "infinite": true,
+        "infinite": false,
         "layers": [
             {
-                "chunks": [
-                    {
-                        "data": "eJxjYGBgkJMnHzOM6h\/VP6p\/QPWXGBCPI6yB2IyhIRyIw4AYABIBQGQ=",
-                        "height": 16,
-                        "width": 16,
-                        "x": 0,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJyTk2dgkBvFo3gUD0kcasbQEALE6OJAMZAcQxgQhwNxhDVDw3IDBgZkfMGCgQEAJspD3w==",
-                        "height": 16,
-                        "width": 16,
-                        "x": 16,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJyTk2dgkBvFo3gUD0l80YKB4RIQXwbiKxak6wcAH\/lANw==",
-                        "height": 16,
-                        "width": 16,
-                        "x": 32,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJyTk2dgkBvFo3gUjzTcAMIAaSY+AQ==",
-                        "height": 16,
-                        "width": 16,
-                        "x": 48,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJyTk2dgkBvFo3gUD1XcAMJXLBgaLgPxJSC+CMQXgLjEgIGBEAYAGXJIIQ==",
-                        "height": 16,
-                        "width": 16,
-                        "x": 64,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJyTk2dgkBvFo3gUD0lcYkAZBgBABUNx",
-                        "height": 16,
-                        "width": 16,
-                        "x": 80,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJyTk2dgkBvFo3gUD0lcYkAZBgBABUNx",
-                        "height": 16,
-                        "width": 16,
-                        "x": 96,
-                        "y": 0
-                    },
-                    {
-                        "data": "eJxjYGBg2GpIPL5lwdAw05yhYQYQTwdioHaGc4akYZAZN4H4hgV5+mFY0ooy\/VHWlOkH4VH9o\/oHWj8lAABwe+Iw",
-                        "height": 16,
-                        "width": 16,
-                        "x": 0,
-                        "y": 16
-                    },
-                    {
-                        "data": "eJzty8ENAWEUReHTghU2FGDBrMhMI2hAG68JgwaoQBuWDNU4MpHMLyISG4t5ybd5N6ecEmsNhtDkj1IbbbXTMUt1crjMiLP2o7T399iodNWtFq96OdHVapz2\/nCjr1NWe9cvCmKuwwSa\/OHGsvjcP7dvtH3b\/1vPj3cH0HULDw==",
-                        "height": 16,
-                        "width": 16,
-                        "x": 16,
-                        "y": 16
-                    },
-                    {
-                        "data": "eJwTsmJgEAZiESAWBWI5edLwLQuGhhBrBoZQa4g5Fy0YGC4B8WUgvmJBnH4YFgTqFyLRPcj6YRife64D8Q0L\/PrxuUcCiCWtiNOP7p4III4E4ihr0vRjw6P6R\/WDMKUAADWWDpU=",
-                        "height": 16,
-                        "width": 16,
-                        "x": 32,
-                        "y": 16
-                    },
-                    {
-                        "data": "eJyTk2dgkCMPN0AxWfqvWDA0XLYgSn8DFswgasXQIGJFWP8NoB3XgRhm3yUgvgjEwkC9odaE9UsC1UkAMcw+kD4hIBYE4lsWhP0ZBbQjEogjrCH2hVhD9MEwIf3IarHhUf0jWz+lAAD80pEQ",
-                        "height": 16,
-                        "width": 16,
-                        "x": 48,
-                        "y": 16
-                    },
-                    {
-                        "data": "eJyTk2dokANiUSuGBhEgFgZiISAWBOKthgwMhPAlC4aGixYQfaHWDA0hQHzLgoGBWIxsHyn6YJhU+0bxKB5OmFIAAFnR\/SI=",
-                        "height": 16,
-                        "width": 16,
-                        "x": 64,
-                        "y": 16
-                    },
-                    {
-                        "data": "eJzbasjAsJUCfMtiFI\/iUTxQmFIAAB+n\/iE=",
-                        "height": 16,
-                        "width": 16,
-                        "x": 80,
-                        "y": 16
-                    },
-                    {
-                        "data": "eJzbasjAsJUCfMtiFI\/iUTxQmFIAAB+n\/iE=",
-                        "height": 16,
-                        "width": 16,
-                        "x": 96,
-                        "y": 16
-                    }],
                 "compression": "zlib",
+                "data": "eJzt1dlNw0AQBuCpAIlLwEsoAInrgUSJ6CLhaiANUMA0wdUAVEAbiEscqYZ\/QSvsZGPtxE7ijf6H78V7eLy\/x25sizSIiIiIiIiIiIiIiIiIqBYu9+OddeBI9BROoAddGN4T1wRjgjmCuW6dPmB91nNL5AVe4Q3eWzN9bs3CvRU1KGpR1KSoTYvOwHqWVefgPR7EG+CZ7pqit3AD13DVHM0O1wRjgjmCuYI1I3stt0VWYBXWYL09v+xwb0UNiloUNSlq04IzGLuvGwutianJkoP3ZOTy+4Yv+IQPuN\/J14FrgjHBHMHc32dy60K6eI97nb8MZ9WHw33mMkMNrhYd\/Nc71rGEWefHrC1izc7bwvNuwgb09\/Jng2uCMTcnl3mRKfWhBkiozyxntith1vkxa6eR3QXe0XMI\/cvcPwFjbk50djF96Hs5Njv\/bSjbZ3U1aXaTfGstQn3oezk2O\/9tKNtndVXX7Ib7MNvLsdllvw2L0GepZRcSm928z5bZMTtmt3iYXbqYXbqYXbqYXbqWDm3K5FVV1obsTPdM7T22Zlc2vyKxe1qyK3uvKs+66v1+AJrWSHk=",
                 "encoding": "base64",
                 "height": 32,
                 "id": 1,
                 "name": "Tile Layer 1",
-                "offsetx": -32,
-                "offsety": 0,
                 "opacity": 1,
-                "startx": 0,
-                "starty": 0,
                 "type": "tilelayer",
                 "visible": true,
-                "width": 112,
+                "width": 111,
+                "x": 0,
+                "y": 0
+            },
+            {
+                "draworder": "topdown",
+                "id": 7,
+                "name": "Spikes",
+                "objects": [
+                    {
+                        "class": "",
+                        "height": 62,
+                        "id": 18,
+                        "name": "",
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 190,
+                        "x": 2465,
+                        "y": 591
+                    },
+                    {
+                        "class": "",
+                        "height": 57.3333333333334,
+                        "id": 19,
+                        "name": "",
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 285.333333333333,
+                        "x": 2850,
+                        "y": 591
+                    }],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": false,
                 "x": 0,
                 "y": 0
             },
@@ -136,36 +59,14 @@ var level1 = {
                 "objects": [
                     {
                         "class": "",
-                        "height": 56,
-                        "id": 5,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 1344,
-                        "x": 1728,
-                        "y": 616
-                    },
-                    {
-                        "class": "",
-                        "height": 56.5,
-                        "id": 6,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 416,
-                        "x": -512,
-                        "y": 615.5
-                    },
-                    {
-                        "class": "",
                         "height": 56.5,
                         "id": 7,
                         "name": "",
                         "rotation": 0,
                         "visible": true,
-                        "width": 160,
-                        "x": 288,
-                        "y": 615.5
+                        "width": 162,
+                        "x": 801,
+                        "y": 519
                     },
                     {
                         "class": "",
@@ -175,8 +76,52 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 126,
-                        "x": 33.3299999999999,
-                        "y": 746
+                        "x": 545,
+                        "y": 650
+                    },
+                    {
+                        "class": "",
+                        "height": 56,
+                        "id": 20,
+                        "name": "",
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 224,
+                        "x": 2239,
+                        "y": 519
+                    },
+                    {
+                        "class": "",
+                        "height": 56,
+                        "id": 21,
+                        "name": "",
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 192,
+                        "x": 2656,
+                        "y": 518
+                    },
+                    {
+                        "class": "",
+                        "height": 56,
+                        "id": 22,
+                        "name": "",
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 416,
+                        "x": 3137,
+                        "y": 520
+                    },
+                    {
+                        "class": "",
+                        "height": 58,
+                        "id": 23,
+                        "name": "",
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 415,
+                        "x": 0,
+                        "y": 518
                     }],
                 "opacity": 1,
                 "type": "objectgroup",
@@ -259,7 +204,6 @@ var level1 = {
                                 "x": -128.667,
                                 "y": 20.6667
                             },
-
                             {
                                 "x": 0,
                                 "y": 21.3333
@@ -267,8 +211,8 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 32,
-                        "y": 746.667
+                        "x": 545,
+                        "y": 650
                     },
                     {
                         "class": "",
@@ -340,7 +284,6 @@ var level1 = {
                                 "x": 128.667,
                                 "y": 20.6667
                             },
-
                             {
                                 "x": 0,
                                 "y": 21.3333
@@ -348,11 +291,9 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 159.33,
-                        "y": 746
+                        "x": 671,
+                        "y": 650
                     }],
-                "offsetx": 154.545454545454,
-                "offsety": 1048.48484848485,
                 "opacity": 1,
                 "type": "objectgroup",
                 "visible": false,
@@ -433,8 +374,8 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 831.5,
-                        "y": 805.75
+                        "x": 1343,
+                        "y": 709
                     },
                     {
                         "class": "",
@@ -505,8 +446,8 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 1344.25,
-                        "y": 804.75
+                        "x": 1856,
+                        "y": 708
                     }],
                 "opacity": 1,
                 "type": "objectgroup",
@@ -540,8 +481,8 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 830.5,
-                        "y": 804.5
+                        "x": 1345,
+                        "y": 709
                     },
                     {
                         "class": "",
@@ -564,8 +505,8 @@ var level1 = {
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 1346,
-                        "y": 804.833
+                        "x": 1856,
+                        "y": 709
                     }],
                 "opacity": 1,
                 "type": "objectgroup",
@@ -573,8 +514,8 @@ var level1 = {
                 "x": 0,
                 "y": 0
             }],
-        "nextlayerid": 7,
-        "nextobjectid": 18,
+        "nextlayerid": 10,
+        "nextobjectid": 24,
         "orientation": "orthogonal",
         "renderorder": "right-down",
         "tiledversion": "1.9.2",
@@ -595,6 +536,6 @@ var level1 = {
         "tilewidth": 32,
         "type": "map",
         "version": "1.9",
-        "width": 112
+        "width": 111
     }
 };
