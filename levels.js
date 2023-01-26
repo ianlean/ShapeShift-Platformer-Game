@@ -1,15 +1,6 @@
-var levelOne ={
-    floor: [
-        {x:-60,y:120},
-        {x:-30,y:120},
-        {x:0,y:120},
-        {x:30,y:120}
-    ],
-    spike: [
-        {x:60,y:120},
-        {x:90,y:120}
-    ],
-    laser: [
-        {x:500,y:70}
-    ]
+import level1data from './assets/Levels/Level1/Level1.json' assert { type: 'JSON' };
+
+const level1 = {
+    data: level1data,
+    background: './assets/Level1.png'
 }
