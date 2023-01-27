@@ -35,7 +35,7 @@ class Player {
     update() {
 
         this.updateBox();
-        this.velocityY += this.Acceleration;
+        // this.velocityY += this.Acceleration;
 
         this.keyCheck();
 
@@ -60,7 +60,7 @@ class Player {
     collisionCheck() {
         this.game.entities.forEach(entity => {
 
-            if (!(entity instanceof Background) && this.BoundingBox.collide(entity.BoundingBox)) {
+            if (!(entity instanceof Background) && !(entity instanceof BoundingLine) && this.BoundingBox.collide(entity.BoundingBox)) {
                 if (entity instanceof floor) {
                     //console.log("this is the floor")
                     if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
