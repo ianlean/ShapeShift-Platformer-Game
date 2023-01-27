@@ -86,10 +86,13 @@ class GameEngine {
 
         this.ctx.canvas.addEventListener("keydown", event => {
             this.keys[event.key] = true
+            event.preventDefault();
             console.log(this.keys)
             console.log(event.key + "")
+
         });
         this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
+        this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key.toLowerCase()] = false);
     };
 
     addEntity(entity) {
