@@ -65,6 +65,10 @@ class Player {
                     //console.log("this is the floor")
                     if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
                         this.velocityY = 0;
+                        if(this.BoundingBox.bottom > entity.BoundingBox.top){
+                            this.y+=entity.BoundingBox.top-this.BoundingBox.bottom
+                            this.updateBox();
+                        }
                         this.jumpCheck();
                     }
                 }
@@ -108,6 +112,13 @@ class Player {
 
         if (this.game.keys["Shift"] == true) {
             this.shapeshift("Square");
+            this.game.keys["d"]=false;
+            this.game.keys["a"]=false;
+            if (this.shape == "square") {
+                this.velocityY += this.Acceleration * 10;
+                this.anim = "Square";
+
+            }
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
         } else {
             this.shapeshift("Circle");
@@ -132,12 +143,8 @@ class Player {
 
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
-            this.velocityY += this.Acceleration;
-            if (this.shape == "square") {
-                this.velocityY += this.Acceleration * 5;
-                this.anim = "Square";
-
-            }
+            this.velocityY += this.Acceleration*0.25;
+            
         }
         console.log("going down");
         if (this.velocityX > 0) {
