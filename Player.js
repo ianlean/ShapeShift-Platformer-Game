@@ -59,7 +59,6 @@ class Player {
 
     collisionCheck() {
         this.game.entities.forEach(entity => {
-
             if (this.BoundingBox.collide(entity.BoundingBox)) {
                 if (entity instanceof floor) {
                     //console.log("this is the floor")
@@ -103,7 +102,7 @@ class Player {
                 this.mvDown();
             }
             if (this.game.keys["d"] == false && this.game.keys["a"] == false) {
-                this.velocityX -= this.velocityX;
+                this.velocityX -= this.velocityX*.5;
                 if(this.shape=="circle"){
                 this.anim = "still";
                 }
@@ -111,11 +110,12 @@ class Player {
         }
 
         if (this.game.keys["Shift"] == true) {
-            this.shapeshift("Square");
             this.game.keys["d"]=false;
             this.game.keys["a"]=false;
+            this.shapeshift("Square");
+            
             if (this.shape == "square") {
-                this.velocityY += this.Acceleration * 10;
+                this.velocityY += this.Acceleration * 5;
                 this.anim = "Square";
 
             }
