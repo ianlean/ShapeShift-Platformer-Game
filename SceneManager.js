@@ -71,10 +71,19 @@ class SceneManager{
 */
         
         //in final version this should be deleted 
-        for (let index = 200; index < 10000; index+=30) {
-            this.game.addEntity(new floor(this.game,index,120));
+        let counter = 1;
+        for (let index = 200; index < 100000; index+=30) {
+            
+            if(counter%30 == 0){
+                this.game.addEntity(new spike(this.game,index,120));
+            }else{
+                this.game.addEntity(new floor(this.game,index,120));
+            }
+            counter++;
         }
-
+        for (let index = -150; index < 100000; index+=30) {
+            this.game.addEntity(new spike(this.game,index,300));
+        }
 
 
     };
