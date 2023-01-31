@@ -35,7 +35,7 @@ class Player {
     update() {
 
         this.updateBox();
-        // this.velocityY += this.Acceleration;
+        this.velocityY += this.Acceleration;
 
         this.keyCheck();
 
