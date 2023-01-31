@@ -1,191 +1,51 @@
 { "compressionlevel":-1,
- "height":20,
- "infinite":true,
+ "height":32,
+ "infinite":false,
  "layers":[
         {
-         "chunks":[
-                {
-                 "data":"eJxjYBgFo2Bkg6Bo8vFQ1w8ANdgojQ==",
-                 "height":16,
-                 "width":16,
-                 "x":-48,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDokY0B5PsrQQ==",
-                 "height":16,
-                 "width":16,
-                 "x":-32,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDokY0B5PsrQQ==",
-                 "height":16,
-                 "width":16,
-                 "x":-16,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDokY0B5PsrQQ==",
-                 "height":16,
-                 "width":16,
-                 "x":0,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDokY0B5PsrQQ==",
-                 "height":16,
-                 "width":16,
-                 "x":16,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDokY0B5PsrQQ==",
-                 "height":16,
-                 "width":16,
-                 "x":32,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDokY0B5PsrQQ==",
-                 "height":16,
-                 "width":16,
-                 "x":48,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYBgFo2DkgqDoka0fALMjArU=",
-                 "height":16,
-                 "width":16,
-                 "x":64,
-                 "y":-32
-                }, 
-                {
-                 "data":"eJxjYGBgCIomHzOM6h\/VP8T1r8ghHveUA3ERQ0M3EHcBMUj\/y1ziMV8pQ8PZYoaGM0B8uhiinymPNAwygxeIeUrJ0w\/DvmUMDQCbeq+W",
-                 "height":16,
-                 "width":16,
-                 "x":-48,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJzty7ERglAURNE7jJGiXRmpCakFECgGMkD6QlE7sCJQG8AK7ML9Q8IHO4DgJHdnoz1Ek8lIlWfsIv2u5jaucpN7gX2O0DXLoE6xKh3+1dzGU17ylm\/iW+ewyLC5NLH\/V3MboSxl1bK+bY5t5HHw\/2poYyfBqfXv\/wMmCL+G",
-                 "height":16,
-                 "width":16,
-                 "x":-32,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJwLimZgCBrFo3iEYtZSBgY2IGYHYo5S0vW7lTEwuAOxBxB7lpGun6+UoaGjnIGhsxxiDqnuAemHYdcy0t0DAPYYrhQ=",
-                 "height":16,
-                 "width":16,
-                 "x":-16,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJwLimZgCBrFo3gUk4oboHhA9HOUMjSwlxKlvwELZvAsY2jwAGIAvcqzQw==",
-                 "height":16,
-                 "width":16,
-                 "x":0,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJwLimZgCBrFo3jk4gYQ5ihlaGAHYjYgZgViFiBekcPAQAjD9HuWMTR4ALE7ELsBsSsQv8xlYCCEYfaB9HWWMzR0ADFfKQMDsRjZPlL0wTAATsG9dA==",
-                 "height":16,
-                 "width":16,
-                 "x":16,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJwLimZgCBrFo3iE4hU5lOGXuZRhvtKBxQAWCrjB",
-                 "height":16,
-                 "width":16,
-                 "x":32,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJwLimZgCBrFo3iE4hU5lOGXuZRhvtKBxQAWCrjB",
-                 "height":16,
-                 "width":16,
-                 "x":48,
-                 "y":-16
-                }, 
-                {
-                 "data":"eJwLimagCASN6h\/VP4T1r8ihTP\/LXMr085UOrH4Av5ILjQ==",
-                 "height":16,
-                 "width":16,
-                 "x":64,
-                 "y":-16
-                },
-            
-                {
-                 "data":"eJxjYGBgYMojD\/eVMzQwUKAfhEf1j+ofaP0jGQAAs+tP1g==",
-                 "height":16,
-                 "width":16,
-                 "x":-48,
-                 "y":0
-                }, 
-                {
-                 "data":"eJzrLWdo6AHi2zkMDMgYKMbQC8R9QMyUB8F8pQwN6BgmRwwe1T+qf7DpZxjhAAAWmX20",
-                 "height":16,
-                 "width":16,
-                 "x":-32,
-                 "y":0
-                }, 
-                {
-                 "data":"eJzjK2Vo4EPDHeUMDJ1A7F7GwMBaysDABsTsQMwBxNxAzAPEQdEQjK4XGbsC9buVQczxAGJPIPYBYt8y4vSju6cHiHuBuK+cNP3Y8Kj+Uf0gPNIBAL5ktN4=",
-                 "height":16,
-                 "width":16,
-                 "x":-16,
-                 "y":0
-                }, 
-                {
-                 "data":"eJwLimZgCMKDeUoZGriBmAOI2YGYDYhZgdi9jKGhs5yhAZ9eEPYFqvMBYk8g9iiD6HMDYlcg5ivFrxeE+4B29AJxTznEvo5yiD4YJqQfWS02PKp\/ZOsf6QAABX2Asg==",
-                 "height":16,
-                 "width":16,
-                 "x":0,
-                 "y":0
-                }, 
-                {
-                 "data":"eJzrKGdo4CtlYBjFo3gk4pEOAA3kYz0=",
-                 "height":16,
-                 "width":16,
-                 "x":16,
-                 "y":0
-                }, 
-                {
-                 "data":"eJzjK2Vg4BvFo3iE4pEOAB8qYkE=",
-                 "height":16,
-                 "width":16,
-                 "x":32,
-                 "y":0
-                }, 
-                {
-                 "data":"eJzjK2Vg4BvFo3iE4pEOAB8qYkE=",
-                 "height":16,
-                 "width":16,
-                 "x":48,
-                 "y":0
-                }, 
-                {
-                 "data":"eJzjK2WgCPCN6h\/VP4T1j3QAAB30BiU=",
-                 "height":16,
-                 "width":16,
-                 "x":64,
-                 "y":0
-                }],
          "compression":"zlib",
+         "data":"eJzt1dlNw0AQBuCpAIlLwEsoAInrgUSJ6CLhaiANUMA0wdUAVEAbiEscqYZ\/QSvsZGPtxE7ijf6H78V7eLy\/x25sizSIiIiIiIiIiIiIiIiIqBYu9+OddeBI9BROoAddGN4T1wRjgjmCuW6dPmB91nNL5AVe4Q3eWzN9bs3CvRU1KGpR1KSoTYvOwHqWVefgPR7EG+CZ7pqit3AD13DVHM0O1wRjgjmCuYI1I3stt0VWYBXWYL09v+xwb0UNiloUNSlq04IzGLuvGwutianJkoP3ZOTy+4Yv+IQPuN\/J14FrgjHBHMHc32dy60K6eI97nb8MZ9WHw33mMkMNrhYd\/Nc71rGEWefHrC1izc7bwvNuwgb09\/Jng2uCMTcnl3mRKfWhBkiozyxntith1vkxa6eR3QXe0XMI\/cvcPwFjbk50djF96Hs5Njv\/bSjbZ3U1aXaTfGstQn3oezk2O\/9tKNtndVXX7Ib7MNvLsdllvw2L0GepZRcSm928z5bZMTtmt3iYXbqYXbqYXbqYXbqWDm3K5FVV1obsTPdM7T22Zlc2vyKxe1qyK3uvKs+66v1+AJrWSHk=",
          "encoding":"base64",
-         "height":64,
+         "height":32,
          "id":1,
          "name":"Tile Layer 1",
-         "offsetx":-544,
-         "offsety":128,
          "opacity":1,
-         "startx":-64,
-         "starty":-48,
          "type":"tilelayer",
          "visible":true,
-         "width":144,
+         "width":111,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"Spikes",
+         "objects":[
+                {
+                 "class":"",
+                 "height":62,
+                 "id":18,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":190,
+                 "x":2465,
+                 "y":591
+                }, 
+                {
+                 "class":"",
+                 "height":57.3333333333334,
+                 "id":19,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":285.333333333333,
+                 "x":2850,
+                 "y":591
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -196,36 +56,14 @@
          "objects":[
                 {
                  "class":"",
-                 "height":56,
-                 "id":5,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":1344,
-                 "x":192,
-                 "y":8
-                }, 
-                {
-                 "class":"",
-                 "height":56.5,
-                 "id":6,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":416,
-                 "x":-2048,
-                 "y":7.5
-                }, 
-                {
-                 "class":"",
                  "height":56.5,
                  "id":7,
                  "name":"",
                  "rotation":0,
                  "visible":true,
-                 "width":160,
-                 "x":-1248,
-                 "y":7.5
+                 "width":162,
+                 "x":801,
+                 "y":519
                 }, 
                 {
                  "class":"",
@@ -235,8 +73,52 @@
                  "rotation":0,
                  "visible":true,
                  "width":126,
-                 "x":-1502.66666666667,
-                 "y":138
+                 "x":545,
+                 "y":650
+                }, 
+                {
+                 "class":"",
+                 "height":56,
+                 "id":20,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":224,
+                 "x":2239,
+                 "y":519
+                }, 
+                {
+                 "class":"",
+                 "height":56,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":192,
+                 "x":2656,
+                 "y":518
+                }, 
+                {
+                 "class":"",
+                 "height":56,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":416,
+                 "x":3137,
+                 "y":520
+                }, 
+                {
+                 "class":"",
+                 "height":58,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":415,
+                 "x":0,
+                 "y":518
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -260,32 +142,32 @@
                          "y":0
                         }, 
                         {
-                         "x":-32.6666666666665,
+                         "x":-32.6667,
                          "y":-4
                         }, 
                         {
                          "x":-48,
-                         "y":-7.33333333333334
+                         "y":-7.33333
                         }, 
                         {
-                         "x":-61.3333333333333,
-                         "y":-13.3333333333333
+                         "x":-61.3333,
+                         "y":-13.3333
                         }, 
                         {
                          "x":-76,
-                         "y":-22.6666666666667
+                         "y":-22.6667
                         }, 
                         {
-                         "x":-85.3333333333333,
+                         "x":-85.3333,
                          "y":-34
                         }, 
                         {
-                         "x":-93.3333333333333,
-                         "y":-44.6666666666667
+                         "x":-93.3333,
+                         "y":-44.6667
                         }, 
                         {
-                         "x":-97.3333333333333,
-                         "y":-52.6666666666667
+                         "x":-97.3333,
+                         "y":-52.6667
                         }, 
                         {
                          "x":-100,
@@ -296,39 +178,38 @@
                          "y":-76
                         }, 
                         {
-                         "x":-100.666666666667,
-                         "y":-94.6666666666667
+                         "x":-100.667,
+                         "y":-94.6667
                         }, 
                         {
                          "x":-100,
-                         "y":-115.333333333333
+                         "y":-115.333
                         }, 
                         {
-                         "x":-101.333333333333,
-                         "y":-132.666666666667
+                         "x":-101.333,
+                         "y":-132.667
                         }, 
                         {
-                         "x":-128.666666666667,
+                         "x":-128.667,
                          "y":-132
                         }, 
                         {
-                         "x":-127.333333333333,
-                         "y":-76.6666666666667
+                         "x":-127.333,
+                         "y":-76.6667
                         }, 
                         {
-                         "x":-128.666666666667,
-                         "y":20.6666666666667
-                        },
-                    
+                         "x":-128.667,
+                         "y":20.6667
+                        }, 
                         {
                          "x":0,
-                         "y":21.3333333333333
+                         "y":21.3333
                         }],
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":-1504,
-                 "y":138.666666666667
+                 "x":545,
+                 "y":650
                 }, 
                 {
                  "class":"",
@@ -399,8 +280,7 @@
                         {
                          "x":128.667,
                          "y":20.6667
-                        },
-                    
+                        }, 
                         {
                          "x":0,
                          "y":21.3333
@@ -408,8 +288,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":-1376.667,
-                 "y":138
+                 "x":671,
+                 "y":650
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -491,8 +371,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":-704.5,
-                 "y":197.75
+                 "x":1343,
+                 "y":709
                 }, 
                 {
                  "class":"",
@@ -563,8 +443,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":-191.75,
-                 "y":196.75
+                 "x":1856,
+                 "y":708
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -598,8 +478,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":-705.5,
-                 "y":196.5
+                 "x":1345,
+                 "y":709
                 }, 
                 {
                  "class":"",
@@ -622,8 +502,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":-190,
-                 "y":196.833333333333
+                 "x":1856,
+                 "y":709
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -631,8 +511,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":18,
+ "nextlayerid":10,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
@@ -640,18 +520,18 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"GHZ.tsx"
+         "source":"..\/TileSets\/GHZ.tsx"
         }, 
         {
-         "firstgid":205,
-         "source":"Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1.tsx"
+         "firstgid":201,
+         "source":"..\/TileSets\/Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1.tsx"
         }, 
         {
-         "firstgid":15613,
-         "source":"Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1 - No Tree.tsx"
+         "firstgid":201,
+         "source":"..\/TileSets\/Genesis 32X SCD - Sonic the Hedgehog - Green Hill Zone Act 1 - No Tree.tsx"
         }],
  "tilewidth":32,
  "type":"map",
  "version":"1.9",
- "width":32
+ "width":111
 }
