@@ -63,7 +63,7 @@ class SceneManager {
         level.data["layers"][spikes]["objects"].forEach(f => {
 
         });
-        this.game.addEntity(new BoundingLine(this.game, {x: 0, y: 0}, {x: 200, y: 10}))
+        this.game.addEntity(new bottomlessPit(this.game, -2000, 1500,10000))
         
         this.game.addEntity(this.background)
         console.log(level.data["layers"][floors]["objects"])

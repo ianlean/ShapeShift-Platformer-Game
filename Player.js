@@ -43,6 +43,7 @@ class Player {
         this.collisionCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
+        this.restartCheck()
         //gravity and other thing effecting movement could go here
     };
 
@@ -68,6 +69,18 @@ class Player {
                         this.velocityY = 0;
                         this.updateBox();
                         this.jumpCheck();
+                    }
+                }
+            }
+
+            if(entity instanceof bottomlessPit){
+                
+                
+                var xPoints = entity.line.circleCollide(this.BoundingCircle);
+                for (var i = 0; i < xPoints.length; i++) {
+                    if (entity.line.onSegment(xPoints[i])) {
+                        console.log("pit")
+                        this.die();
                     }
                 }
             }
@@ -211,6 +224,11 @@ class Player {
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
         this.dead = true;
         
+    }
+    restartCheck(){
+        if(this.game.keys["r"] == true){
+            location.reload();
+        }
     }
 
 };
