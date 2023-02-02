@@ -101,14 +101,14 @@ class SceneManager {
             this.playerCharacter.y = 50;
             for (let i = 1; i < this.game.entities.length; i++) {
                 this.game.entities[i].y -= this.playerCharacter.velocityY;
-                this.game.entities[i].updateBox();
+                this.game.entities[i].updateCollision();
             }
         }
         if (this.playerCharacter.y > 100) {
             this.playerCharacter.y = 100;
             for (let i = 1; i < this.game.entities.length; i++) {
                 this.game.entities[i].y -= this.playerCharacter.velocityY;
-                this.game.entities[i].updateBox();
+                this.game.entities[i].updateCollision();
             }
         }
         if (this.playerCharacter.x < midpoint) {
@@ -116,7 +116,7 @@ class SceneManager {
                 this.playerCharacter.x = 50;
                 for (let i = 1; i < this.game.entities.length; i++) {
                     this.game.entities[i].x -= this.playerCharacter.velocityX;
-                    this.game.entities[i].updateBox();
+                    this.game.entities[i].updateCollision();
                 }
 
             }
@@ -127,7 +127,7 @@ class SceneManager {
 
             for (let i = 1; i < this.game.entities.length; i++) {
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
-                this.game.entities[i].updateBox();
+                this.game.entities[i].updateCollision();
             }
         }
 

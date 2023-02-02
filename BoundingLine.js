@@ -22,7 +22,7 @@ class BoundingLine {
 
     }
 
-    updateBox() {
+    updateCollision() {
 
     }
 

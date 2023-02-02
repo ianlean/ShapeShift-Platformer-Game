@@ -17,7 +17,7 @@ class Player {
         this.anim = "still";
         this.animations = [];
         this.createAnimations();
-        this.updateBox();
+        this.updateCollision();
         this.dead = false;
     };
 
@@ -35,7 +35,7 @@ class Player {
     // Try to keep this function small, extrapilate logic to other functions
     update() {
 
-        this.updateBox();
+        this.updateCollision();
         this.velocityY += this.Acceleration;
 
         this.keyCheck();
@@ -67,7 +67,7 @@ class Player {
                 for (var i = 0; i < xPoints.length; i++) {
                     if (entity.line.onSegment(xPoints[i])) {
                         this.velocityY = 0;
-                        this.updateBox();
+                        this.updateCollision();
                         this.jumpCheck();
                     }
                 }
@@ -214,7 +214,7 @@ class Player {
         }
     }
 
-    updateBox() {
+    updateCollision() {
         //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
         this.BoundingCircle = new BoundingCircle(this.x+7, this.y+7, 6);
     }

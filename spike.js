@@ -13,7 +13,7 @@ class spike {
     draw(ctx) {
         this.BoundingBox.draw(ctx);
     };
-    updateBox() {
+    updateCollision() {
         this.BoundingBox = new BoundingBox(this.x, this.y, this.width, this.height);
     }
 

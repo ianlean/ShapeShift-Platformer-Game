@@ -12,7 +12,7 @@ class floor {
         this.line.points[1] = new Point(this.width + this.x,this.y+50)
     };
     update() {
-        this.updateBox();
+        this.updateCollision();
     };
 
     draw(ctx) {
@@ -22,7 +22,7 @@ class floor {
         }
     };
 
-    updateBox() {
+    updateCollision() {
         // this.BoundingBox = new BoundingBox(this.x, this.y, this.width, this.height);
         this.line = new Line(this.game);
         this.line.points[0] = new Point(this.x,this.y);

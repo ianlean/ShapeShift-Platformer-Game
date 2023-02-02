@@ -11,10 +11,10 @@ class Laser {
         if (this.x <= 0) {
             this.x = this.originalX;
         } else {this.x-=this.velocity;}
-        this.updateBox();
+        this.updateCollision();
     }
 
-    updateBox() {
+    updateCollision() {
         this.BoundingBox = new BoundingBox(this.x, this.y, 10, 3);
     }
 

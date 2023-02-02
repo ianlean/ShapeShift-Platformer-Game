@@ -11,7 +11,7 @@ class Background {
         ctx.drawImage(ASSET_MANAGER.getAsset('./assets/Levels/Level1/Level1.png'), this.x, this.y, this.width, this.height)
     }
 
-    updateBox() {
+    updateCollision() {
         
     }
 }

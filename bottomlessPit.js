@@ -1,4 +1,4 @@
-class bottomlessPit {
+class BottomlessPit {
     constructor(game, x, y, width) {
         this.game = game;
         this.x = x;
@@ -12,7 +12,7 @@ class bottomlessPit {
         this.line.points[1] = new Point(this.x + this.width  ,this.y)
     };
     update() {
-        this.updateBox();
+        this.updateCollision();
     };
 
     draw(ctx) {
@@ -22,7 +22,7 @@ class bottomlessPit {
         }
     };
 
-    updateBox() {
+    updateCollision() {
         // this.BoundingBox = new BoundingBox(this.x, this.y, this.width, this.height);
         this.line = new Line(this.game);
         this.line.points[0] = new Point(this.x,this.y);
