@@ -5,7 +5,7 @@ class spike {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.BoundingBox = new BoundingBox(this.x, this.y, 33, 33);
+        this.BoundingBox = new BoundingBox(this.x, this.y, this.width, this.height);
     };
     update() {
 

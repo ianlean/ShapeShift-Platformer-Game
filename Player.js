@@ -3,7 +3,8 @@ class Player {
     constructor(game, x, y) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
-        this.BoundingBox;
+        //this.BoundingBox;
+        this.BoundingCircle
         this.x = x;
         this.y = y;
         this.speed = 1;
@@ -54,35 +55,51 @@ class Player {
         if(this.dead){
             ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
         }
-        this.BoundingBox.draw(ctx);
+        if (this.BoundingCircle != undefined) {this.BoundingCircle.draw(ctx);}
     };
 
     collisionCheck() {
         this.game.entities.forEach(entity => {
-
-            if (!(entity instanceof Background) && !(entity instanceof BoundingLine) && this.BoundingBox.collide(entity.BoundingBox)) {
-                if (entity instanceof floor) {
-                    //console.log("this is the floor")
-                    if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
+            if (entity instanceof floor) {
+                console.log("FLOOOOOOOR");
+                var xPoints = entity.line.circleCollide(this.BoundingCircle);
+                for (var i = 0; i < xPoints.length; i++) {
+                    if (entity.line.onSegment(xPoints[i])) {
                         this.velocityY = 0;
-                        if(this.BoundingBox.bottom > entity.BoundingBox.top){
-                            this.y+=entity.BoundingBox.top-this.BoundingBox.bottom
-                            this.updateBox();
-                        }
+                        this.updateBox();
                         this.jumpCheck();
                     }
                 }
-                if (entity instanceof spike) {
-                    //todo this is where a death/loss of heart would be 
-                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
-                    this.die()
-                }
-                if (entity instanceof Laser) {
-                    //todo this is where a death/loss of heart would be 
-                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
-                    this.die()
-                }
             }
+            
+            // if (!(entity instanceof Background) && !(entity instanceof BoundingLine) && this.BoundingCircle.RectCircleColliding(entity.BoundingBox)) {
+            //     if (entity instanceof floor) {
+            //         console.log("this is the floor")
+            //         // if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
+            //         //     this.velocityY = 0;
+            //         //     if(this.BoundingBox.bottom > entity.BoundingBox.top){
+            //         //         this.y+=entity.BoundingBox.top-this.BoundingBox.bottom
+            //         //         this.updateBox();
+            //         //     }
+            //             this.velocityY = 0;
+            //             this.updateBox();
+            //             this.jumpCheck();
+                
+            //     if (entity instanceof spike) {
+            //         //todo this is where a death/loss of heart would be 
+            //         console.log("hit a spike");
+            //         this.velocityY = -5;//I think this is really funny as a place holder -Damien
+            //         this.die()
+            //     }
+            //     if (entity instanceof Laser) {
+            //         //todo this is where a death/loss of heart would be 
+            //         console.log("hit a laser");
+            //         this.velocityY = -5;//I think this is really funny as a place holder -Damien
+            //         this.die()
+            //     }
+
+            //     }
+            // }
         });
     }
 
@@ -185,7 +202,8 @@ class Player {
     }
 
     updateBox() {
-        this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
+        //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
+        this.BoundingCircle = new BoundingCircle(this.x+7, this.y+7, 6);
     }
 
     die() {
@@ -195,4 +213,4 @@ class Player {
         
     }
 
-}
+};

@@ -103,11 +103,12 @@ class GameEngine {
         // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         // drawing on context doesn't work without this
-        this.ctx.beginPath();
+        // this.ctx.beginPath();
         this.camera.draw(this.ctx);
 
         // Draw latest things first
         for (let i = this.entities.length - 1; i >= 0; i--) {
+            this.ctx.beginPath();
             this.entities[i].draw(this.ctx, this);
         }
     };
