@@ -43,6 +43,7 @@ class Player {
         this.collisionCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
+        this.updateCollision();
         this.restartCheck()
         //gravity and other thing effecting movement could go here
     };
@@ -61,6 +62,7 @@ class Player {
 
     collisionCheck() {
         this.game.entities.forEach(entity => {
+
             if (entity instanceof floor) {
                 console.log("FLOOOOOOOR");
                 var xPoints = entity.line.circleCollide(this.BoundingCircle);
@@ -74,9 +76,12 @@ class Player {
                         console.log(pointOfIntersect);
                         console.log(perpLine.points[0])
                         console.log(getDistance(pointOfIntersect,perpLine.points[0]))
+                        if(getDistance(pointOfIntersect,perpLine.points[0])<0.1){
+                            this.velocityY = 0;
+                        }else{
                         this.y -= 11-getDistance(pointOfIntersect,perpLine.points[0]);
                         this.velocityY = 0;
-
+                    }
                         this.updateCollision();
                         this.jumpCheck();
                     }
@@ -171,6 +176,7 @@ class Player {
     mvLeft() {
         if ((-this.velocityX) < this.MaxSpeed) {
             this.velocityX -= this.Acceleration;
+            this.updateCollision();
         }
         console.log("going left");
         this.anim = "a";
@@ -179,6 +185,7 @@ class Player {
     mvRight() {
         if (this.velocityX < this.MaxSpeed) {
             this.velocityX += this.Acceleration;
+            this.updateCollision();
         }
         console.log("going right");
         this.anim = "d";
@@ -187,7 +194,7 @@ class Player {
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
             this.velocityY += this.Acceleration*0.25;
-            
+            this.updateCollision();
         }
         console.log("going down");
         if (this.velocityX > 0) {
