@@ -66,14 +66,24 @@ class Player {
                 var xPoints = entity.line.circleCollide(this.BoundingCircle);
                 for (var i = 0; i < xPoints.length; i++) {
                     if (entity.line.onSegment(xPoints[i])) {
+                        var perpSlope=-1/entity.line.slope();
+                        var perpLine = new Line(this.game);
+                        perpLine.points[0]=new Point(this.x,this.y);
+                        perpLine.points[1]=new Point(this.x+5,(this.x+5)*perpSlope);
+                        var pointOfIntersect= perpLine.collide(entity.line);
+                        console.log(pointOfIntersect);
+                        console.log(perpLine.points[0])
+                        console.log(getDistance(pointOfIntersect,perpLine.points[0]))
+                        this.y -= 11-getDistance(pointOfIntersect,perpLine.points[0]);
                         this.velocityY = 0;
+
                         this.updateCollision();
                         this.jumpCheck();
                     }
                 }
             }
 
-            if(entity instanceof bottomlessPit){
+            if(entity instanceof BottomlessPit){
                 
                 
                 var xPoints = entity.line.circleCollide(this.BoundingCircle);
