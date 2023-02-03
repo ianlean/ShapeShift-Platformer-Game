@@ -15,7 +15,7 @@ class SceneManager {
         this.elapsedTime = 0;
         this.spawns = [0.5, 1, 3, 5];
         
-        this.loadLevel(slope, 0, 0)
+        this.loadLevel(level1, 0, 0)
         // this.loadLevel(level1, 50, 550);
 
     };

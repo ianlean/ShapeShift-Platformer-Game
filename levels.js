@@ -1,7 +1,7 @@
 var level1 = {
     background: "./assets/Levels/Level1/Level1.png",
-    width: 4128,
-    height: 1600,
+    width: 3552,
+    height: 1024,
     data: {
         "compressionlevel": -1,
         "height": 32,
@@ -61,454 +61,307 @@ var level1 = {
                 "objects": [
                     {
                         "class": "",
-                        "height": 56.5,
-                        "id": 7,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 162,
-                        "x": 801,
-                        "y": 519
-                    },
-                    {
-                        "class": "",
-                        "height": 44,
-                        "id": 12,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 126,
-                        "x": 545,
-                        "y": 650
-                    },
-                    {
-                        "class": "",
-                        "height": 56,
-                        "id": 20,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 224,
-                        "x": 2239,
-                        "y": 519
-                    },
-                    {
-                        "class": "",
-                        "height": 56,
-                        "id": 21,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 192,
-                        "x": 2656,
-                        "y": 518
-                    },
-                    {
-                        "class": "",
-                        "height": 56,
-                        "id": 22,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 416,
-                        "x": 3137,
-                        "y": 520
-                    },
-                    {
-                        "class": "",
-                        "height": 58,
-                        "id": 23,
-                        "name": "",
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 415,
-                        "x": 0,
-                        "y": 518
-                    }],
-                "opacity": 1,
-                "type": "objectgroup",
-                "visible": false,
-                "x": 0,
-                "y": 0
-            },
-            {
-                "draworder": "topdown",
-                "id": 5,
-                "name": "Big Ramp",
-                "objects": [
-                    {
-                        "class": "",
                         "height": 0,
-                        "id": 13,
+                        "id": 24,
                         "name": "",
-                        "polygon": [
+                        "polyline": [
                             {
                                 "x": 0,
                                 "y": 0
                             },
                             {
-                                "x": -32.6667,
-                                "y": -4
+                                "x": 443,
+                                "y": -3
                             },
                             {
-                                "x": -48,
-                                "y": -7.33333
+                                "x": 443,
+                                "y": 69
                             },
                             {
-                                "x": -61.3333,
-                                "y": -13.3333
+                                "x": 449,
+                                "y": 82
                             },
                             {
-                                "x": -76,
-                                "y": -22.6667
+                                "x": 455,
+                                "y": 92
                             },
                             {
-                                "x": -85.3333,
-                                "y": -34
+                                "x": 459,
+                                "y": 97
                             },
                             {
-                                "x": -93.3333,
-                                "y": -44.6667
+                                "x": 467,
+                                "y": 105
                             },
                             {
-                                "x": -97.3333,
-                                "y": -52.6667
+                                "x": 479,
+                                "y": 114
                             },
                             {
-                                "x": -100,
-                                "y": -62
+                                "x": 495,
+                                "y": 121
                             },
                             {
-                                "x": -100,
-                                "y": -76
+                                "x": 510,
+                                "y": 124
                             },
                             {
-                                "x": -100.667,
-                                "y": -94.6667
+                                "x": 519,
+                                "y": 125
                             },
                             {
-                                "x": -100,
-                                "y": -115.333
+                                "x": 694,
+                                "y": 126
                             },
                             {
-                                "x": -101.333,
-                                "y": -132.667
+                                "x": 711,
+                                "y": 123
                             },
                             {
-                                "x": -128.667,
-                                "y": -132
+                                "x": 719,
+                                "y": 121
                             },
                             {
-                                "x": -127.333,
-                                "y": -76.6667
+                                "x": 730,
+                                "y": 117
                             },
                             {
-                                "x": -128.667,
-                                "y": 20.6667
+                                "x": 741,
+                                "y": 110
                             },
                             {
-                                "x": 0,
-                                "y": 21.3333
-                            }],
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 0,
-                        "x": 545,
-                        "y": 650
-                    },
-                    {
-                        "class": "",
-                        "height": 0,
-                        "id": 14,
-                        "name": "",
-                        "polygon": [
-                            {
-                                "x": 0,
-                                "y": 0
+                                "x": 750,
+                                "y": 103
                             },
                             {
-                                "x": 32.6667,
-                                "y": -4
+                                "x": 759,
+                                "y": 91
                             },
                             {
-                                "x": 48,
-                                "y": -7.33333
+                                "x": 765,
+                                "y": 83
                             },
                             {
-                                "x": 61.3333,
-                                "y": -13.3333
+                                "x": 769,
+                                "y": 73
                             },
                             {
-                                "x": 76,
-                                "y": -22.6667
+                                "x": 770,
+                                "y": 70
                             },
                             {
-                                "x": 85.3333,
-                                "y": -34
+                                "x": 771,
+                                "y": 66
                             },
                             {
-                                "x": 93.3333,
-                                "y": -44.6667
+                                "x": 771,
+                                "y": -3
                             },
                             {
-                                "x": 97.3333,
-                                "y": -52.6667
+                                "x": 807,
+                                "y": -3
                             },
                             {
-                                "x": 100,
-                                "y": -62
-                            },
-                            {
-                                "x": 100,
-                                "y": -76
-                            },
-                            {
-                                "x": 100.667,
-                                "y": -94.6667
-                            },
-                            {
-                                "x": 100,
-                                "y": -115.333
-                            },
-                            {
-                                "x": 101.333,
-                                "y": -132.667
-                            },
-                            {
-                                "x": 128.667,
-                                "y": -132
-                            },
-                            {
-                                "x": 127.333,
-                                "y": -76.6667
-                            },
-                            {
-                                "x": 128.667,
-                                "y": 20.6667
-                            },
-                            {
-                                "x": 0,
-                                "y": 21.3333
-                            }],
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 0,
-                        "x": 671,
-                        "y": 650
-                    }],
-                "opacity": 1,
-                "type": "objectgroup",
-                "visible": false,
-                "x": 0,
-                "y": 0
-            },
-            {
-                "draworder": "topdown",
-                "id": 6,
-                "name": "Small Ramp",
-                "objects": [
-                    {
-                        "class": "",
-                        "height": 0,
-                        "id": 16,
-                        "name": "",
-                        "polygon": [
-                            {
-                                "x": 0,
-                                "y": 0
-                            },
-                            {
-                                "x": 32.75,
-                                "y": 1.75
-                            },
-                            {
-                                "x": 39.75,
-                                "y": 1.25
-                            },
-                            {
-                                "x": 48,
+                                "x": 957,
                                 "y": -1
                             },
                             {
-                                "x": 56.5,
-                                "y": -3.75
+                                "x": 1342,
+                                "y": 187
                             },
                             {
-                                "x": 64.75,
-                                "y": -8.5
+                                "x": 1375,
+                                "y": 189
                             },
                             {
-                                "x": 72,
-                                "y": -13.75
+                                "x": 1391,
+                                "y": 185
                             },
                             {
-                                "x": 80.25,
-                                "y": -20.5
+                                "x": 1403,
+                                "y": 180
                             },
                             {
-                                "x": 84,
-                                "y": -24
+                                "x": 1413,
+                                "y": 174
                             },
                             {
-                                "x": 86.5,
-                                "y": -27
+                                "x": 1418,
+                                "y": 170
                             },
                             {
-                                "x": 90.5,
-                                "y": -32.25
+                                "x": 1427,
+                                "y": 161
                             },
                             {
-                                "x": 93.5,
-                                "y": -38
+                                "x": 1431,
+                                "y": 156
+                            },
+                            {
+                                "x": 1438,
+                                "y": 144
+                            },
+                            {
+                                "x": 1439,
+                                "y": 144
+                            },
+                            {
+                                "x": 1439,
+                                "y": 502
+                            }],
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 0,
+                        "x": 1,
+                        "y": 522
+                    },
+                    {
+                        "class": "",
+                        "height": 0,
+                        "id": 25,
+                        "name": "",
+                        "polyline": [
+                            {
+                                "x": 0,
+                                "y": 0
+                            },
+                            {
+                                "x": 0,
+                                "y": -358
+                            },
+                            {
+                                "x": 1,
+                                "y": -358
+                            },
+                            {
+                                "x": 3,
+                                "y": -354
+                            },
+                            {
+                                "x": 6,
+                                "y": -349
+                            },
+                            {
+                                "x": 12,
+                                "y": -341
+                            },
+                            {
+                                "x": 19,
+                                "y": -333
+                            },
+                            {
+                                "x": 26,
+                                "y": -328
+                            },
+                            {
+                                "x": 34,
+                                "y": -323
+                            },
+                            {
+                                "x": 45,
+                                "y": -318
+                            },
+                            {
+                                "x": 63,
+                                "y": -314
+                            },
+                            {
+                                "x": 73,
+                                "y": -313
                             },
                             {
                                 "x": 96,
-                                "y": -42.75
+                                "y": -313
                             },
                             {
-                                "x": 96.25,
-                                "y": 27
+                                "x": 473,
+                                "y": -501
                             },
                             {
-                                "x": 0.25,
-                                "y": 27
+                                "x": 696,
+                                "y": -504
+                            },
+                            {
+                                "x": 703,
+                                "y": -505
+                            },
+                            {
+                                "x": 704,
+                                "y": -505
+                            },
+                            {
+                                "x": 704,
+                                "y": -400
                             }],
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 1343,
-                        "y": 709
+                        "x": 1760,
+                        "y": 1024
                     },
                     {
                         "class": "",
                         "height": 0,
-                        "id": 17,
+                        "id": 26,
                         "name": "",
-                        "polygon": [
-                            {
-                                "x": 0,
-                                "y": 2.375
-                            },
-                            {
-                                "x": -32.75,
-                                "y": 2.125
-                            },
-                            {
-                                "x": -39.75,
-                                "y": 1.25
-                            },
-                            {
-                                "x": -48,
-                                "y": -1
-                            },
-                            {
-                                "x": -56.5,
-                                "y": -3.75
-                            },
-                            {
-                                "x": -64.75,
-                                "y": -8.5
-                            },
-                            {
-                                "x": -72,
-                                "y": -13.75
-                            },
-                            {
-                                "x": -80.25,
-                                "y": -20.5
-                            },
-                            {
-                                "x": -84,
-                                "y": -24
-                            },
-                            {
-                                "x": -86.5,
-                                "y": -27
-                            },
-                            {
-                                "x": -90.5,
-                                "y": -32.25
-                            },
-                            {
-                                "x": -93.5,
-                                "y": -38
-                            },
-                            {
-                                "x": -96,
-                                "y": -42.75
-                            },
-                            {
-                                "x": -96.25,
-                                "y": 27
-                            },
-                            {
-                                "x": -0.25,
-                                "y": 27
-                            }],
-                        "rotation": 0,
-                        "visible": true,
-                        "width": 0,
-                        "x": 1856,
-                        "y": 708
-                    }],
-                "opacity": 1,
-                "type": "objectgroup",
-                "visible": false,
-                "x": 0,
-                "y": 0
-            },
-            {
-                "draworder": "topdown",
-                "id": 4,
-                "name": "Slope",
-                "objects": [
-                    {
-                        "class": "",
-                        "height": 0,
-                        "id": 8,
-                        "name": "",
-                        "polygon": [
+                        "polyline": [
                             {
                                 "x": 0,
                                 "y": 0
                             },
                             {
-                                "x": -381,
-                                "y": 0
+                                "x": 0,
+                                "y": -114
                             },
                             {
-                                "x": -381,
-                                "y": -190
+                                "x": 4,
+                                "y": -112
+                            },
+                            {
+                                "x": 192,
+                                "y": -112
+                            },
+                            {
+                                "x": 192,
+                                "y": 0
                             }],
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 1345,
-                        "y": 709
+                        "x": 2656,
+                        "y": 631
                     },
                     {
                         "class": "",
                         "height": 0,
-                        "id": 9,
+                        "id": 27,
                         "name": "",
-                        "polygon": [
+                        "polyline": [
                             {
                                 "x": 0,
                                 "y": 0
                             },
                             {
-                                "x": 381,
-                                "y": 0
+                                "x": 0,
+                                "y": -109
                             },
                             {
-                                "x": 381,
-                                "y": -190
+                                "x": 2,
+                                "y": -108
+                            },
+                            {
+                                "x": 5,
+                                "y": -107
+                            },
+                            {
+                                "x": 416,
+                                "y": -106
                             }],
                         "rotation": 0,
                         "visible": true,
                         "width": 0,
-                        "x": 1856,
-                        "y": 709
+                        "x": 3136,
+                        "y": 626
                     }],
                 "opacity": 1,
                 "type": "objectgroup",
@@ -517,7 +370,7 @@ var level1 = {
                 "y": 0
             }],
         "nextlayerid": 10,
-        "nextobjectid": 24,
+        "nextobjectid": 28,
         "orientation": "orthogonal",
         "renderorder": "right-down",
         "tiledversion": "1.9.2",
@@ -717,5 +570,157 @@ var slope = {
         "type": "map",
         "version": "1.9",
         "width": 100
+    }
+}
+
+var halfpipe = {
+    background: "./assets/Levels/TestLevels/halfpipe/halfpipe.png",
+    width: 512,
+    height: 256,
+    data: {
+        "compressionlevel": -1,
+        "height": 16,
+        "infinite": false,
+        "layers": [
+            {
+                "compression": "zlib",
+                "data": "eJzt0DEOgkAUhOE5Cp1gYgiNFXsWonAQrgOchmNQoB7Bf00IhrBEErV6xde9mclucZIKY4wxf9c4qUW34pGrvuOGEXt6uRc5kfc9r51302aUhR2d6gQxDm7fPvciJ\/K+J7jRn8MqNktcccHyDWumd3EvciLvezZ3PrX1V0tDOvvG9q88AeYZRU4=",
+                "encoding": "base64",
+                "height": 16,
+                "id": 1,
+                "name": "Tile Layer 1",
+                "opacity": 1,
+                "type": "tilelayer",
+                "visible": true,
+                "width": 32,
+                "x": 0,
+                "y": 0
+            },
+            {
+                "draworder": "topdown",
+                "id": 6,
+                "name": "Floor",
+                "objects": [
+                    {
+                        "class": "",
+                        "height": 0,
+                        "id": 1,
+                        "name": "",
+                        "polyline": [
+                            {
+                                "x": 0,
+                                "y": 0
+                            },
+                            {
+                                "x": 126,
+                                "y": 1
+                            },
+                            {
+                                "x": 127,
+                                "y": 5
+                            },
+                            {
+                                "x": 129,
+                                "y": 10
+                            },
+                            {
+                                "x": 131,
+                                "y": 14
+                            },
+                            {
+                                "x": 134,
+                                "y": 18
+                            },
+                            {
+                                "x": 138,
+                                "y": 22
+                            },
+                            {
+                                "x": 142,
+                                "y": 25
+                            },
+                            {
+                                "x": 146,
+                                "y": 27
+                            },
+                            {
+                                "x": 150,
+                                "y": 29
+                            },
+                            {
+                                "x": 154,
+                                "y": 30
+                            },
+                            {
+                                "x": 160,
+                                "y": 31
+                            },
+                            {
+                                "x": 368,
+                                "y": 32
+                            },
+                            {
+                                "x": 381,
+                                "y": 28
+                            },
+                            {
+                                "x": 390,
+                                "y": 22
+                            },
+                            {
+                                "x": 393,
+                                "y": 19
+                            },
+                            {
+                                "x": 397,
+                                "y": 13
+                            },
+                            {
+                                "x": 399,
+                                "y": 9
+                            },
+                            {
+                                "x": 402,
+                                "y": 3
+                            },
+                            {
+                                "x": 402,
+                                "y": 0
+                            },
+                            {
+                                "x": 512,
+                                "y": 0
+                            }],
+                        "rotation": 0,
+                        "visible": true,
+                        "width": 0,
+                        "x": 0,
+                        "y": 180
+                    }],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }],
+        "nextlayerid": 7,
+        "nextobjectid": 2,
+        "orientation": "orthogonal",
+        "renderorder": "left-down",
+        "tiledversion": "1.9.2",
+        "tileheight": 16,
+        "tilesets": [
+            {
+                "firstgid": 1,
+                "source": "..\/..\/TileSets\/Genesis_32X_SCD_-_Sonic_the_Hedgehog_-_Green_Hill_Zone_Act_1_-_No_Tree_halfsize.tsx"
+            },
+            {
+                "firstgid": 15409,
+                "source": "..\/..\/TileSets\/set.tsj"
+            }],
+        "tilewidth": 16,
+        "type": "map",
+        "version": "1.9",
+        "width": 32
     }
 }
