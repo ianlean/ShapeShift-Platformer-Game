@@ -1,0 +1,30 @@
+{
+    "fileStates": {
+        "D:/School/UWT/TCSS-491/ShapeShift/assets/Levels/TileSets/Genesis_32X_SCD_-_Sonic_the_Hedgehog_-_Green_Hill_Zone_Act_1_-_No_Tree_halfsize.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/School/UWT/TCSS-491/ShapeShift/assets/Levels/TileSets/set.tsj": {
+            "scaleInDock": 1
+        },
+        "halfpipe.json": {
+            "scale": 3.1375976562499996,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 256.08764667434406,
+                "y": 128.28285972174672
+            }
+        },
+        "slope/slope.json": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 880,
+                "y": 483.33333333333326
+            }
+        }
+    },
+    "recentFiles": [
+        "slope/slope.json",
+        "halfpipe.json"
+    ]
+}
