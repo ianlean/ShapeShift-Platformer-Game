@@ -52,10 +52,11 @@ class SceneManager {
                 // console.log(fl)
                 var points = f["polyline"]
                 if(points.length > 1) {
-                    for (let i = 0; i < points.length; i += 2) {
+                    for (let i = 0; i < points.length - 1; i++) {
                         console.log(points[i]["x"])
-                        var fl = new floor(this.game, 0, 0, new Point(points[i]["x"], points[i]["y"]), new Point(points[i + 1]["x"], points[i + 1]["y"]))
+                        var fl = new floor(this.game, 0, 0, new Point(f["x"] + points[i]["x"], f["y"] + points[i]["y"]), new Point(f["x"] + points[i + 1]["x"], f["y"] + points[i + 1]["y"]))
                         this.game.addEntity(fl)
+                        console.log(fl)
                     }
                 }
             });

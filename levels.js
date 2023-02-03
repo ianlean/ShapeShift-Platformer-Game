@@ -607,7 +607,7 @@ var slope = {
                 "name": "Tile Layer 1",
                 "opacity": 1,
                 "type": "tilelayer",
-                "visible": true,
+                "visible": false,
                 "width": 100,
                 "x": 0,
                 "y": 0
@@ -624,12 +624,12 @@ var slope = {
                         "name": "",
                         "polyline": [
                             {
-                                "x": 100,
-                                "y": 100
+                                "x": 0,
+                                "y": 0
                             },
                             {
-                                "x": 150,
-                                "y": 106
+                                "x": 15,
+                                "y": 6
                             },
                             {
                                 "x": 1183,
@@ -647,7 +647,7 @@ var slope = {
                     }],
                 "opacity": 1,
                 "type": "objectgroup",
-                "visible": false,
+                "visible": true,
                 "x": 0,
                 "y": 0
             },
@@ -703,7 +703,7 @@ var slope = {
                 "y": 0
             }],
         "nextlayerid": 4,
-        "nextobjectid": 5,
+        "nextobjectid": 6,
         "orientation": "orthogonal",
         "renderorder": "left-down",
         "tiledversion": "1.9.2",
