@@ -10,11 +10,13 @@ class SceneManager {
 
         this.playerCharacter = new Player(this.game, -60, 0);
 
-        this.floor1 = new floor(this.game, 0, 120);
-        this.elapsedTime = 0;
-        this.spawns = [0.5, 1, 3, 5];
+        this.loadLevel(slope, 0, 0)
 
-        this.loadLevel(level1, 50, 550);
+        // this.floor1 = new floor(this.game, 0, 120);
+        // this.elapsedTime = 0;
+        // this.spawns = [0.5, 1, 3, 5];
+
+        // this.loadLevel(level1, 50, 550);
 
     };
 
@@ -60,9 +62,6 @@ class SceneManager {
             })
         }
 
-        level.data["layers"][spikes]["objects"].forEach(f => {
-
-        });
         this.game.addEntity(new BoundingLine(this.game, {x: 0, y: 0}, {x: 200, y: 10}))
         
         this.game.addEntity(this.background)
