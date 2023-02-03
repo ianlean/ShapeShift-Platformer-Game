@@ -1,24 +1,32 @@
 class BoundingCircle {
-    constructor(x, y, width, height) {
-        Object.assign(this, { x, y, width, height });
-
-        this.left = x;
-        this.top = y;
-        this.right = this.left + this.width;
-        this.bottom = this.top + this.height;
+    constructor(x, y, radius) {
+        Object.assign(this, { x, y, radius });
     };
+
+    //for debugging purposes
+    draw(ctx) {
+        ctx.strokeStyle = "Red";
+        ctx.lineWidth = 10;
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    update() {
+
+    }
 
     collide(oth) {
-        if (this.right > oth.left && this.left < oth.right && this.top < oth.bottom && this.bottom > oth.top) {
-           // console.log(this + " collided with " + oth);
-            return true;
+        //compare the distance to combined radii
+        if (oth != undefined) {
+            var dx = oth.x - this.x;
+            var dy = oth.y - this.y;
+            var radii = oth.radius + this.radius;
+            if ( ( dx * dx )  + ( dy * dy ) < radii * radii ) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        return false;
-    };
-    //for debugging purposes
-    draw(ctx){
-        ctx.strokeStyle = "Red";
-        ctx.lineWidth = 3;
-        ctx.strokeRect(this.left,this.top,this.width,this.height);
     }
-}
+};
