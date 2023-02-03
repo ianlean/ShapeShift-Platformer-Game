@@ -1,5 +1,7 @@
 var level1 = {
     background: "./assets/Levels/Level1/Level1.png",
+    width: 4128,
+    height: 1600,
     data: {
         "compressionlevel": -1,
         "height": 32,
@@ -542,6 +544,8 @@ var level1 = {
 
 var slope = {
     background: "./assets/Levels/TestLevels/slope/slope.png",
+    width: 1600,
+    height: 800,
     data: {
         "compressionlevel": -1,
         "height": 50,
@@ -620,12 +624,12 @@ var slope = {
                         "name": "",
                         "polyline": [
                             {
-                                "x": 0,
-                                "y": 0
+                                "x": 100,
+                                "y": 100
                             },
                             {
-                                "x": 15,
-                                "y": 6
+                                "x": 150,
+                                "y": 106
                             },
                             {
                                 "x": 1183,

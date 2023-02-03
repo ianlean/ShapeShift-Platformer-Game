@@ -8,7 +8,7 @@ class Background {
     }
 
     draw(ctx) {
-        ctx.drawImage(ASSET_MANAGER.getAsset('./assets/Levels/Level1/Level1.png'), this.x, this.y, this.width, this.height)
+        ctx.drawImage(ASSET_MANAGER.getAsset(this.imagepath), this.x, this.y, this.width, this.height)
     }
 
     updateCollision() {
