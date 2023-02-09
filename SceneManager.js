@@ -46,10 +46,6 @@ class SceneManager {
         
         if(floors > -1) {
             layers[floors]["objects"].forEach(f => {
-                // console.log(f)
-                // var fl = new floor(this.game, f["x"], f["y"], f["width"], f["height"])
-                // this.game.addEntity(fl)
-                // console.log(fl)
                 var points = f["polyline"]
                 if(points.length > 1) {
                     for (let i = 0; i < points.length - 1; i++) {
@@ -71,18 +67,10 @@ class SceneManager {
             })
         }
 
-        // this.game.addEntity(new BottomlessPit(this.game, -2000, 1500,10000))
         
         this.game.addEntity(this.background)
         console.log(level.data["layers"][floors]["objects"])
         
-
-        // if (level.floor) {
-        //     for (var i = 0; i < level.floor.length; i++) {
-        //         let Floor = level.floor[i];
-        //         this.game.addEntity(new floor(this.game, Floor.x, Floor.y));
-        //     }
-        // }
         if (level.spike) {
             for (var i = 0; i < level.spike.length; i++) {
                 let Spike = level.spike[i];
