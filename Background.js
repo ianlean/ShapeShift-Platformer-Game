@@ -1,4 +1,5 @@
 class Background {
+    //
     constructor(imagepath, x, y, width, height) {
         Object.assign(this, {imagepath, x, y, width, height})
     }

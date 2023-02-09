@@ -1,5 +1,5 @@
 class Player {
-
+//
     constructor(game, x, y) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");

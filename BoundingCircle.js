@@ -1,4 +1,5 @@
 class BoundingCircle {
+    //
     constructor(x, y, radius) {
         Object.assign(this, { x, y, radius });
     };

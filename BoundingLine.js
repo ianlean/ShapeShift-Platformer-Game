@@ -1,4 +1,5 @@
 class BoundingLine {
+    //
     constructor(game, p1, p2) {
         Object.assign(this, { game, p1, p2 });
         if ((this.p2.x - this.p1.x) != 0) {

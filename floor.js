@@ -1,4 +1,5 @@
 class floor {
+    //
     constructor(game, x, y, p1, p2) {
         Object.assign(this, {game, x, y, p1, p2})
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/square.png");

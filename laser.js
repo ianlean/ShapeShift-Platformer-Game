@@ -1,5 +1,5 @@
 class Laser {
-
+//
     constructor(game, x, y) {
         Object.assign(this, {game,x,y,length});
         this.BoundingBox = new BoundingBox(this.x,this.y,10,3);

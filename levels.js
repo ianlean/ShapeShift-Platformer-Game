@@ -1,4 +1,5 @@
 var level1 = {
+    //
     background: "./assets/Levels/Level1/Level1.png",
     width: 3552,
     height: 1024,

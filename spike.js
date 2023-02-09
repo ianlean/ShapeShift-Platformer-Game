@@ -1,4 +1,5 @@
 class spike {
+    //
     constructor(game, x, y, width, height) {
         this.game = game;
         this.x = x;

@@ -1,4 +1,5 @@
 class BottomlessPit {
+    //
     constructor(game, x, y, width) {
         this.game = game;
         this.x = x;
