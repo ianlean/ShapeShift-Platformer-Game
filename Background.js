@@ -1,4 +1,5 @@
 class Background {
+    //
     constructor(imagepath, x, y, width, height) {
         Object.assign(this, {imagepath, x, y, width, height})
     }
@@ -8,10 +9,10 @@ class Background {
     }
 
     draw(ctx) {
-        ctx.drawImage(ASSET_MANAGER.getAsset('./assets/Levels/Level1/Level1.png'), this.x, this.y, this.width, this.height)
+        ctx.drawImage(ASSET_MANAGER.getAsset(this.imagepath), this.x, this.y, this.width, this.height)
     }
 
-    updateBox() {
+    updateCollision() {
         
     }
 }

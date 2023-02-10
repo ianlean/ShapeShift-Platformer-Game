@@ -4,27 +4,39 @@
 <head>
     <meta charset="utf-8">
     <title>ShapeShift</title>
+    <style>
+        @font-face {
+            font-family: Russo-Regular;
+            src: url("RussoOne-Regular.ttf");
+            font-weight:normal;
+            }
+    </style>
 
-    <script type="text/javascript" src="./assetmanager.js"></script>
+    <script type="text/javascript" src="./AssetManager.js"></script>
     <script type="text/javascript" src="./Background.js"></script>
-    <script type="text/javascript" src="./timer.js"></script>
-    <script type="text/javascript" src="./gameengine.js"></script>
-    <script type="text/javascript" src="./util.js"></script>
+    <script type="text/javascript" src="./Timer.js"></script>
+    <script type="text/javascript" src="./GameEngine.js"></script>
+    <script type="text/javascript" src="./Util.js"></script>
     <script type="text/javascript" src="./Animator.js"></script>
     <script type="text/javascript" src="./BoundingBox.js"></script>
+    <script type="text/javascript" src="./Line.js"></script>
+    <script type="text/javascript" src="./Point.js"></script>
     <script type="text/javascript" src="./BoundingLine.js"></script>
-    <script type="text/javascript" src="./floor.js"></script>
+    <script type="text/javascript" src="./Floor.js"></script>
     <script type="text/javascript" src="./Player.js"></script>
-    <script type="text/javascript" src="./spike.js"></script>
-    <script type="text/javascript" src="./laser.js"></script>
-    <script type="text/javascript" src="./levels.js"></script>
+    <script type="text/javascript" src="./BottomlessPit.js"></script>
+    <script type="text/javascript" src="./Spike.js"></script>
+    <script type="text/javascript" src="./Laser.js"></script>
+    <script type="text/javascript" src="./Levels.js"></script>
+    <script type="text/javascript" src="./BoundingCircle.js"></script>
+    <script type="text/javascript" src="./MenuItem.js"></script>
     <script type="text/javascript" src="./SceneManager.js"></script>
-    <script type="text/javascript" src="./main.js"></script>
+    <script type="text/javascript" src="./Main.js"></script>
 </head>
 
 <body>
     <canvas id="gameWorld"
-        style="background: rgb(255, 255, 255); border: 1px solid black; height:  720px; width: 1280px;image-rendering: pixelated;" tabindex="0"
+        style="background: rgb(255, 255, 255); border: 1px solid black; height:  720px; width: 1280px;" tabindex="0"
         autofocus></canvas>
 
     <input id="restart" type="button" value="Restart" style="display: none">

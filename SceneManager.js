@@ -1,22 +1,18 @@
 class SceneManager {
-
+//
     constructor(game) {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
         this.y = 0;
         this.score = 0;
-        this.background;
-
-        this.playerCharacter = new Player(this.game, -60, 0);
-
-        this.loadLevel(slope, 0, 0)
-
-        // this.floor1 = new floor(this.game, 0, 120);
-        // this.elapsedTime = 0;
-        // this.spawns = [0.5, 1, 3, 5];
-
-        // this.loadLevel(level1, 50, 550);
+        this.background = new Background("./assets/menuBackground.png", 0, 0, 3840/10, 2160/10)
+        this.playerCharacter;
+        this.levelLoaded = false;
+        this.elapsedTime = 0;
+        this.menuItems = [new MenuItem(level1,45,35,game,1,this), new MenuItem(slope,45,55,game,2,this)]
+        //this.loadLevel(slope, 0, 0)
+        
 
     };
 
@@ -37,43 +33,40 @@ class SceneManager {
         var slope = layers.findIndex(l => l["name"] == "Slope")
 
         console.log(level)
-
+        this.playerCharacter = new Player(this.game, 0, 0);
         this.game.addEntity(this.playerCharacter);
 
-        this.background = new Background(level.background, -35, -445, 3552, 1024)
+        this.background = new Background(level.background, x, y, level.width, level.height)
 
         var i = level.data["layers"].findIndex(l => l["name"] == "Floor")
         
         if(floors > -1) {
             layers[floors]["objects"].forEach(f => {
-                console.log(f)
-                var fl = new floor(this.game, f["x"] - 35, f["y"] - 443, f["width"], f["height"])
-                this.game.addEntity(fl)
-                console.log(fl)
+                var points = f["polyline"]
+                if(points.length > 1) {
+                    for (let i = 0; i < points.length - 1; i++) {
+                        console.log(points[i]["x"])
+                        var fl = new floor(this.game, 0, 0, new Point(f["x"] + points[i]["x"], f["y"] + points[i]["y"]), new Point(f["x"] + points[i + 1]["x"], f["y"] + points[i + 1]["y"]))
+                        this.game.addEntity(fl)
+                        console.log(fl)
+                    }
+                }
             });
         }
 
         if(spikes > -1) {
             layers[spikes]["objects"].forEach(s => {
                 console.log(s)
-                var sp = new spike(this.game, s["x"] - 35, s["y"] - 443, s["width"], s["height"])
+                var sp = new spike(this.game, s["x"], s["y"], s["width"], s["height"])
                 this.game.addEntity(sp)
                 console.log(sp)
             })
         }
 
-        this.game.addEntity(new BoundingLine(this.game, {x: 0, y: 0}, {x: 200, y: 10}))
         
         this.game.addEntity(this.background)
         console.log(level.data["layers"][floors]["objects"])
         
-
-        // if (level.floor) {
-        //     for (var i = 0; i < level.floor.length; i++) {
-        //         let Floor = level.floor[i];
-        //         this.game.addEntity(new floor(this.game, Floor.x, Floor.y));
-        //     }
-        // }
         if (level.spike) {
             for (var i = 0; i < level.spike.length; i++) {
                 let Spike = level.spike[i];
@@ -88,26 +81,37 @@ class SceneManager {
         }
 
 
-        
+        this.levelLoaded = true;
     };
 
 
 
     update() {
+        if(this.levelLoaded){
+            this.handleCamMovement();
+        }else{
+            this.menuItems.forEach(m => {
+                m.update();
+            })
+        }
+    };
+  
+
+    handleCamMovement(){
         let midpoint = 200;
         this.elapsedTime += this.game.clockTick;
         if (this.playerCharacter.y <= 50) {
             this.playerCharacter.y = 50;
             for (let i = 1; i < this.game.entities.length; i++) {
                 this.game.entities[i].y -= this.playerCharacter.velocityY;
-                this.game.entities[i].updateBox();
+                this.game.entities[i].updateCollision();
             }
         }
         if (this.playerCharacter.y > 100) {
             this.playerCharacter.y = 100;
             for (let i = 1; i < this.game.entities.length; i++) {
                 this.game.entities[i].y -= this.playerCharacter.velocityY;
-                this.game.entities[i].updateBox();
+                this.game.entities[i].updateCollision();
             }
         }
         if (this.playerCharacter.x < midpoint) {
@@ -115,25 +119,33 @@ class SceneManager {
                 this.playerCharacter.x = 50;
                 for (let i = 1; i < this.game.entities.length; i++) {
                     this.game.entities[i].x -= this.playerCharacter.velocityX;
-                    this.game.entities[i].updateBox();
+                    this.game.entities[i].updateCollision();
                 }
-
             }
-            //this.floor1.x=this.playerCharacter.x;
 
         } else {
             this.playerCharacter.x = midpoint;
 
             for (let i = 1; i < this.game.entities.length; i++) {
                 this.game.entities[i].x -= this.playerCharacter.velocityX;
-                this.game.entities[i].updateBox();
+                this.game.entities[i].updateCollision();
             }
         }
 
     };
-
     draw(ctx) {
         this.background.draw(ctx)
+        if(!this.levelLoaded){
+            ctx.fillStyle = "blue"
+            ctx.font = "20px Russo-Regular";
+            ctx.fillText("ShapeShift",45,15)
+            ctx.font = "10px Russo-Regular";
+            ctx.fillText("Hit The Number of the level you want to play",45,75)
+            
+            this.menuItems.forEach(m => {
+                m.draw(ctx);
+            })
+        }
     };
 
 };

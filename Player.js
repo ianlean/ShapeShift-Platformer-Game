@@ -1,9 +1,10 @@
 class Player {
-
+//
     constructor(game, x, y) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
-        this.BoundingBox;
+        //this.BoundingBox;
+        this.BoundingCircle
         this.x = x;
         this.y = y;
         this.speed = 1;
@@ -16,8 +17,10 @@ class Player {
         this.anim = "still";
         this.animations = [];
         this.createAnimations();
-        this.updateBox();
+        this.updateCollision();
         this.dead = false;
+        this.prevX=x;
+        this.prevY=y;
     };
 
     createAnimations() {
@@ -33,54 +36,75 @@ class Player {
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
-
-        this.updateBox();
+        this.prevX=this.x;
+        this.prevY= this.y;
+        this.updateCollision();
         this.velocityY += this.Acceleration;
 
         this.keyCheck();
-
+        this.x += this.velocityX;
+        this.y += this.velocityY;
         this.collisionCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
+        this.updateCollision();
+        this.restartCheck()
+        
         //gravity and other thing effecting movement could go here
     };
 
     draw(ctx) {
-        if(this.shape=="circle"){
-        this.animations[this.anim].drawFrame(this.game.clockTick*(Math.abs(this.velocityX)/3), ctx, this.x, this.y, .5);
-        }else{
+        if (this.shape == "circle") {
+            this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5);
+        } else {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
         }
-        if(this.dead){
+        if (this.dead) {
             ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
         }
-        this.BoundingBox.draw(ctx);
+        if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx); }
     };
 
     collisionCheck() {
         this.game.entities.forEach(entity => {
 
-            if (!(entity instanceof Background) && !(entity instanceof BoundingLine) && this.BoundingBox.collide(entity.BoundingBox)) {
-                if (entity instanceof floor) {
-                    //console.log("this is the floor")
-                    if (this.BoundingBox.bottom >= entity.BoundingBox.top) {
-                        this.velocityY = 0;
-                        if(this.BoundingBox.bottom > entity.BoundingBox.top){
-                            this.y+=entity.BoundingBox.top-this.BoundingBox.bottom
-                            this.updateBox();
+            if (entity instanceof floor) {
+                var xPoints = entity.line.circleCollide(this.BoundingCircle);
+                for (var i = 0; i < xPoints.length; i++) {
+                    if (entity.line.onSegment(xPoints[i])) {
+                        var perpSlope = 1 / entity.line.slope();
+                        var perpLine = new floor(this.game);
+                        perpLine.line.points[0] = new Point(this.x, this.y);
+                        perpLine.line.points[1] = new Point(this.x + 5, (this.y + 5) * perpSlope);
+                        var pointOfIntersect = perpLine.line.collide(entity.line);
+                        var sinOfSlope = 1*(entity.line.points[1].y-entity.line.points[0].y)/getDistance(entity.line.points[0],entity.line.points[1]);
+                        
+
+                        if(this.y >=pointOfIntersect.y) {
+                            console.log("why wont you work")
+                            this.y -= (12+getDistance(pointOfIntersect,perpLine.line.points[0]))*sinOfSlope;
+                            
+                        }else{
+                            this.y -= (12-getDistance(pointOfIntersect,perpLine.line.points[0]))*sinOfSlope;
                         }
+
+                        console.log(sinOfSlope)
+                        this.velocityY = 0;
+                        this.updateCollision();
                         this.jumpCheck();
                     }
                 }
-                if (entity instanceof spike) {
-                    //todo this is where a death/loss of heart would be 
-                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
-                    this.die()
-                }
-                if (entity instanceof Laser) {
-                    //todo this is where a death/loss of heart would be 
-                    this.velocityY = -5;//I think this is really funny as a place holder -Damien
-                    this.die()
+            }
+
+            if (entity instanceof BottomlessPit) {
+
+
+                var xPoints = entity.line.circleCollide(this.BoundingCircle);
+                for (var i = 0; i < xPoints.length; i++) {
+                    if (entity.line.onSegment(xPoints[i])) {
+                        console.log("pit")
+                        this.die();
+                    }
                 }
             }
         });
@@ -88,7 +112,7 @@ class Player {
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys)||this.dead) { //no key is pressed so we idle
+        if (!aKeyIsPressed(this.game.keys) || this.dead) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
         } else { // a key is pressed so we move
@@ -103,9 +127,9 @@ class Player {
                 this.mvDown();
             }
             if (this.game.keys["d"] == false && this.game.keys["a"] == false) {
-                this.velocityX -= this.velocityX*.5;
-                if(this.shape=="circle"){
-                this.anim = "still";
+                this.velocityX -= this.velocityX * .5;
+                if (this.shape == "circle") {
+                    this.anim = "still";
                 }
             }
             // console.log("x: " + this.x)
@@ -113,10 +137,10 @@ class Player {
         }
 
         if (this.game.keys["Shift"] == true) {
-            this.game.keys["d"]=false;
-            this.game.keys["a"]=false;
+            this.game.keys["d"] = false;
+            this.game.keys["a"] = false;
             this.shapeshift("Square");
-            
+
             if (this.shape == "square") {
                 this.velocityY += this.Acceleration * 5;
                 this.anim = "Square";
@@ -131,6 +155,7 @@ class Player {
     mvLeft() {
         if ((-this.velocityX) < this.MaxSpeed) {
             this.velocityX -= this.Acceleration;
+            this.updateCollision();
         }
         console.log("going left");
         this.anim = "a";
@@ -139,6 +164,7 @@ class Player {
     mvRight() {
         if (this.velocityX < this.MaxSpeed) {
             this.velocityX += this.Acceleration;
+            this.updateCollision();
         }
         console.log("going right");
         this.anim = "d";
@@ -146,8 +172,8 @@ class Player {
 
     mvDown() {
         if (this.velocityY < this.MaxSpeed) {
-            this.velocityY += this.Acceleration*0.25;
-            
+            this.velocityY += this.Acceleration * 0.25;
+            this.updateCollision();
         }
         console.log("going down");
         if (this.velocityX > 0) {
@@ -173,7 +199,7 @@ class Player {
         if (shapeType == "Circle") {
             this.shape = "circle";
         }
-       // console.log("changing shape");
+        // console.log("changing shape");
     }
 
     jumpCheck() {
@@ -184,15 +210,21 @@ class Player {
         }
     }
 
-    updateBox() {
-        this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
+    updateCollision() {
+        //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
+        this.BoundingCircle = new BoundingCircle(this.x + 7, this.y + 7, 6);
     }
 
     die() {
         // die animation/reset game
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
         this.dead = true;
-        
+
+    }
+    restartCheck() {
+        if (this.game.keys["r"] == true) {
+            location.reload();
+        }
     }
 
-}
+};
