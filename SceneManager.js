@@ -6,11 +6,11 @@ class SceneManager {
         this.x = 0;
         this.y = 0;
         this.score = 0;
-        this.background;
+        this.background = new Background("./assets/menuBackground.png", 0, 0, 3840/10, 2160/10)
         this.playerCharacter;
         this.levelLoaded = false;
         this.elapsedTime = 0;
-        this.menuItems = [new MenuItem(level1,30,25,game,1,this), new MenuItem(slope,30,40,game,2,this)]
+        this.menuItems = [new MenuItem(level1,45,35,game,1,this), new MenuItem(slope,45,55,game,2,this)]
         //this.loadLevel(slope, 0, 0)
         
 
@@ -134,11 +134,14 @@ class SceneManager {
 
     };
     draw(ctx) {
-        if(this.levelLoaded){
-            this.background.draw(ctx)
-        }else{
+        this.background.draw(ctx)
+        if(!this.levelLoaded){
             ctx.fillStyle = "blue"
-            ctx.fillText("Hit The Number of the level you want to play",10,10)
+            ctx.font = "20px Russo-Regular";
+            ctx.fillText("ShapeShift",45,15)
+            ctx.font = "10px Russo-Regular";
+            ctx.fillText("Hit The Number of the level you want to play",45,75)
+            
             this.menuItems.forEach(m => {
                 m.draw(ctx);
             })
