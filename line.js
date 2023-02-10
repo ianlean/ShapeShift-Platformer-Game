@@ -9,7 +9,6 @@ class Line {
 
     slope() {
         var slope;
-
         if (this.points[1].x !== this.points[0].x)
             slope = (this.points[1].y - this.points[0].y) / (this.points[1].x - this.points[0].x);
         else
@@ -37,9 +36,24 @@ class Line {
     collide(other) {
         if (this.slope() === other.slope()) return false;
 
+        if(isNaN(this.slope())) {
+            console.log("slope() is NaN")
+            throw Error("slope() is NaN")
+        }
+
         var intersect = {};
         intersect.x = (other.yInt() - this.yInt()) / (this.slope() - other.slope());
         intersect.y = this.slope() * intersect.x + this.yInt();
+
+        if(isNaN(intersect.x)) {
+            console.log("intercet.x is NaN")
+            throw Error("intercet.x is NaN")
+        }
+
+        if(isNaN(intersect.y)) {
+            console.log("intercet.y is NaN")
+            throw Error("intercet.y is NaN")
+        }
 
         return intersect;
     };

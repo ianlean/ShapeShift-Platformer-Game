@@ -1,5 +1,4 @@
 class SceneManager {
-    //
     constructor(game) {
         this.game = game;
         this.game.camera = this;
@@ -15,7 +14,6 @@ class SceneManager {
         this.SPIKES = "spikes"
         this.SLOPE = "slope"
         this.LASER = "laser"
-
     };
 
     clearEntities() {
@@ -34,7 +32,7 @@ class SceneManager {
         this.loadSpikes(levelJSONObjects[this.SPIKES], layers)
         this.loadLasers(levelJSONObjects[this.LASER], layers)
         this.loadBackground(level)
-        this.levelLoaded = true;
+        this.levelLoaded = true
     };
 
     getLevelJSONObjects(layers) {
@@ -51,8 +49,8 @@ class SceneManager {
     }
 
     loadPlayer() {
-        this.player = new Player(this.game, 0, 0);
-        this.game.addEntity(this.player);
+        this.player = new Player(this.game, 0, 0)
+        this.game.addEntity(this.player)
     }
 
 
@@ -62,15 +60,15 @@ class SceneManager {
         }
         layers[floors]["objects"].forEach(f => {
             var points = f["polyline"]
+            console.log(points)
             var notEnoughPoints = points.length <= 1
             if(notEnoughPoints) {
                 return
             }
             for (let i = 0; i < points.length - 1; i++) {
-                console.log(points[i]["x"])
                 var fl = new floor(this.game, 0, 0, new Point(f["x"] + points[i]["x"], f["y"] + points[i]["y"]), new Point(f["x"] + points[i + 1]["x"], f["y"] + points[i + 1]["y"]))
                 this.game.addEntity(fl)
-                console.log(fl)
+                // console.log(fl)
             }
         });
     }
@@ -103,8 +101,8 @@ class SceneManager {
 
     update() {
         if (this.levelLoaded) {
-            this.handleCamMovement();
-            this.elapsedTime += this.game.clockTick;
+            this.handleCamMovement()
+            this.elapsedTime += this.game.clockTick
         } else {
             this.menuItems.forEach(m => {
                 m.update();
@@ -126,7 +124,7 @@ class SceneManager {
             this.player.y = 100
             this.updateCollisions("y", "velocityY")
         }
-        var midpoint = 200;
+        var midpoint = 200
         if (this.player.x < midpoint && this.player.x <= 50) {
             this.player.x = 50
             this.updateCollisions("x", "velocityX")
@@ -138,8 +136,8 @@ class SceneManager {
 
     updateCollisions(coordinate, velocity) {
         for (let i = 1; i < this.game.entities.length; i++) {
-            this.game.entities[i][coordinate] -= this.player[velocity];
-            this.game.entities[i].updateCollision();
+            this.game.entities[i][coordinate] -= this.player[velocity]
+            this.game.entities[i].updateCollision()
         }
     }
 
@@ -147,13 +145,13 @@ class SceneManager {
         this.background.draw(ctx)
         if (!this.levelLoaded) {
             ctx.fillStyle = "blue"
-            ctx.font = "20px Russo-Regular";
+            ctx.font = "20px Russo-Regular"
             ctx.fillText("ShapeShift", 45, 15)
-            ctx.font = "10px Russo-Regular";
+            ctx.font = "10px Russo-Regular"
             ctx.fillText("Hit The Number of the level you want to play", 45, 75)
 
             this.menuItems.forEach(m => {
-                m.draw(ctx);
+                m.draw(ctx)
             })
         }
     };
