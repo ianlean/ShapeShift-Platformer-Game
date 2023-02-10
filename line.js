@@ -52,11 +52,13 @@ class Line {
         var c = circle.x * circle.x + (yInt - circle.y) * (yInt - circle.y) - circle.radius * circle.radius;
 
         var d = b * b - 4 * a * c;
-
+        //console.log(a);
+        // console.log(b);
+        // console.log(c);
         if (d === 0) {
-            return [(-b + Math.sqrt(Math.abs(d))) / (2 * a)];
+            return [(-b + Math.sqrt(d)) / (2 * a)];
         } else if (d > 0) {
-            return [(-b + Math.sqrt(Math.abs(d))) / (2 * a), (-b - Math.sqrt(d)) / (2 * a)];
+            return [(-b + Math.sqrt(d)) / (2 * a), (-b - Math.sqrt(d)) / (2 * a)];
         } 
 
         return [];

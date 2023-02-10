@@ -7,6 +7,7 @@ class Player {
         this.BoundingCircle
         this.x = x;
         this.y = y;
+        console.log(this.y);
         this.speed = 1;
         this.MaxSpeed = 10;
         this.Acceleration = .09;
@@ -36,6 +37,7 @@ class Player {
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
+        
         this.prevX=this.x;
         this.prevY= this.y;
         this.updateCollision();
@@ -44,6 +46,7 @@ class Player {
         this.keyCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
+        console.log(this.y);
         this.collisionCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
@@ -78,16 +81,17 @@ class Player {
                         perpLine.points[0] = new Point(this.x, this.y);
                         perpLine.points[1] = new Point(this.x + 5, (this.y + 5) * -perpSlope);
                         var pointOfIntersect = perpLine.collide(entity.line);
+                        
                        
                         if(entity.line.slope() > 0) {
-                            console.log("down");
+                            //console.log("down");
                             
                             var sinOfSlope = 1*(entity.line.points[1].y-entity.line.points[0].y)/getDistance(entity.line.points[0],entity.line.points[1]);
                             var cosOfSlope = 1*(entity.line.points[1].x-entity.line.points[0].x)/getDistance(entity.line.points[0],entity.line.points[1]);
-                            console.log(pointOfIntersect.x + ""+ perpLine.points[0].x +"" + pointOfIntersect.y + ""+ perpLine.points[0].y);
+                            //console.log(pointOfIntersect.x + ""+ perpLine.points[0].x +"" + pointOfIntersect.y + ""+ perpLine.points[0].y);
                             this.y -= (getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
                             
-                            console.log(getDistance(pointOfIntersect,perpLine.points[0]));
+                            //console.log(getDistance(pointOfIntersect,perpLine.points[0]));
                             // console.log(this.x);
                             this.velocityY = 0;
                         } else if (entity.line.slope() < 0) {
@@ -258,6 +262,7 @@ class Player {
 
     updateCollision() {
         //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
+        console.log(this.y);
         this.BoundingCircle = new BoundingCircle(this.x + 7, this.y + 7, 6);
     }
 
