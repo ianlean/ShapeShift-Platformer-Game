@@ -11,6 +11,11 @@ class SceneManager {
         this.levelLoaded = false;
         this.elapsedTime = 0;
         this.menuItems = [new MenuItem(level1, 45, 35, game, 1, this), new MenuItem(slope, 45, 55, game, 2, this)]
+        this.FLOORS = "floors"
+        this.SPIKES = "spikes"
+        this.SLOPE = "slope"
+        this.LASER = "laser"
+
     };
 
     clearEntities() {
@@ -19,63 +24,82 @@ class SceneManager {
         });
     };
 
-
-
     loadLevel(level, x, y) {
         var layers = level.data["layers"]
-        var spikes = layers.findIndex(l => l["name"] == "Spikes")
-        var floors = layers.findIndex(l => l["name"] == "Floor")
-        var bigRamp = layers.findIndex(l => l["name"] == "Big Ramp")
-        var smallRamp = layers.findIndex(l => l["name"] == "Small Ramp")
-        var slope = layers.findIndex(l => l["name"] == "Slope")
-
+        var levelJSONObjects = this.getLevelJSONObjects(layers)
         console.log(level)
-        this.player = new Player(this.game, 0, 0);
-        this.game.addEntity(this.player);
-
-        this.background = new Background(level.background, x, y, level.width, level.height)
-
-        var i = level.data["layers"].findIndex(l => l["name"] == "Floor")
-
-        if (floors > -1) {
-            layers[floors]["objects"].forEach(f => {
-                var points = f["polyline"]
-                if (points.length > 1) {
-                    for (let i = 0; i < points.length - 1; i++) {
-                        console.log(points[i]["x"])
-                        var fl = new floor(this.game, 0, 0, new Point(f["x"] + points[i]["x"], f["y"] + points[i]["y"]), new Point(f["x"] + points[i + 1]["x"], f["y"] + points[i + 1]["y"]))
-                        this.game.addEntity(fl)
-                        console.log(fl)
-                    }
-                }
-            });
-        }
-
-        if (spikes > -1) {
-            layers[spikes]["objects"].forEach(s => {
-                console.log(s)
-                var sp = new spike(this.game, s["x"], s["y"], s["width"], s["height"])
-                this.game.addEntity(sp)
-                console.log(sp)
-            })
-        }
-        this.game.addEntity(this.background)
-        console.log(level.data["layers"][floors]["objects"])
-
-        if (level.spike) {
-            for (var i = 0; i < level.spike.length; i++) {
-                let Spike = level.spike[i];
-                this.game.addEntity(new spike(this.game, Spike.x, Spike.y));
-            }
-        }
-        if (level.laser) {
-            for (var i = 0; i < level.laser.length; i++) {
-                let laser = level.laser[i];
-                this.game.addEntity(new Laser(this.game, laser.x, laser.y));
-            }
-        }
+        this.setBackground(level, x, y)
+        this.loadPlayer()
+        this.loadFloors(levelJSONObjects[this.FLOORS], layers)
+        this.loadSpikes(levelJSONObjects[this.SPIKES], layers)
+        this.loadLasers(levelJSONObjects[this.LASER], layers)
+        this.loadBackground(level)
         this.levelLoaded = true;
     };
+
+    getLevelJSONObjects(layers) {
+        var objects = {}
+        objects[this.FLOORS] = layers.findIndex(l => l["name"] == "Floor")
+        objects[this.SPIKES] = layers.findIndex(l => l["name"] == "Spikes")
+        objects[this.SLOPE] = layers.findIndex(l => l["name"] == "Slope")
+        objects[this.LASER] = layers.findIndex(l => l["name"] == "Laser")
+        return objects
+    }
+    
+    setBackground(level, x, y) {
+        this.background = new Background(level.background, x, y, level.width, level.height)
+    }
+
+    loadPlayer() {
+        this.player = new Player(this.game, 0, 0);
+        this.game.addEntity(this.player);
+    }
+
+
+    loadFloors(floors, layers) {
+        if(floors < 0) {
+            return
+        }
+        layers[floors]["objects"].forEach(f => {
+            var points = f["polyline"]
+            var notEnoughPoints = points.length <= 1
+            if(notEnoughPoints) {
+                return
+            }
+            for (let i = 0; i < points.length - 1; i++) {
+                console.log(points[i]["x"])
+                var fl = new floor(this.game, 0, 0, new Point(f["x"] + points[i]["x"], f["y"] + points[i]["y"]), new Point(f["x"] + points[i + 1]["x"], f["y"] + points[i + 1]["y"]))
+                this.game.addEntity(fl)
+                console.log(fl)
+            }
+        });
+    }
+
+    loadSpikes(spikes, layers) {
+        if(spikes < 0) {
+            return
+        }
+        layers[spikes]["objects"].forEach(s => {
+            console.log(s)
+            var sp = new spike(this.game, s["x"], s["y"], s["width"], s["height"])
+            this.game.addEntity(sp)
+            console.log(sp)
+        })
+    }
+
+    loadLasers(lasers, layers) {
+        if(lasers < 0)
+            return
+        layers[lasers]["objects"].forEach(l => {
+            console.log(l)
+            var laser = new Laser(this.game, l["x"], l["y"])
+            console.log(laser)
+        })
+    }
+
+    loadBackground() {
+        this.game.addEntity(this.background)
+    }
 
     update() {
         if (this.levelLoaded) {
