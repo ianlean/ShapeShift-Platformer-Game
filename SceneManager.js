@@ -7,16 +7,12 @@ class SceneManager {
         this.y = 0;
         this.score = 0;
         this.background;
-
-        this.playerCharacter = new Player(this.game, 0, 0);
-
-        
-        // this.floor1 = new floor(this.game, 0, 120);
+        this.playerCharacter;
+        this.levelLoaded = false;
         this.elapsedTime = 0;
-        this.spawns = [0.5, 1, 3, 5];
+        this.menuItems = [new MenuItem(level1,30,25,game,1,this), new MenuItem(slope,30,40,game,2,this)]
+        //this.loadLevel(slope, 0, 0)
         
-        this.loadLevel(level1, 0, 0)
-        // this.loadLevel(level1, 50, 550);
 
     };
 
@@ -37,7 +33,7 @@ class SceneManager {
         var slope = layers.findIndex(l => l["name"] == "Slope")
 
         console.log(level)
-
+        this.playerCharacter = new Player(this.game, 0, 0);
         this.game.addEntity(this.playerCharacter);
 
         this.background = new Background(level.background, x, y, level.width, level.height)
@@ -85,12 +81,23 @@ class SceneManager {
         }
 
 
-        
+        this.levelLoaded = true;
     };
 
 
 
     update() {
+        if(this.levelLoaded){
+            this.handleCamMovement();
+        }else{
+            this.menuItems.forEach(m => {
+                m.update();
+            })
+        }
+    };
+  
+
+    handleCamMovement(){
         let midpoint = 200;
         this.elapsedTime += this.game.clockTick;
         if (this.playerCharacter.y <= 50) {
@@ -126,9 +133,16 @@ class SceneManager {
         }
 
     };
-
     draw(ctx) {
-        this.background.draw(ctx)
+        if(this.levelLoaded){
+            this.background.draw(ctx)
+        }else{
+            ctx.fillStyle = "blue"
+            ctx.fillText("Hit The Number of the level you want to play",10,10)
+            this.menuItems.forEach(m => {
+                m.draw(ctx);
+            })
+        }
     };
 
 };

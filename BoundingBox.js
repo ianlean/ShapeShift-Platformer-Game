@@ -22,6 +22,8 @@ class BoundingBox {
         ctx.lineWidth = 3;
         ctx.strokeRect(this.left,this.top,this.width,this.height);
     }
-    
+    isIn(x,y){
+        return x > this.left && x < this.right && y > this.top && y < this.bottom
+    }
 
 };

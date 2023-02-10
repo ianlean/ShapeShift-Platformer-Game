@@ -1,6 +1,6 @@
 var level1 = {
-    //
     background: "./assets/Levels/Level1/Level1.png",
+    name: "level1",
     width: 3552,
     height: 1024,
     data: {
@@ -397,6 +397,7 @@ var level1 = {
 };
 
 var slope = {
+    name: "slope",
     background: "./assets/Levels/TestLevels/slope/slope.png",
     width: 1600,
     height: 800,

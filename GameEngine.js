@@ -49,6 +49,7 @@ class GameEngine {
         this.keys["w"] = false;
         this.keys["Shift"] = false;
         this.keys[" "]=false;
+        this.click = {x:0,y:0}
         console.log(this.keys);
         const getXandY = e => ({
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
