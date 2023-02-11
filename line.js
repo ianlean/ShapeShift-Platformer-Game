@@ -35,7 +35,12 @@ class Line {
     };
 
     collide(other) {
-        if (this.slope() === other.slope()) return false;
+        if (this.slope() === other.slope()) {
+            console.log(this.slope())
+            console.log(other.slope())
+            console.log("same slope")
+            throw Error("same slope")
+        }
 
         var intersect = {};
         intersect.x = (other.yInt() - this.yInt()) / (this.slope() - other.slope());
@@ -52,9 +57,6 @@ class Line {
         var c = circle.x * circle.x + (yInt - circle.y) * (yInt - circle.y) - circle.radius * circle.radius;
 
         var d = b * b - 4 * a * c;
-        //console.log(a);
-        // console.log(b);
-        // console.log(c);
         if (d === 0) {
             return [(-b + Math.sqrt(d)) / (2 * a)];
         } else if (d > 0) {

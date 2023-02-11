@@ -1,13 +1,15 @@
 class Player {
-//
+    //
     constructor(game, x, y) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
         //this.BoundingBox;
         this.BoundingCircle
+        this.CIRCLEXOFFSET = 7;
+        this.CIRCLEYOFFSET = 7;
         this.x = x;
         this.y = y;
-        console.log(this.y);
+        this.RADIUS = 6
         this.speed = 1;
         this.MaxSpeed = 10;
         this.Acceleration = .09;
@@ -20,8 +22,9 @@ class Player {
         this.createAnimations();
         this.updateCollision();
         this.dead = false;
-        this.prevX=x;
-        this.prevY=y;
+        this.prevX = x;
+        this.prevY = y;
+        this.SECONDPOINT = 10
     };
 
     createAnimations() {
@@ -37,9 +40,9 @@ class Player {
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
-        
-        this.prevX=this.x;
-        this.prevY= this.y;
+
+        this.prevX = this.x;
+        this.prevY = this.y;
         this.updateCollision();
         this.velocityY += this.Acceleration;
 
@@ -52,7 +55,7 @@ class Player {
         this.y += this.velocityY;
         this.updateCollision();
         this.restartCheck()
-        
+
         //gravity and other thing effecting movement could go here
     };
 
@@ -72,62 +75,9 @@ class Player {
         this.game.entities.forEach(entity => {
 
             if (entity instanceof floor) {
-                //console.log("FLOOOOOOOR");
-                var xPoints = entity.line.circleCollide(this.BoundingCircle);
-                for (var i = 0; i < xPoints.length; i++) {
-                    if (entity.line.onSegment(xPoints[i])) {
-                        var perpSlope = -1 / entity.line.slope();
-                        var perpLine = new Line(this.game);
-                        perpLine.points[0] = new Point(this.x, this.y);
-                        perpLine.points[1] = new Point(this.x + 5, (this.y + 5) * -perpSlope);
-                        var pointOfIntersect = perpLine.collide(entity.line);
-                        
-                       
-                        if(entity.line.slope() > 0) {
-                            //console.log("down");
-                            
-                            var sinOfSlope = 1*(entity.line.points[1].y-entity.line.points[0].y)/getDistance(entity.line.points[0],entity.line.points[1]);
-                            var cosOfSlope = 1*(entity.line.points[1].x-entity.line.points[0].x)/getDistance(entity.line.points[0],entity.line.points[1]);
-                            //console.log(pointOfIntersect.x + ""+ perpLine.points[0].x +"" + pointOfIntersect.y + ""+ perpLine.points[0].y);
-                            this.y -= (getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
-                            
-                            //console.log(getDistance(pointOfIntersect,perpLine.points[0]));
-                            // console.log(this.x);
-                            this.velocityY = 0;
-                        } else if (entity.line.slope() < 0) {
-                            //console.log("up");
-                            var sinOfSlope = 1*(entity.line.points[1].y-entity.line.points[0].y)/getDistance(entity.line.points[0],entity.line.points[1]);
-                        
-                            this.y += (getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
-                            this.velocityY = 0;
-                        } else {
-                            this.y -= 0.5;
-                            this.velocityY = 0;
-                        }
-
-                         this.velocityY = 0;
-                        // if (getDistance(pointOfIntersect, perpLine.points[0]) < 0.1) {
-                        //     this.velocityY = 0;
-                        // } else {
-                        //     this.y -= 11 - getDistance(pointOfIntersect, perpLine.points[0]);
-                        //     this.velocityY = 0;
-                        // }
-                        this.updateCollision();
-                        this.jumpCheck();
-                    }
-                }
-            }
-
-            if (entity instanceof BottomlessPit) {
-
-
-                var xPoints = entity.line.circleCollide(this.BoundingCircle);
-                for (var i = 0; i < xPoints.length; i++) {
-                    if (entity.line.onSegment(xPoints[i])) {
-                        console.log("pit")
-                        this.die();
-                    }
-                }
+                this.collideFloor(entity)
+            } else if (entity instanceof BottomlessPit) {
+                this.collidePit(entity)
             }
 
             // if (!(entity instanceof Background) && !(entity instanceof BoundingLine) && this.BoundingCircle.RectCircleColliding(entity.BoundingBox)) {
@@ -160,6 +110,55 @@ class Player {
             // }
         });
     }
+
+    collideFloor(floor) {
+        var collisionPoints = floor.line.circleCollide(this.BoundingCircle);
+        for (var i = 0; i < collisionPoints.length; i++) {
+            if (floor.line.onSegment(collisionPoints[i])) {
+                var perpLine = this.getPerpLine(floor)
+                var pointOfIntersect = perpLine.collide(floor.line);
+                var sinOfSlope = this.getSinOfSlope(floor)
+                var cosOfSlope = this.getCosOfSlope(floor)
+                if (floor.line.slope() > 0) {
+                    this.y -= (this.CIRCLEYOFFSET + this.RADIUS) + (getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope);
+                } else {
+                    this.y += (this.CIRCLEYOFFSET - this.RADIUS) - (getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope);
+                }
+                this.velocityY = 0;
+                this.updateCollision();
+                this.jumpCheck();
+            }
+        }
+    }
+
+    getPerpLine(floor) {
+        var perpSlope = -1 / floor.line.slope();
+        var perpLine = new Line(this.game);
+        perpLine.points[0] = new Point(this.x, this.y);
+        perpLine.points[1] = new Point(this.x + this.SECONDPOINT, (this.y + this.SECONDPOINT) * perpSlope);
+        return perpLine
+    }
+
+    getSinOfSlope(floor) {
+        return 1 * (floor.line.points[1].y - floor.line.points[0].y) / getDistance(floor.line.points[0], floor.line.points[1]);
+    }
+
+    getCosOfSlope(floor) {
+        return 1 * (floor.line.points[1].x - floor.line.points[0].x) / getDistance(floor.line.points[0], floor.line.points[1]);
+    }
+
+    collidePit(pit) {
+        var xPoints = pit.line.circleCollide(this.BoundingCircle);
+        for (var i = 0; i < xPoints.length; i++) {
+            if (pit.line.onSegment(xPoints[i])) {
+                console.log("pit")
+                this.die();
+            }
+        }
+    }
+
+
+
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
         if (!aKeyIsPressed(this.game.keys) || this.dead) { //no key is pressed so we idle
@@ -263,7 +262,7 @@ class Player {
     updateCollision() {
         //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
         console.log(this.y);
-        this.BoundingCircle = new BoundingCircle(this.x + 7, this.y + 7, 6);
+        this.BoundingCircle = new BoundingCircle(this.x + this.CIRCLEXOFFSET, this.y + this.CIRCLEYOFFSET, this.RADIUS);
     }
 
     die() {
@@ -272,10 +271,10 @@ class Player {
         this.dead = true;
 
     }
+
     restartCheck() {
         if (this.game.keys["r"] == true) {
             location.reload();
         }
     }
-
 };
