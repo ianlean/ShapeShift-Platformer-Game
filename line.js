@@ -39,6 +39,7 @@ class Line {
             console.log(this.slope())
             console.log(other.slope())
             console.log("same slope")
+            
             throw Error("same slope")
         }
 
