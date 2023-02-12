@@ -14,7 +14,6 @@ class Line {
             slope = (this.points[1].y - this.points[0].y) / (this.points[1].x - this.points[0].x);
         else
             slope = false;
-
         return slope;
     };
 

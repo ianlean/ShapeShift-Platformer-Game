@@ -30,7 +30,7 @@ class SceneManager {
         var slope = layers.findIndex(l => l["name"] == "Slope")
 
         console.log(level)
-        this.player = new Player(this.game, 0, 0);
+        this.player = new Player(this.game, 0, 0,this);
         this.game.addEntity(this.player);
 
         this.background = new Background(level.background, x, y, level.width, level.height)
@@ -42,10 +42,10 @@ class SceneManager {
                 var points = f["polyline"]
                 if (points.length > 1) {
                     for (let i = 0; i < points.length - 1; i++) {
-                        console.log(points[i]["x"])
+                     //   console.log(points[i]["x"])
                         var fl = new floor(this.game, 0, 0, new Point(f["x"] + points[i]["x"], f["y"] + points[i]["y"]), new Point(f["x"] + points[i + 1]["x"], f["y"] + points[i + 1]["y"]))
                         this.game.addEntity(fl)
-                        console.log(fl)
+                     //   console.log(fl)
                     }
                 }
             });
@@ -60,7 +60,7 @@ class SceneManager {
             })
         }
         this.game.addEntity(this.background)
-        console.log(level.data["layers"][floors]["objects"])
+    //    console.log(level.data["layers"][floors]["objects"])
 
         if (level.spike) {
             for (var i = 0; i < level.spike.length; i++) {
@@ -97,7 +97,8 @@ class SceneManager {
         if (this.player.y <= 50) {
             this.player.y = 50
             this.updateCollisions("y", "velocityY")
-        }
+        }//error here
+        //player will fall of any slopes that push them above this threashold 
         if (this.player.y > 100) {
             this.player.y = 100
             this.updateCollisions("y", "velocityY")

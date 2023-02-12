@@ -1,6 +1,6 @@
 class Player {
     //
-    constructor(game, x, y) {
+    constructor(game, x, y,cam) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
         //this.BoundingBox;
@@ -26,6 +26,9 @@ class Player {
         this.prevX = x;
         this.prevY = y;
         this.SECONDPOINT = 10
+        this.yadjust;
+        this.xadjust
+        this.cam = cam;
     };
 
     createAnimations() {
@@ -90,7 +93,7 @@ class Player {
             if (floor.line.onSegment(collisionPoints[i])) {
                 var perpLine = this.getPerpLine(floor)
                 let perpslope = -1 / floor.line.slope();
-                
+                console.log(floor.line.slope());
                 
                 var pointOfIntersect = perpLine.collide(floor.line);
                 var sinOfSlope = this.getSinOfSlope(floor.line)
@@ -98,10 +101,14 @@ class Player {
                 let normY = 0;
                 let normX = 0;
                 if(this.y >=pointOfIntersect.y) {
-                    this.y -= (12+getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                    this.yadjust = -(this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                    //this.xadjust = (this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*cosOfSlope;
+                    this.y += this.yadjust;
+                    //this.x += this.xadjust;
+                    this.cam.updateCollisions('y','yadjust');
                     
                 }else{
-                    this.y -= (12-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                    this.y -= (this.RADIUS*2-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
                 }
                 this.velocityY = 0;
                 this.updateCollision();
@@ -185,7 +192,7 @@ class Player {
             this.velocityX -= this.Acceleration;
             this.updateCollision();
         }
-        console.log("going left");
+       // console.log("going left");
         this.anim = "a";
     }
 
@@ -194,7 +201,7 @@ class Player {
             this.velocityX += this.Acceleration;
             this.updateCollision();
         }
-        console.log("going right");
+       // console.log("going right");
         this.anim = "d";
     }
 
@@ -203,7 +210,7 @@ class Player {
             this.velocityY += this.Acceleration * 0.25;
             this.updateCollision();
         }
-        console.log("going down");
+       // console.log("going down");
         if (this.velocityX > 0) {
             this.anim = "d";
         } else if (this.velocityX < 0) {
