@@ -2,6 +2,11 @@ class floor {
     //
     constructor(game, x, y, p1, p2) {
         Object.assign(this, {game, x, y, p1, p2})
+        if(isNaN(p2)) {
+            console.log(typeof p2)
+            console.log(this)
+            throw Error("p2 is NaN")
+        }
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/square.png");
         this.line = new Line(this.game);
         this.line.points[0] = this.p1
