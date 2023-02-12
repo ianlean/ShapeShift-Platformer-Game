@@ -33,7 +33,7 @@ class SceneManager {
         this.player = new Player(this.game, 0, 0,this);
         this.game.addEntity(this.player);
 
-        this.background = new Background(level.background, x, y, level.width, level.height)
+        this.background = new Background(level.background, 0, 0, level.width, level.height)
 
         var i = level.data["layers"].findIndex(l => l["name"] == "Floor")
 
@@ -79,7 +79,7 @@ class SceneManager {
 
     update() {
         if (this.levelLoaded) {
-            this.handleCamMovement();
+            //this.handleCamMovement();
             this.elapsedTime += this.game.clockTick;
         } else {
             this.menuItems.forEach(m => {
@@ -93,27 +93,32 @@ class SceneManager {
         this.updatePlayerCoordinates()
     }
 
-    updatePlayerCoordinates() {
+    updatePlayerCoordinates(ctx) {
         if (this.player.y <= 50) {
-            this.player.y = 50
-            this.updateCollisions("y", "velocityY")
+            //this.player.y = 50
+            ctx.translate(0,this.player.velocityY)
+            console.log(this.player.velocityY);
+            //this.updateCollisions("y", "velocityY")
         }//error here
         //player will fall of any slopes that push them above this threashold 
         if (this.player.y > 100) {
-            this.player.y = 100
-            this.updateCollisions("y", "velocityY")
+            //this.player.y = 100
+            //this.updateCollisions("y", "velocityY")
+            console.log(this.player.velocityY)
+            ctx.translate(0,-this.player.velocityY)
         }
         var midpoint = 200;
         if (this.player.x < midpoint && this.player.x <= 50) {
-            this.player.x = 50
-            this.updateCollisions("x", "velocityX")
+            ctx.translate(-this.player.velocityX,0)
         } else if(this.player.x >= midpoint) {
-            this.player.x = midpoint
-            this.updateCollisions("x", "velocityX")
+            ctx.translate(-this.player.velocityX,0)
+            //this.player.x = midpoint
+            //this.updateCollisions("x", "velocityX")
         }
     }
 
     updateCollisions(coordinate, velocity) {
+
         for (let i = 1; i < this.game.entities.length; i++) {
             this.game.entities[i][coordinate] -= this.player[velocity];
             this.game.entities[i].updateCollision();
@@ -121,6 +126,7 @@ class SceneManager {
     }
 
     draw(ctx) {
+
         this.background.draw(ctx)
         if (!this.levelLoaded) {
             ctx.fillStyle = "blue"
@@ -132,6 +138,8 @@ class SceneManager {
             this.menuItems.forEach(m => {
                 m.draw(ctx);
             })
+        }else{
+            this.updatePlayerCoordinates(ctx);
         }
     };
 
