@@ -34,7 +34,12 @@ class Line {
     };
 
     collide(other) {
-        if (this.slope() === other.slope()) return false;
+        if (this.slope() === other.slope()) {
+            console.log(this.slope())
+            console.log(other.slope())
+            console.log("same slope")
+            throw Error("same slope")
+        }
 
         if(isNaN(this.slope())) {
             console.log("slope() is NaN")
@@ -66,7 +71,6 @@ class Line {
         var c = circle.x * circle.x + (yInt - circle.y) * (yInt - circle.y) - circle.radius * circle.radius;
 
         var d = b * b - 4 * a * c;
-
         if (d === 0) {
             return [(-b + Math.sqrt(d)) / (2 * a)];
         } else if (d > 0) {
