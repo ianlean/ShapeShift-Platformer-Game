@@ -49,7 +49,7 @@ class SceneManager {
     }
 
     loadPlayer() {
-        this.player = new Player(this.game, 0, 0)
+        this.player = new Player(this.game, 0, 0,this)
         this.game.addEntity(this.player)
     }
 
@@ -101,7 +101,7 @@ class SceneManager {
 
     update() {
         if (this.levelLoaded) {
-            //this.handleCamMovement();
+            this.handleCamMovement();
             this.elapsedTime += this.game.clockTick;
         } else {
             this.menuItems.forEach(m => {
@@ -117,25 +117,20 @@ class SceneManager {
 
     updatePlayerCoordinates(ctx) {
         if (this.player.y <= 50) {
-            //this.player.y = 50
-            ctx.translate(0,this.player.velocityY)
-            console.log(this.player.velocityY);
-            //this.updateCollisions("y", "velocityY")
-        }//error here
-        //player will fall of any slopes that push them above this threashold 
+            this.player.y = 50
+            this.updateCollisions("y", "velocityY")
+        }
         if (this.player.y > 100) {
-            //this.player.y = 100
-            //this.updateCollisions("y", "velocityY")
-            console.log(this.player.velocityY)
-            ctx.translate(0,-this.player.velocityY)
+            this.player.y = 100
+            this.updateCollisions("y", "velocityY")
         }
         var midpoint = 200
         if (this.player.x < midpoint && this.player.x <= 50) {
-            ctx.translate(-this.player.velocityX,0)
+            this.player.x = 50
+            this.updateCollisions("x", "velocityX")
         } else if(this.player.x >= midpoint) {
-            ctx.translate(-this.player.velocityX,0)
-            //this.player.x = midpoint
-            //this.updateCollisions("x", "velocityX")
+            this.player.x = midpoint
+            this.updateCollisions("x", "velocityX")
         }
     }
 
@@ -160,8 +155,6 @@ class SceneManager {
             this.menuItems.forEach(m => {
                 m.draw(ctx)
             })
-        }else{
-            this.updatePlayerCoordinates(ctx);
         }
     };
 

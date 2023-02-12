@@ -104,7 +104,7 @@ class Player {
                     //this.xadjust = (this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*cosOfSlope;
                     this.y += this.yadjust;
                     //this.x += this.xadjust;
-                   // this.cam.updateCollisions('y','yadjust');
+                    this.cam.updateCollisions('y','yadjust');
                     
                 }else{
                     this.y -= (this.RADIUS*2-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;

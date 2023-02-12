@@ -9,10 +9,12 @@ class Line {
 
     slope() {
         var slope;
+
         if (this.points[1].x !== this.points[0].x)
             slope = (this.points[1].y - this.points[0].y) / (this.points[1].x - this.points[0].x);
         else
             slope = false;
+
         return slope;
     };
 
@@ -33,32 +35,11 @@ class Line {
     };
 
     collide(other) {
-        if (this.slope() === other.slope()) {
-            console.log(this.slope())
-            console.log(other.slope())
-            console.log("same slope")
-            
-            throw Error("same slope")
-        }
-
-        if(isNaN(this.slope())) {
-            console.log("slope() is NaN")
-            throw Error("slope() is NaN")
-        }
+        if (this.slope() === other.slope()) return false;
 
         var intersect = {};
         intersect.x = (other.yInt() - this.yInt()) / (this.slope() - other.slope());
         intersect.y = this.slope() * intersect.x + this.yInt();
-
-        if(isNaN(intersect.x)) {
-            console.log("intercet.x is NaN")
-            throw Error("intercet.x is NaN")
-        }
-
-        if(isNaN(intersect.y)) {
-            console.log("intercet.y is NaN")
-            throw Error("intercet.y is NaN")
-        }
 
         return intersect;
     };
@@ -71,6 +52,7 @@ class Line {
         var c = circle.x * circle.x + (yInt - circle.y) * (yInt - circle.y) - circle.radius * circle.radius;
 
         var d = b * b - 4 * a * c;
+
         if (d === 0) {
             return [(-b + Math.sqrt(d)) / (2 * a)];
         } else if (d > 0) {
