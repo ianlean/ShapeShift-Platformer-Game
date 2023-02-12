@@ -5,7 +5,7 @@ class floor {
         if(isNaN(p2)) {
             console.log(typeof p2)
             console.log(this)
-            throw Error("p2 is NaN")
+          //  throw Error("p2 is NaN")
         }
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/square.png");
         this.line = new Line(this.game);
