@@ -83,30 +83,25 @@ class Player {
 
     collideFloor(floor) {
         var collisionPoints = floor.line.circleCollide(this.BoundingCircle);
-        console.log(collisionPoints.length)
+    
+
+
         for (var i = 0; i < collisionPoints.length; i++) {
             if (floor.line.onSegment(collisionPoints[i])) {
                 var perpLine = this.getPerpLine(floor)
+                let perpslope = -1 / floor.line.slope();
+                
+                
                 var pointOfIntersect = perpLine.collide(floor.line);
-                var sinOfSlope = this.getSinOfSlope(perpLine)
-                var cosOfSlope = this.getCosOfSlope(perpLine)
+                var sinOfSlope = this.getSinOfSlope(floor.line)
+                var cosOfSlope = this.getCosOfSlope(floor.line)
                 let normY = 0;
                 let normX = 0;
-                if (floor.line.slope() > 0) {
-                    this.y -= 12+ getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope;
-                   // this.x += getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope;
-                   
-                    // this.x -=  getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope;
-                  //  this.velocityY -= (this.CIRCLEYOFFSET + this.RADIUS) + (getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope);
-                  //  this.velocityX = .000000001*(this.CIRCLEXOFFSET + this.RADIUS) + ((getDistance(pointOfIntersect, perpLine.points[0]) * cosOfSlope));
-                    console.log(getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope)
-                    console.log("Case 1")
-                    console.log("slope:" + floor.line.slope() );
-                    console.log((getDistance(pointOfIntersect, perpLine.points[0]) * cosOfSlope))
-                    this.gravity = 0;
-                } else {
-                    this.y += (this.CIRCLEYOFFSET - this.RADIUS) - (getDistance(pointOfIntersect, perpLine.points[0]) * sinOfSlope);
-                    console.log("case 2")
+                if(this.y >=pointOfIntersect.y) {
+                    this.y -= (12+getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                    
+                }else{
+                    this.y -= (12-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
                 }
                 this.velocityY = 0;
                 this.updateCollision();
