@@ -80,10 +80,16 @@ class Player {
                 this.collideFloor(entity)
             } else if (entity instanceof BottomlessPit) {
                 this.collidePit(entity)
+            } else if(entity instanceof Box){
+                this.collideBox(entity);
             }
         });
     }
 
+    collideBox(Box){
+
+    }
+    
     collideFloor(floor) {
         var collisionPoints = floor.line.circleCollide(this.BoundingCircle);
     
