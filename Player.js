@@ -1,15 +1,19 @@
 class Player {
-//
-    constructor(game, x, y) {
+    //
+    constructor(game, x, y,cam) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
         //this.BoundingBox;
         this.BoundingCircle
+        this.CIRCLEXOFFSET = 7;
+        this.CIRCLEYOFFSET = 7;
         this.x = x;
         this.y = y;
+        this.RADIUS = 6
         this.speed = 1;
         this.MaxSpeed = 10;
         this.Acceleration = .09;
+        this.gravity = .09;
         this.velocityX = 0;
         this.velocityY = 0;
         this.shape = "circle";
@@ -19,8 +23,12 @@ class Player {
         this.createAnimations();
         this.updateCollision();
         this.dead = false;
-        this.prevX=x;
-        this.prevY=y;
+        this.prevX = x;
+        this.prevY = y;
+        this.SECONDPOINT = 10
+        this.yadjust;
+        this.xadjust
+        this.cam = cam;
     };
 
     createAnimations() {
@@ -36,20 +44,20 @@ class Player {
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
-        this.prevX=this.x;
-        this.prevY= this.y;
-        this.updateCollision();
-        this.velocityY += this.Acceleration;
-
+        this.gravity = 0.09
+        this.prevX =  this.velocityX;
+        this.prevY = this.velocityY;
+        this.updateCollision(); 
+        this.velocityY += this.gravity;
         this.keyCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
         this.collisionCheck();
-        this.x += this.velocityX;
-        this.y += this.velocityY;
+       // this.x += this.velocityX;
+       // this.y += this.velocityY;
         this.updateCollision();
         this.restartCheck()
-        
+
         //gravity and other thing effecting movement could go here
     };
 
@@ -69,46 +77,72 @@ class Player {
         this.game.entities.forEach(entity => {
 
             if (entity instanceof floor) {
-                var xPoints = entity.line.circleCollide(this.BoundingCircle);
-                for (var i = 0; i < xPoints.length; i++) {
-                    if (entity.line.onSegment(xPoints[i])) {
-                        var perpSlope = 1 / entity.line.slope();
-                        var perpLine = new floor(this.game);
-                        perpLine.line.points[0] = new Point(this.x, this.y);
-                        perpLine.line.points[1] = new Point(this.x + 5, (this.y + 5) * perpSlope);
-                        var pointOfIntersect = perpLine.line.collide(entity.line);
-                        var sinOfSlope = 1*(entity.line.points[1].y-entity.line.points[0].y)/getDistance(entity.line.points[0],entity.line.points[1]);
-                        
-
-                        if(this.y >=pointOfIntersect.y) {
-                            console.log("why wont you work")
-                            this.y -= (12+getDistance(pointOfIntersect,perpLine.line.points[0]))*sinOfSlope;
-                            
-                        }else{
-                            this.y -= (12-getDistance(pointOfIntersect,perpLine.line.points[0]))*sinOfSlope;
-                        }
-
-                        console.log(sinOfSlope)
-                        this.velocityY = 0;
-                        this.updateCollision();
-                        this.jumpCheck();
-                    }
-                }
-            }
-
-            if (entity instanceof BottomlessPit) {
-
-
-                var xPoints = entity.line.circleCollide(this.BoundingCircle);
-                for (var i = 0; i < xPoints.length; i++) {
-                    if (entity.line.onSegment(xPoints[i])) {
-                        console.log("pit")
-                        this.die();
-                    }
-                }
+                this.collideFloor(entity)
+            } else if (entity instanceof BottomlessPit) {
+                this.collidePit(entity)
             }
         });
     }
+
+    collideFloor(floor) {
+        var collisionPoints = floor.line.circleCollide(this.BoundingCircle);
+    
+
+
+        for (var i = 0; i < collisionPoints.length; i++) {
+            if (floor.line.onSegment(collisionPoints[i])) {
+                var perpLine = this.getPerpLine(floor)
+                let perpslope = -1 / floor.line.slope();
+                
+                var pointOfIntersect = perpLine.collide(floor.line);
+                var sinOfSlope = this.getSinOfSlope(floor.line)
+                var cosOfSlope = this.getCosOfSlope(floor.line)
+                let normY = 0;
+                let normX = 0;
+                if(this.y >=pointOfIntersect.y) {
+                    this.yadjust = -(this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                    //this.xadjust = (this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*cosOfSlope;
+                    this.y += this.yadjust;
+                    //this.x += this.xadjust;
+                    this.cam.updateCollisions('y','yadjust');
+                    
+                }else{
+                    this.y -= (this.RADIUS*2-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                }
+                this.velocityY = 0;
+                this.updateCollision();
+                this.jumpCheck();
+            }
+        }
+    }
+
+    getPerpLine(floor) {
+        var perpSlope = -1 / floor.line.slope();
+        var perpLine = new Line(this.game);
+        perpLine.points[0] = new Point(this.x, this.y);
+        perpLine.points[1] = new Point(this.x + this.SECONDPOINT, (this.y + this.SECONDPOINT) * perpSlope);
+        return perpLine
+    }
+
+    getSinOfSlope(line) {
+        return 1 * (line.points[1].y - line.points[0].y) / getDistance(line.points[0], line.points[1]);
+    }
+
+    getCosOfSlope(line) {
+        return 1 * (line.points[1].x - line.points[0].x) / getDistance(line.points[0], line.points[1]);
+    }
+
+    collidePit(pit) {
+        var xPoints = pit.line.circleCollide(this.BoundingCircle);
+        for (var i = 0; i < xPoints.length; i++) {
+            if (pit.line.onSegment(xPoints[i])) {
+                console.log("pit")
+                this.die();
+            }
+        }
+    }
+
+
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
@@ -157,7 +191,7 @@ class Player {
             this.velocityX -= this.Acceleration;
             this.updateCollision();
         }
-        console.log("going left");
+       // console.log("going left");
         this.anim = "a";
     }
 
@@ -166,7 +200,7 @@ class Player {
             this.velocityX += this.Acceleration;
             this.updateCollision();
         }
-        console.log("going right");
+       // console.log("going right");
         this.anim = "d";
     }
 
@@ -175,7 +209,7 @@ class Player {
             this.velocityY += this.Acceleration * 0.25;
             this.updateCollision();
         }
-        console.log("going down");
+       // console.log("going down");
         if (this.velocityX > 0) {
             this.anim = "d";
         } else if (this.velocityX < 0) {
@@ -212,7 +246,8 @@ class Player {
 
     updateCollision() {
         //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
-        this.BoundingCircle = new BoundingCircle(this.x + 7, this.y + 7, 6);
+       // console.log(this.y);
+        this.BoundingCircle = new BoundingCircle(this.x + this.CIRCLEXOFFSET, this.y + this.CIRCLEYOFFSET, this.RADIUS);
     }
 
     die() {
@@ -221,10 +256,10 @@ class Player {
         this.dead = true;
 
     }
+
     restartCheck() {
         if (this.game.keys["r"] == true) {
             location.reload();
         }
     }
-
 };
