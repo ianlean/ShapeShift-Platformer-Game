@@ -93,7 +93,6 @@ class Player {
             if (floor.line.onSegment(collisionPoints[i])) {
                 var perpLine = this.getPerpLine(floor)
                 let perpslope = -1 / floor.line.slope();
-                console.log(floor.line.slope());
                 
                 var pointOfIntersect = perpLine.collide(floor.line);
                 var sinOfSlope = this.getSinOfSlope(floor.line)
@@ -105,7 +104,7 @@ class Player {
                     //this.xadjust = (this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*cosOfSlope;
                     this.y += this.yadjust;
                     //this.x += this.xadjust;
-                    this.cam.updateCollisions('y','yadjust');
+                   // this.cam.updateCollisions('y','yadjust');
                     
                 }else{
                     this.y -= (this.RADIUS*2-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
