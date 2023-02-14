@@ -80,6 +80,8 @@ class Player {
                 this.collideFloor(entity)
             } else if (entity instanceof BottomlessPit) {
                 this.collidePit(entity)
+            } else if (entity instanceof Box) {
+                this.BoundingCircle.RectCircleColliding(entity.boundingBox)
             }
         });
     }
