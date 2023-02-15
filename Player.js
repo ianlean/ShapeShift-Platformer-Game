@@ -88,7 +88,26 @@ class Player {
 
     collideBox(Box){
         if(this.BoundingCircle.RectCircleColliding(Box.boundingBox)){
-            if(Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET&&!(Box.boundingBox.top+(this.RADIUS+this.CIRCLEYOFFSET)*1.5<this.y)){
+            var isCollidingLeft = false;
+            var isCollidingRight = false;
+            if(Box.boundingBox.right<this.x+this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.right+(this.RADIUS+this.CIRCLEXOFFSET)*2<this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
+                isCollidingRight=true;
+                
+                if(this.velocityX<=0){
+                this.velocityX-=1.5*this.velocityX;     
+                this.x = Box.boundingBox.right
+            }
+            }
+            if(Box.boundingBox.left>this.x-this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.left-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
+                isCollidingLeft=true;
+                
+                if(this.velocityX>=0){
+                this.velocityX-=1.5*this.velocityX
+                this.x = Box.boundingBox.left-this.RADIUS-this.CIRCLEXOFFSET-0.1;
+            }
+            }
+
+            if(Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET&&!(Box.boundingBox.top+(this.RADIUS+this.CIRCLEYOFFSET)*1.5<this.y)&&!isCollidingLeft&&!isCollidingRight){
                 this.velocityY=0;
                 this.y = Box.boundingBox.top-(this.RADIUS+this.CIRCLEYOFFSET)
                 this.jumpCheck();
@@ -96,14 +115,7 @@ class Player {
             if(Box.boundingBox.bottom>this.y&&!(Box.boundingBox.bottom-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.y)){
                 this.y = Box.boundingBox.bottom
             }
-            if(Box.boundingBox.right<this.x+this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.right+(this.RADIUS+this.CIRCLEXOFFSET)*2<this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
-                this.x = Box.boundingBox.right
-                this.velocityX-=1.5*this.velocityX;     
-            }
-            if(Box.boundingBox.left>this.x-this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.left-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
-                this.x = Box.boundingBox.left-this.RADIUS-this.CIRCLEXOFFSET;
-                this.velocityX-=1.5*this.velocityX
-            }
+           
             
         }
     }
