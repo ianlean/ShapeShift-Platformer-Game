@@ -7,6 +7,8 @@ class SceneManager {
         this.score = 0;
         this.background = new Background("./assets/menuBackground.png", 0, 0, 3840 / 10, 2160 / 10)
         this.player;
+        this.playerSpawnX = 0;
+        this.playerSpawnY = 0;
         this.levelLoaded = false;
         this.elapsedTime = 0;
         this.menuItems = [new MenuItem(level1, 45, 35, game, 1, this), new MenuItem(slope, 45, 45, game, 2, this), new MenuItem(breakablefloor, 45, 55, game, 3, this), new MenuItem(FlatPlane, 45, 65, game, 4, this)]
@@ -14,9 +16,12 @@ class SceneManager {
         this.BOXES = "Box"
         this.BREAKABLEFLOORS = "Breakable Floor"
         this.SPIKES = "Spikes"
+        this.PIT = "Pit"
+        this.SPRING = "Spring"
         this.WIN = "Win"
         this.SLOPE = "Slope"
         this.LASER = "Laser"
+        this.SPAWN = "Player Spawn"
     };
 
     clearEntities() {
@@ -34,12 +39,14 @@ class SceneManager {
         var levelJSONObjects = this.getLevelJSONObjects(layers)
         console.log(level)
         this.setBackground(level, x, y)
-        this.loadPlayer()
+        this.loadPlayer(levelJSONObjects[this.SPAWN], layers)
         this.loadFloors(levelJSONObjects[this.FLOORS], layers)
         this.loadBoxes(levelJSONObjects[this.BOXES], layers)
         this.loadWin(levelJSONObjects[this.WIN], layers)
         this.loadBreakableFloors(levelJSONObjects[this.BREAKABLEFLOORS], layers)
         this.loadSpikes(levelJSONObjects[this.SPIKES], layers)
+        this.loadPits(levelJSONObjects[this.PIT], layers)
+        this.loadSprings(levelJSONObjects[this.SPRING], layers)
         this.loadLasers(levelJSONObjects[this.LASER], layers)
         this.loadBackground(level)
         this.levelLoaded = true
@@ -54,6 +61,9 @@ class SceneManager {
         objects[this.SPIKES] = layers.findIndex(l => l["name"] == this.SPIKES)
         objects[this.SLOPE] = layers.findIndex(l => l["name"] == this.SLOPE)
         objects[this.LASER] = layers.findIndex(l => l["name"] == this.LASER)
+        objects[this.PIT] = layers.findIndex(l => l["name"] == this.PIT)
+        objects[this.SPRING] = layers.findIndex(l => l["name"] == this.SPRING)
+        objects[this.SPAWN] = layers.findIndex(l => l["name"] == this.SPAWN)
         return objects
     }
     
@@ -61,10 +71,13 @@ class SceneManager {
         this.background = new Background(level.background, x, y, level.width, level.height)
     }
 
-    loadPlayer() {
-        this.player = new Player(this.game, 0, 0,this)
+    loadPlayer(spawn, layers) {
+        console.log(layers[spawn]["objects"][0])
+        this.player = new Player(this.game, layers[spawn]["objects"][0]["x"], layers[spawn]["objects"][0]["y"],this)
+        console.log(this.player)
         this.game.addEntity(this.player)
     }
+
     loadWin(wins, layers){
         if(wins < 0)
         return
@@ -120,6 +133,30 @@ class SceneManager {
             var sp = new spike(this.game, s["x"], s["y"], s["width"], s["height"])
             this.game.addEntity(sp)
             console.log(sp)
+        })
+    }
+
+    loadPits(pits, layers) {
+        if(pits < 0) {
+            return
+        }
+        layers[pits]["objects"].forEach(p => {
+            console.log(p)
+            var pit = new BottomlessPit(this.game, p["x"], p["y"], p["width"], p["height"])
+            this.game.addEntity(pit)
+            console.log(pit)    
+        })
+    }
+
+    loadSprings(springs, layers) {
+        if(springs < 0) {
+            return
+        }
+        layers[springs]["objects"].forEach(s => {
+            console.log(s)
+            var spring = new Spring(this.game, s["x"], s["y"], s["width"], s["height"])
+            this.game.addEntity(spring)
+            console.log(spring)
         })
     }
 
