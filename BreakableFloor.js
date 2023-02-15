@@ -8,9 +8,6 @@ class BreakableFloor {
     };
 
     update() {
-        if (this.x <= 0) {
-            this.x = this.originalX;
-        } else { this.x -= this.velocity; }
         this.updateCollision();
     }
 
