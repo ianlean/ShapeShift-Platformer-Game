@@ -96,6 +96,13 @@ class Player {
             if(Box.boundingBox.bottom>this.y&&!(Box.boundingBox.bottom-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.y)){
                 this.y = Box.boundingBox.bottom
             }
+            if(Box.boundingBox.right<this.x+this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.right+(this.RADIUS+this.CIRCLEXOFFSET)*2<this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
+                this.x = Box.boundingBox.right
+                this.velocityX-=2*this.velocityX;
+            }
+            if(Box.boundingBox.bottom>this.y&&!(Box.boundingBox.bottom-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.y)){
+                this.y = Box.boundingBox.bottom
+            }
             
         }
     }
