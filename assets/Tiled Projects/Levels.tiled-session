@@ -26,5 +26,10 @@
     "recentFiles": [
         "C:/Users/Dougl/Documents/School/TCSS-491/ShapeShift/assets/Levels/Level1/Level1.json",
         "Spikes.tsx"
-    ]
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }
