@@ -100,7 +100,7 @@ class Player {
                 this.x = Box.boundingBox.right
                 this.velocityX-=1.5*this.velocityX;     
             }
-            if(Box.boundingBox.left>this.x-this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.left-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.x)){
+            if(Box.boundingBox.left>this.x-this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.left-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
                 this.x = Box.boundingBox.left-this.RADIUS-this.CIRCLEXOFFSET;
                 this.velocityX-=1.5*this.velocityX
             }
