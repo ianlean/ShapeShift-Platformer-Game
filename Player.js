@@ -93,6 +93,9 @@ class Player {
                 this.y = Box.boundingBox.top-(this.RADIUS+this.CIRCLEYOFFSET)
                 this.jumpCheck();
             }
+            if(Box.boundingBox.bottom>this.y&&!(Box.boundingBox.bottom-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.y)){
+                this.y = Box.boundingBox.bottom
+            }
             
         }
     }
