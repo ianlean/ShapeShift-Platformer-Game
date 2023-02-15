@@ -287,7 +287,7 @@ class Player {
     }
 
     jumpCheck() {
-        if (this.game.keys[" "] == true) {
+        if (this.game.keys[" "] == true&&!this.dead) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 30 * this.Acceleration;
             }
@@ -304,12 +304,14 @@ class Player {
         // die animation/reset game
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
         this.dead = true;
-
+        
     }
     winner(){
-        this.velocityX-=this.velocityX*0.05
-        this.velocityY-=this.velocityY*0.05
+        if(!this.dead){
+        this.velocityX-=this.velocityX*0.25
+        this.velocityY-=this.velocityY*0.5
         this.win = true;
+        }
     }
     restartCheck() {
         if (this.game.keys["r"] == true) {

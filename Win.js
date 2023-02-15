@@ -10,7 +10,7 @@ class Win {
     };
 
     draw(ctx) {
-        this.boundingBox.draw(ctx);
+        //this.boundingBox.draw(ctx);
     };
 
     updateCollision() {
