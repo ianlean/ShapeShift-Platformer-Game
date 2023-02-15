@@ -102,9 +102,11 @@ class Player {
     }
     collideBox(Box){
         if(this.BoundingCircle.RectCircleColliding(Box.boundingBox)){
-            var isCollidingLeft = false;
-            var isCollidingRight = false;
-            if(Box.boundingBox.right<this.x+this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.right+(this.RADIUS+this.CIRCLEXOFFSET)*2<this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
+            var isCollidingLeft = Box.boundingBox.left>this.x-this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.left-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.x);
+            var isCollidingRight = Box.boundingBox.right<this.x+this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.right+(this.RADIUS+this.CIRCLEXOFFSET)*2<this.x);
+            var isCollidingBottom = Box.boundingBox.bottom>this.y&&!(Box.boundingBox.bottom-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.y)
+            var isCollidingTop = Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET&&!(Box.boundingBox.top+(this.RADIUS+this.CIRCLEYOFFSET)*2<this.y)
+            if(isCollidingRight &&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
                 isCollidingRight=true;
                 
                 if(this.velocityX<=0){
@@ -112,7 +114,7 @@ class Player {
                 this.x = Box.boundingBox.right
             }
             }
-            if(Box.boundingBox.left>this.x-this.RADIUS+this.CIRCLEXOFFSET&&!(Box.boundingBox.left-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.x)&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
+            if(isCollidingLeft&&Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET){
                 isCollidingLeft=true;
                 
                 if(this.velocityX>=0){
@@ -120,17 +122,26 @@ class Player {
                 this.x = Box.boundingBox.left-this.RADIUS-this.CIRCLEXOFFSET-0.1;
             }
             }
-
-            if(Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET&&!(Box.boundingBox.top+(this.RADIUS+this.CIRCLEYOFFSET)*1.5<this.y)&&!isCollidingLeft&&!isCollidingRight){
+            if(isCollidingTop&&isCollidingRight){
+                console.log("corner")
+                if(getDistance(this.y+this.RADIUS+this.CIRCLEYOFFSET,Box.boundingBox.top)<getDistance(this.x-this.RADIUS+this.CIRCLEYOFFSET,Box.boundingBox.right)){
+                    console.log("top corner")
+                    this.velocityY=0;
+                    this.y = Box.boundingBox.top-(this.RADIUS+this.CIRCLEYOFFSET)
+                    this.jumpCheck();
+                }else{
+                    // this.velocityX-=1.5*this.velocityX;     
+                    // this.x = Box.boundingBox.right
+                }
+            }
+            if(isCollidingTop&&!isCollidingLeft&&!isCollidingRight){
                 this.velocityY=0;
                 this.y = Box.boundingBox.top-(this.RADIUS+this.CIRCLEYOFFSET)
                 this.jumpCheck();
             }
-            if(Box.boundingBox.bottom>this.y&&!(Box.boundingBox.bottom-((this.RADIUS+this.CIRCLEYOFFSET)*2)>this.y)){
+            if(isCollidingBottom &&!isCollidingLeft&&!isCollidingRight){
                 this.y = Box.boundingBox.bottom
             }
-           
-            
         }
     }
     
