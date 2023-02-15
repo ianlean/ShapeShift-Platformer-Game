@@ -11,7 +11,7 @@ class Player {
         this.y = y;
         this.RADIUS = 6
         this.speed = 1;
-        this.MaxSpeed = 10;
+        this.MaxSpeed = 8;
         this.Acceleration = .09;
         this.gravity = .09;
         this.velocityX = 0;
@@ -69,7 +69,7 @@ class Player {
         if (this.dead) {
             ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
         }
-        if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx); }
+        if (this.BoundingCircle != undefined) { }//this.BoundingCircle.draw(ctx); }
     };
 
     collisionCheck() {
@@ -287,7 +287,7 @@ class Player {
     }
 
     jumpCheck() {
-        if (this.game.keys[" "] == true&&!this.dead) {
+        if (this.game.keys[" "] == true&&!this.dead&&!this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 30 * this.Acceleration;
             }
