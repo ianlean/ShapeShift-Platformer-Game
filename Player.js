@@ -23,8 +23,7 @@ class Player {
         this.createAnimations();
         this.updateCollision();
         this.dead = false;
-        this.prevX = x;
-        this.prevY = y;
+        this.win = false;
         this.SECONDPOINT = 10
         this.yadjust;
         this.xadjust
@@ -84,6 +83,8 @@ class Player {
                 this.collideBox(entity);
             }  else if(entity instanceof spike){
                 this.collideSpike(entity);
+            }   else if(entity instanceof Win){
+                this.collideWin(entity);
             }
         });
     }
@@ -91,6 +92,12 @@ class Player {
         if (this.BoundingCircle.RectCircleColliding(Spikes.BoundingBox)){
             console.log("ded")
             this.die();
+        }
+    }
+    collideWin(Wins){
+        if (this.BoundingCircle.RectCircleColliding(Wins.boundingBox)){
+            console.log("Won")
+            this.winner();
         }
     }
     collideBox(Box){
@@ -189,7 +196,7 @@ class Player {
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys) || this.dead) { //no key is pressed so we idle
+        if (!aKeyIsPressed(this.game.keys) || this.dead|| this.win ) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
         } else { // a key is pressed so we move
@@ -299,7 +306,11 @@ class Player {
         this.dead = true;
 
     }
-
+    winner(){
+        this.velocityX-=this.velocityX*0.05
+        this.velocityY-=this.velocityY*0.05
+        this.win = true;
+    }
     restartCheck() {
         if (this.game.keys["r"] == true) {
             location.reload();

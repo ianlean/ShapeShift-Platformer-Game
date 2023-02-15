@@ -14,6 +14,7 @@ class SceneManager {
         this.BOXES = "Box"
         this.BREAKABLEFLOORS = "Breakable Floor"
         this.SPIKES = "Spikes"
+        this.WIN = "Win"
         this.SLOPE = "Slope"
         this.LASER = "Laser"
     };
@@ -36,6 +37,7 @@ class SceneManager {
         this.loadPlayer()
         this.loadFloors(levelJSONObjects[this.FLOORS], layers)
         this.loadBoxes(levelJSONObjects[this.BOXES], layers)
+        this.loadWin(levelJSONObjects[this.WIN], layers)
         this.loadBreakableFloors(levelJSONObjects[this.BREAKABLEFLOORS], layers)
         this.loadSpikes(levelJSONObjects[this.SPIKES], layers)
         this.loadLasers(levelJSONObjects[this.LASER], layers)
@@ -47,6 +49,7 @@ class SceneManager {
         var objects = {}
         objects[this.FLOORS] = layers.findIndex(l => l["name"] == this.FLOORS)
         objects[this.BOXES] = layers.findIndex(l => l["name"] == this.BOXES)
+        objects[this.WIN] = layers.findIndex(l => l["name"] == this.WIN)
         objects[this.BREAKABLEFLOORS] = layers.findIndex(l => l["name"] == this.BREAKABLEFLOORS)
         objects[this.SPIKES] = layers.findIndex(l => l["name"] == this.SPIKES)
         objects[this.SLOPE] = layers.findIndex(l => l["name"] == this.SLOPE)
@@ -62,7 +65,14 @@ class SceneManager {
         this.player = new Player(this.game, 0, 0,this)
         this.game.addEntity(this.player)
     }
-
+    loadWin(wins, layers){
+        if(wins < 0)
+        return
+    layers[wins]["objects"].forEach(b => {
+        var win = new Win(this.game, b["x"], b["y"], b["width"], b["height"])
+        this.game.addEntity(win)
+    })
+    }
     loadBoxes(boxes, layers) {
         if(boxes < 0)
             return
