@@ -82,10 +82,17 @@ class Player {
                 this.collidePit(entity)
             } else if(entity instanceof Box){
                 this.collideBox(entity);
+            }  else if(entity instanceof spike){
+                this.collideSpike(entity);
             }
         });
     }
-
+    collideSpike(Spikes){
+        if (this.BoundingCircle.RectCircleColliding(Spikes.BoundingBox)){
+            console.log("ded")
+            this.die();
+        }
+    }
     collideBox(Box){
         if(this.BoundingCircle.RectCircleColliding(Box.boundingBox)){
             var isCollidingLeft = false;

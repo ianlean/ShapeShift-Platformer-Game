@@ -2201,7 +2201,7 @@ var FlatPlane = {
            {
             "draworder":"topdown",
             "id":6,
-            "name":"Spike",
+            "name":"Spikes",
             "objects":[
                    {
                     "class":"",
