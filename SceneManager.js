@@ -9,7 +9,7 @@ class SceneManager {
         this.player;
         this.levelLoaded = false;
         this.elapsedTime = 0;
-        this.menuItems = [new MenuItem(level1, 45, 35, game, 1, this), new MenuItem(slope, 45, 55, game, 2, this), new MenuItem(breakablefloor, 45, 65, game, 3, this)]
+        this.menuItems = [new MenuItem(level1, 45, 35, game, 1, this), new MenuItem(slope, 45, 45, game, 2, this), new MenuItem(breakablefloor, 45, 55, game, 3, this), new MenuItem(FlatPlane, 45, 65, game, 4, this)]
         this.FLOORS = "floors"
         this.BOXES = "Box"
         this.BREAKABLEFLOORS = "Breakable Floor"

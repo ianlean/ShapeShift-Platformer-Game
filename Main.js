@@ -5,6 +5,7 @@ ASSET_MANAGER.queueDownload("./assets/Levels/Level1/Level1.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/TestLevels/halfpipe/halfpipe.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/TestLevels/slope/slope.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/TestLevels/breakablefloor/BreakableFloor.png")
+ASSET_MANAGER.queueDownload("./assets/Levels/TestLevels/Flatplane/FlatPlane.png")
 ASSET_MANAGER.queueDownload("./assets/spritesheetCircle.png");
 ASSET_MANAGER.queueDownload("./assets/circlePixel.png");
 ASSET_MANAGER.queueDownload("./assets/sqaurePixel.png");
