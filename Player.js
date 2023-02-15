@@ -87,7 +87,14 @@ class Player {
     }
 
     collideBox(Box){
-
+        if(this.BoundingCircle.RectCircleColliding(Box.boundingBox)){
+            if(Box.boundingBox.top<this.y+this.RADIUS+this.CIRCLEYOFFSET&&!(Box.boundingBox.top+(this.RADIUS+this.CIRCLEYOFFSET)*2<this.y)){
+                this.velocityY=0;
+                this.y = Box.boundingBox.top-(this.RADIUS+this.CIRCLEYOFFSET)
+                this.jumpCheck();
+            }
+            
+        }
     }
     
     collideFloor(floor) {

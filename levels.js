@@ -1559,9 +1559,6 @@ var untitled1 = {
         "width": 100
     }
 }
-<<<<<<< HEAD
-//
-=======
 
 
 let breakablefloor = {
@@ -1677,4 +1674,3 @@ let breakablefloor = {
         "width": 30
     }
 }
->>>>>>> parent of 1b4aca1 (merging)

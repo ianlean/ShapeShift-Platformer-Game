@@ -67,7 +67,7 @@ class SceneManager {
         if(boxes < 0)
             return
         layers[boxes]["objects"].forEach(b => {
-            var box = new Box(b["x"], b["y"], b["width"], b["height"])
+            var box = new Box(this.game, b["x"], b["y"], b["width"], b["height"])
             this.game.addEntity(box)
         })
     }
