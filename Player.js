@@ -69,6 +69,11 @@ class Player {
         if (this.dead) {
             ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
         }
+        if(this.win){
+            ctx.fillStyle = "blue"
+            ctx.font = "130px OptimusPrinceps"
+            ctx.fillText("Win", 45, 115)
+        }
         if (this.BoundingCircle != undefined) { }//this.BoundingCircle.draw(ctx); }
     };
 
