@@ -11,7 +11,8 @@ class SceneManager {
         this.playerSpawnY = 0;
         this.levelLoaded = false;
         this.elapsedTime = 0;
-        this.menuItems = [new MenuItem(level1, 45, 35, game, 1, this), new MenuItem(slope, 45, 45, game, 2, this), new MenuItem(breakablefloor, 45, 55, game, 3, this), new MenuItem(FlatPlane, 45, 65, game, 4, this)]
+        this.levels = [level1, slope, breakablefloor, FlatPlane]
+        this.menu = new Menu(game,this,this.levels)
         this.FLOORS = "floors"
         this.BOXES = "Box"
         this.BREAKABLEFLOORS = "Breakable Floor"
@@ -179,9 +180,7 @@ class SceneManager {
             this.handleCamMovement();
             this.elapsedTime += this.game.clockTick;
         } else {
-            this.menuItems.forEach(m => {
-                m.update();
-            })
+            this.menu.update();
         }
     };
 
@@ -221,15 +220,7 @@ class SceneManager {
 
         this.background.draw(ctx)
         if (!this.levelLoaded) {
-            ctx.fillStyle = "blue"
-            ctx.font = "20px Russo-Regular"
-            ctx.fillText("ShapeShift", 45, 15)
-            ctx.font = "10px Russo-Regular"
-            ctx.fillText("Hit The Number of the level you want to play", 45, 75)
-
-            this.menuItems.forEach(m => {
-                m.draw(ctx)
-            })
+            this.menu.draw(ctx);
         }
     };
 
