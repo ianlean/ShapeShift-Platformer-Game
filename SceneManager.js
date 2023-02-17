@@ -12,7 +12,7 @@ class SceneManager {
         this.elapsedTime = 0;
         this.levels = [level1, slope, breakablefloor, FlatPlane]
         this.menu = new Menu(game,this,this.levels)
-        this.FLOORS = "floors"
+        this.FLOORS = "Floor"
         this.BOXES = "Box"
         this.BREAKABLEFLOORS = "Breakable Floor"
         this.SPIKES = "Spikes"
