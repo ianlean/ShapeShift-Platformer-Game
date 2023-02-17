@@ -5,7 +5,6 @@ class SceneManager {
         this.x = 0;
         this.y = 0;
         this.score = 0;
-        this.background = new Background("./assets/menuBackground.png", 0, 0, 3840 / 10, 2160 / 10)
         this.player;
         this.playerSpawnX = 0;
         this.playerSpawnY = 0;
@@ -217,8 +216,6 @@ class SceneManager {
     }
 
     draw(ctx) {
-
-        this.background.draw(ctx)
         if (!this.levelLoaded) {
             this.menu.draw(ctx);
         }

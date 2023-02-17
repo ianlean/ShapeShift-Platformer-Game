@@ -1,12 +1,13 @@
 class Menu {
     constructor(game,cam,levels) {
+        this.background = new Background("./assets/menuBackground.png", 0, 0, 3840 / 10, 2160 / 10)
         this.game = game;
         this.levels = levels;
         this.menuItems= []
         this.currentYVal = 35;
         this.MENUXSTART = 45;
-        for(let i = 1; i <= this.levels.length; i++){
-            this.menuItems.push(new MenuItem(level1, this.MENUXSTART, this.currentYVal , game, i, cam))
+        for(let i = 0; i < this.levels.length; i++){
+            this.menuItems.push(new MenuItem(levels[i], this.MENUXSTART, this.currentYVal , game, i + 1, cam))
             this.currentYVal += 10;
         }
     };
@@ -16,7 +17,8 @@ class Menu {
         })
     };
     draw(ctx) {
-        ctx.fillStyle = "blue"
+            this.background.draw(ctx)
+            ctx.fillStyle = "blue"
             ctx.font = "20px Russo-Regular"
             ctx.fillText("ShapeShift", this.MENUXSTART, 15)
             ctx.font = "10px Russo-Regular"
