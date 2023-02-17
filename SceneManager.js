@@ -72,9 +72,12 @@ class SceneManager {
     }
 
     loadPlayer(spawn, layers) {
-        console.log(layers[spawn]["objects"][0])
-        this.player = new Player(this.game, layers[spawn]["objects"][0]["x"], layers[spawn]["objects"][0]["y"],this)
-        console.log(this.player)
+        if(!typeof layers[spawn] == 'undefined'){
+            this.player = new Player(this.game, layers[spawn]["objects"][0]["x"], layers[spawn]["objects"][0]["y"],this)
+        }else{
+            this.player = new Player(this.game, this.playerSpawnX, this.playerSpawnY,this)
+        }
+        console.log("Player loaded")
         this.game.addEntity(this.player)
     }
 
