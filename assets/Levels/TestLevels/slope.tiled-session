@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "",
     "expandedProjectPaths": [
         "."
@@ -37,7 +41,11 @@
         }
     },
     "last.exportedFilePath": "D:/School/UWT/TCSS-491/ShapeShift/assets/Levels/Level1",
+    "last.imagePath": "D:/School/UWT/TCSS-491/ShapeShift/assets/Levels/TileSets",
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
     "openFiles": [
     ],
     "project": "slope.tiled-project",
@@ -45,5 +53,10 @@
         "halfpipe/halfpipe.json",
         "slope/slope.json",
         "halfpipe.json"
-    ]
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }

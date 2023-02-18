@@ -1,6 +1,6 @@
 class Player {
     //
-    constructor(game, x, y,cam) {
+    constructor(game, x, y, cam) {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
         //this.BoundingBox;
@@ -11,7 +11,7 @@ class Player {
         this.y = y;
         this.RADIUS = 6
         this.speed = 1;
-        this.MaxSpeed = 10;
+        this.MaxSpeed = 8;
         this.Acceleration = .09;
         this.gravity = .09;
         this.velocityX = 0;
@@ -23,8 +23,7 @@ class Player {
         this.createAnimations();
         this.updateCollision();
         this.dead = false;
-        this.prevX = x;
-        this.prevY = y;
+        this.win = false;
         this.SECONDPOINT = 10
         this.yadjust;
         this.xadjust
@@ -45,16 +44,16 @@ class Player {
     // Try to keep this function small, extrapilate logic to other functions
     update() {
         this.gravity = 0.09
-        this.prevX =  this.velocityX;
+        this.prevX = this.velocityX;
         this.prevY = this.velocityY;
-        this.updateCollision(); 
+        this.updateCollision();
         this.velocityY += this.gravity;
         this.keyCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
         this.collisionCheck();
-       // this.x += this.velocityX;
-       // this.y += this.velocityY;
+        // this.x += this.velocityX;
+        // this.y += this.velocityY;
         this.updateCollision();
         this.restartCheck()
 
@@ -70,7 +69,12 @@ class Player {
         if (this.dead) {
             ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
         }
-        if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx); }
+        if(this.win){
+            ctx.fillStyle = "blue"
+            ctx.font = "130px OptimusPrinceps"
+            ctx.fillText("Win", 45, 115)
+        }
+        if (this.BoundingCircle != undefined) { }//this.BoundingCircle.draw(ctx); }
     };
 
     collisionCheck() {
@@ -80,34 +84,100 @@ class Player {
                 this.collideFloor(entity)
             } else if (entity instanceof BottomlessPit) {
                 this.collidePit(entity)
+            } else if (entity instanceof Box) {
+                this.collideBox(entity);
+            } else if (entity instanceof spike) {
+                this.collideSpike(entity);
+            } else if (entity instanceof Win) {
+                this.collideWin(entity);
+            } else if (entity instanceof BreakableFloor) {
+                entity.collide(this)
+            } else if (entity instanceof Spring) {
+                entity.collide(this)
             }
         });
+    }
+    collideSpike(Spikes) {
+        if (this.BoundingCircle.RectCircleColliding(Spikes.BoundingBox)) {
+            console.log("ded")
+            this.die();
+        }
+    }
+    collideWin(Wins) {
+        if (this.BoundingCircle.RectCircleColliding(Wins.boundingBox)) {
+            console.log("Won")
+            this.winner();
+        }
+    }
+    collideBox(Box) {
+        if (this.BoundingCircle.RectCircleColliding(Box.boundingBox)) {
+            var isCollidingLeft = Box.boundingBox.left > this.x - this.RADIUS + this.CIRCLEXOFFSET && !(Box.boundingBox.left - ((this.RADIUS + this.CIRCLEYOFFSET) * 2) > this.x);
+            var isCollidingRight = Box.boundingBox.right < this.x + this.RADIUS + this.CIRCLEXOFFSET && !(Box.boundingBox.right + (this.RADIUS + this.CIRCLEXOFFSET) * 2 < this.x);
+            var isCollidingBottom = Box.boundingBox.bottom > this.y && !(Box.boundingBox.bottom - ((this.RADIUS + this.CIRCLEYOFFSET) * 2) > this.y)
+            var isCollidingTop = Box.boundingBox.top < this.y + this.RADIUS + this.CIRCLEYOFFSET && !(Box.boundingBox.top + (this.RADIUS + this.CIRCLEYOFFSET) * 2 < this.y)
+            if (isCollidingRight && Box.boundingBox.top < this.y + this.RADIUS + this.CIRCLEYOFFSET) {
+                isCollidingRight = true;
+
+                if (this.velocityX <= 0) {
+                    this.velocityX -= 1.5 * this.velocityX;
+                    this.x = Box.boundingBox.right
+                }
+            }
+            if (isCollidingLeft && Box.boundingBox.top < this.y + this.RADIUS + this.CIRCLEYOFFSET) {
+                isCollidingLeft = true;
+
+                if (this.velocityX >= 0) {
+                    this.velocityX -= 1.5 * this.velocityX
+                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET - 0.1;
+                }
+            }
+            if (isCollidingTop && isCollidingRight) {
+                console.log("corner")
+                if (getDistance(this.y + this.RADIUS + this.CIRCLEYOFFSET, Box.boundingBox.top) < getDistance(this.x - this.RADIUS + this.CIRCLEYOFFSET, Box.boundingBox.right)) {
+                    console.log("top corner")
+                    this.velocityY = 0;
+                    this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
+                    this.jumpCheck();
+                } else {
+                    // this.velocityX-=1.5*this.velocityX;     
+                    // this.x = Box.boundingBox.right
+                }
+            }
+            if (isCollidingTop && !isCollidingLeft && !isCollidingRight) {
+                this.velocityY = 0;
+                this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
+                this.jumpCheck();
+            }
+            if (isCollidingBottom && !isCollidingLeft && !isCollidingRight) {
+                this.y = Box.boundingBox.bottom
+            }
+        }
     }
 
     collideFloor(floor) {
         var collisionPoints = floor.line.circleCollide(this.BoundingCircle);
-    
+
 
 
         for (var i = 0; i < collisionPoints.length; i++) {
             if (floor.line.onSegment(collisionPoints[i])) {
                 var perpLine = this.getPerpLine(floor)
                 let perpslope = -1 / floor.line.slope();
-                
+
                 var pointOfIntersect = perpLine.collide(floor.line);
                 var sinOfSlope = this.getSinOfSlope(floor.line)
                 var cosOfSlope = this.getCosOfSlope(floor.line)
                 let normY = 0;
                 let normX = 0;
-                if(this.y >=pointOfIntersect.y) {
-                    this.yadjust = -(this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                if (this.y >= pointOfIntersect.y) {
+                    this.yadjust = -(this.RADIUS * 2 + getDistance(pointOfIntersect, perpLine.points[0])) * sinOfSlope;
                     //this.xadjust = (this.RADIUS*2 +getDistance(pointOfIntersect,perpLine.points[0]))*cosOfSlope;
                     this.y += this.yadjust;
                     //this.x += this.xadjust;
-                    this.cam.updateCollisions('y','yadjust');
-                    
-                }else{
-                    this.y -= (this.RADIUS*2-getDistance(pointOfIntersect,perpLine.points[0]))*sinOfSlope;
+                    this.cam.updateCollisions('y', 'yadjust');
+
+                } else {
+                    this.y -= (this.RADIUS * 2 - getDistance(pointOfIntersect, perpLine.points[0])) * sinOfSlope;
                 }
                 this.velocityY = 0;
                 this.updateCollision();
@@ -133,20 +203,23 @@ class Player {
     }
 
     collidePit(pit) {
-        var xPoints = pit.line.circleCollide(this.BoundingCircle);
-        for (var i = 0; i < xPoints.length; i++) {
-            if (pit.line.onSegment(xPoints[i])) {
-                console.log("pit")
-                this.die();
-            }
+        if (this.BoundingCircle.RectCircleColliding(pit.BoundingBox)) {
+            this.die();
         }
+        // var xPoints = pit.line.circleCollide(this.BoundingCircle);
+        // for (var i = 0; i < xPoints.length; i++) {
+        //     if (pit.line.onSegment(xPoints[i])) {
+        //         console.log("pit")
+        //         this.die();
+        //     }
+        // }
     }
 
 
 
     keyCheck() {
         let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys) || this.dead) { //no key is pressed so we idle
+        if (!aKeyIsPressed(this.game.keys) || this.dead || this.win) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
         } else { // a key is pressed so we move
@@ -191,7 +264,7 @@ class Player {
             this.velocityX -= this.Acceleration;
             this.updateCollision();
         }
-       // console.log("going left");
+        // console.log("going left");
         this.anim = "a";
     }
 
@@ -200,7 +273,7 @@ class Player {
             this.velocityX += this.Acceleration;
             this.updateCollision();
         }
-       // console.log("going right");
+        // console.log("going right");
         this.anim = "d";
     }
 
@@ -209,7 +282,7 @@ class Player {
             this.velocityY += this.Acceleration * 0.25;
             this.updateCollision();
         }
-       // console.log("going down");
+        // console.log("going down");
         if (this.velocityX > 0) {
             this.anim = "d";
         } else if (this.velocityX < 0) {
@@ -237,7 +310,7 @@ class Player {
     }
 
     jumpCheck() {
-        if (this.game.keys[" "] == true) {
+        if (this.game.keys[" "] == true && !this.dead && !this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 30 * this.Acceleration;
             }
@@ -246,7 +319,7 @@ class Player {
 
     updateCollision() {
         //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
-       // console.log(this.y);
+        // console.log(this.y);
         this.BoundingCircle = new BoundingCircle(this.x + this.CIRCLEXOFFSET, this.y + this.CIRCLEYOFFSET, this.RADIUS);
     }
 
@@ -254,9 +327,14 @@ class Player {
         // die animation/reset game
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
         this.dead = true;
-
     }
-
+    winner() {
+        if (!this.dead) {
+            this.velocityX -= this.velocityX * 0.25
+            this.velocityY -= this.velocityY * 0.5
+            this.win = true;
+        }
+    }
     restartCheck() {
         if (this.game.keys["r"] == true) {
             location.reload();

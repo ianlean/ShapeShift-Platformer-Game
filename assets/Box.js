@@ -1,4 +1,4 @@
-class spike {
+class Box {
     //
     constructor(game, x, y, width, height) {
         this.game = game;
@@ -12,12 +12,11 @@ class spike {
 
     };
     draw(ctx) {
-        //this.BoundingBox.draw(ctx);
+        this.BoundingBox.draw(ctx);
     };
     updateCollision() {
         this.BoundingBox = new BoundingBox(this.x, this.y, this.width, this.height);
     }
-
 
 
 }
