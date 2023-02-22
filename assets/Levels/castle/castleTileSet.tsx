@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="castleTileSet" tilewidth="161" tileheight="64" tilecount="8" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="castleTileSet" tilewidth="166" tileheight="64" tilecount="10" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="64" height="32" source="../../../../../paint playground/arch.png"/>
@@ -24,5 +24,11 @@
  </tile>
  <tile id="7">
   <image width="32" height="24" source="../../../../../paint playground/chestClosed.png"/>
+ </tile>
+ <tile id="8">
+  <image width="166" height="45" source="../../../../../paint playground/cloud1.png"/>
+ </tile>
+ <tile id="9">
+  <image width="133" height="43" source="../../../../../paint playground/cloud2.png"/>
  </tile>
 </tileset>

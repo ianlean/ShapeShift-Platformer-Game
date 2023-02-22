@@ -19,7 +19,7 @@ ASSET_MANAGER.queueDownload("./assets/menuBackground.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/levelDC/LevelDC.png")
 ASSET_MANAGER.queueDownload("./assets/smileyboi.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/castle/CastleLevel.png")
-
+ASSET_MANAGER.queueDownload("./assets/Levels/castle/Castle2.png")
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
