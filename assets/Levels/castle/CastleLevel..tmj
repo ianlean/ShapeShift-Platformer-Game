@@ -1,4 +1,5 @@
-{ "compressionlevel":-1,
+{ "backgroundcolor":"#a0ceea",
+ "compressionlevel":-1,
  "height":30,
  "infinite":false,
  "layers":[
@@ -58,10 +59,21 @@
                  "width":1167,
                  "x":-20,
                  "y":496
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":43,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":454,
+                 "y":613
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -363,9 +375,9 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":43,
+ "nextobjectid":44,
  "orientation":"orthogonal",
- "renderorder":"right-down",
+ "renderorder":"left-down",
  "tiledversion":"1.9.2",
  "tileheight":16,
  "tilesets":[
