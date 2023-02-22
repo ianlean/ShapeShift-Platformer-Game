@@ -1,4 +1,5 @@
 var Castle2 = {
+    Music: "./assets/Subway Surfers Drill.mp3",
     background: "./assets/Levels/castle/Castle2.png",
     name: "Castle2",
     width: 3200,

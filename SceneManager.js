@@ -49,7 +49,7 @@ class SceneManager {
         this.loadSprings(levelJSONObjects[this.SPRING], layers)
         this.loadLasers(levelJSONObjects[this.LASER], layers)
         this.loadBackground(level)
-        this.loadBackgroundMusic()
+        this.loadBackgroundMusic(level)
         this.levelLoaded = true
     };
 
@@ -213,9 +213,14 @@ class SceneManager {
             this.updateCollisions("x", "velocityX")
         }
     }
-    loadBackgroundMusic(){
+    loadBackgroundMusic(level){
         //default background music
-        ASSET_MANAGER.playAsset("./assets/Subway Surfers Drill.mp3")
+        if(typeof level["Music"] == 'undefined'){
+            ASSET_MANAGER.playAsset("./assets/Subway Surfers Drill.mp3");
+            console.log("Background Music Undifined for this level playing default");
+        }else{
+            ASSET_MANAGER.playAsset(level["Music"]);
+        }
     }
     updateCollisions(coordinate, velocity) {
 
