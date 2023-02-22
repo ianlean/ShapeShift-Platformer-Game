@@ -18,11 +18,13 @@ ASSET_MANAGER.queueDownload("./assets/Dead.png");
 ASSET_MANAGER.queueDownload("./assets/menuBackground.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/levelDC/LevelDC.png")
 ASSET_MANAGER.queueDownload("./assets/smileyboi.png")
+ASSET_MANAGER.queueDownload("./assets/Levels/castle/CastleLevel.png")
+
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
-	//ctx.imageSmoothingEnabled = false;
+	ctx.imageSmoothingEnabled = false;
 	new SceneManager(gameEngine)
 	gameEngine.init(ctx);
 	

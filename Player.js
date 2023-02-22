@@ -313,7 +313,7 @@ class Player {
     jumpCheck() {
         if (this.game.keys[" "] == true && !this.dead && !this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
-                this.velocityY -= 30 * this.Acceleration;
+                this.velocityY -= 40 * this.Acceleration;
             }
         }
     }
