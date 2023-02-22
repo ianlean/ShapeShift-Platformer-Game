@@ -25,6 +25,10 @@ ASSET_MANAGER.queueDownload("./assets/Subway Surfers Drill.mp3")
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
+	canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight
+	PARAMS.CANVAS_WIDTH = canvas.width;
+	PARAMS.CANVAS_HEIGHT = canvas.height;
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 	new SceneManager(gameEngine)

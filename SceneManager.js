@@ -193,15 +193,18 @@ class SceneManager {
     }
 
     updatePlayerCoordinates(ctx) {
+        var midpoint = PARAMS.CANVAS_WIDTH/2
+        var maxY = 50;
+        var minY = PARAMS.CANVAS_HEIGHT - 100;
         if (this.player.y <= 50) {
             this.player.y = 50
             this.updateCollisions("y", "velocityY")
         }
-        if (this.player.y > 100) {
-            this.player.y = 100
+        if (this.player.y > minY) {
+            this.player.y = minY
             this.updateCollisions("y", "velocityY")
         }
-        var midpoint = 200
+        
         if (this.player.x < midpoint && this.player.x <= 50) {
             this.player.x = 50
             this.updateCollisions("x", "velocityX")
