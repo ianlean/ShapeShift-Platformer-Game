@@ -49,6 +49,7 @@ class SceneManager {
         this.loadSprings(levelJSONObjects[this.SPRING], layers)
         this.loadLasers(levelJSONObjects[this.LASER], layers)
         this.loadBackground(level)
+        this.loadBackgroundMusic()
         this.levelLoaded = true
     };
 
@@ -209,7 +210,10 @@ class SceneManager {
             this.updateCollisions("x", "velocityX")
         }
     }
-
+    loadBackgroundMusic(){
+        //default background music
+        ASSET_MANAGER.playAsset("./assets/Subway Surfers Drill.mp3")
+    }
     updateCollisions(coordinate, velocity) {
 
         for (let i = 1; i < this.game.entities.length; i++) {
