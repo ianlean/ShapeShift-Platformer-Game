@@ -9,7 +9,7 @@ class Box {
     };
 
     draw(ctx) {
-        //this.boundingBox.draw(ctx);
+            this.boundingBox.draw(ctx);
     };
 
     updateCollision() {

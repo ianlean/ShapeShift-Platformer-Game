@@ -11,7 +11,7 @@ class Player {
         this.y = y;
         this.RADIUS = 6
         this.speed = 1;
-        this.MaxSpeed = 8;
+        this.MaxSpeed = 10;
         this.Acceleration = .09;
         this.gravity = .09;
         this.velocityX = 0;
@@ -49,7 +49,11 @@ class Player {
         this.prevX = this.velocityX;
         this.prevY = this.velocityY;
         this.updateCollision();
-        this.velocityY += this.gravity;
+        if(this.velocityY+this.gravity>=this.MaxSpeed){
+            this.velocityY =this.MaxSpeed;
+        }else{
+            this.velocityY +=this.gravity;
+        }
         this.keyCheck();
         this.x += this.velocityX;
         this.y += this.velocityY;
@@ -114,39 +118,32 @@ class Player {
         }
     }
     collideBox(Box) {
+        var adjustedTop = Math.abs(this.BoundingCircle.y - Box.boundingBox.top)
+        var adjustedBottom = Math.abs(this.BoundingCircle.y - Box.boundingBox.bottom)
+        var adjustedLeft = Math.abs(this.BoundingCircle.x - Box.boundingBox.left) 
+        var adjustedRight = Math.abs(this.BoundingCircle.x - Box.boundingBox.right)
         if (this.BoundingCircle.RectCircleColliding(Box.boundingBox)) {
-            var isCollidingLeft = Box.boundingBox.left > this.x - this.RADIUS + this.CIRCLEXOFFSET && !(Box.boundingBox.left - ((this.RADIUS + this.CIRCLEYOFFSET) * 2) > this.x);
-            var isCollidingRight = Box.boundingBox.right < this.x + this.RADIUS + this.CIRCLEXOFFSET && !(Box.boundingBox.right + (this.RADIUS + this.CIRCLEXOFFSET) * 2 < this.x);
-            var isCollidingBottom = Box.boundingBox.bottom > this.y && !(Box.boundingBox.bottom - ((this.RADIUS + this.CIRCLEYOFFSET) * 2) > this.y)
-            var isCollidingTop = Box.boundingBox.top < this.y + this.RADIUS + this.CIRCLEYOFFSET && !(Box.boundingBox.top + (this.RADIUS + this.CIRCLEYOFFSET) * 2 < this.y)
-            if (isCollidingRight && Box.boundingBox.top < this.y + this.RADIUS + this.CIRCLEYOFFSET) {
-                isCollidingRight = true;
+            
 
-                if (this.velocityX <= 0) {
+            
+            var isCollidingLeft = adjustedLeft< this.RADIUS;
+            var isCollidingRight = adjustedRight< this.RADIUS;
+            var isCollidingBottom = adjustedBottom< this.RADIUS;
+            var isCollidingTop = adjustedTop< this.RADIUS;
+           
+            if (isCollidingRight&& !isCollidingTop && !isCollidingBottom) {
+                if(this.velocityX<=0){
                     this.velocityX -= 1.5 * this.velocityX;
-                    this.x = Box.boundingBox.right
                 }
+                this.x = Box.boundingBox.right
             }
-            if (isCollidingLeft && Box.boundingBox.top < this.y + this.RADIUS + this.CIRCLEYOFFSET) {
-                isCollidingLeft = true;
-
-                if (this.velocityX >= 0) {
+            if (isCollidingLeft&& !isCollidingTop && !isCollidingBottom) {
+                if(this.velocityX>=0){
                     this.velocityX -= 1.5 * this.velocityX
-                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET - 0.1;
                 }
+                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET;
             }
-            if (isCollidingTop && isCollidingRight) {
-                console.log("corner")
-                if (getDistance(this.y + this.RADIUS + this.CIRCLEYOFFSET, Box.boundingBox.top) < getDistance(this.x - this.RADIUS + this.CIRCLEYOFFSET, Box.boundingBox.right)) {
-                    console.log("top corner")
-                    this.velocityY = 0;
-                    this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
-                    this.jumpCheck();
-                } else {
-                    // this.velocityX-=1.5*this.velocityX;     
-                    // this.x = Box.boundingBox.right
-                }
-            }
+           
             if (isCollidingTop && !isCollidingLeft && !isCollidingRight) {
                 this.velocityY = 0;
                 this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
@@ -154,6 +151,55 @@ class Player {
             }
             if (isCollidingBottom && !isCollidingLeft && !isCollidingRight) {
                 this.y = Box.boundingBox.bottom
+                this.velocityY -= this.velocityY;
+            }
+            if (isCollidingTop && isCollidingRight) {
+                console.log("corner")
+                if (adjustedTop>=adjustedRight) {
+                    console.log("top seniority")
+                    this.velocityY = 0;
+                    this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
+                    this.jumpCheck();
+                } else {
+                    this.velocityX-=this.velocityX;     
+                    this.x = Box.boundingBox.right
+                }
+            }
+            if (isCollidingTop && isCollidingLeft) {
+                console.log("corner")
+                if (adjustedTop>=adjustedLeft) {
+                    console.log("top seniority")
+                    this.velocityY = 0;
+                    this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
+                    this.jumpCheck();
+                } else {
+                    this.velocityX-=this.velocityX;     
+                    this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
+                }
+            }
+            if (isCollidingBottom && isCollidingRight) {
+                console.log("corner")
+                if (adjustedBottom>=adjustedRight) {
+                    console.log("Bottom seniority")
+                    this.velocityY -= this.velocityY;
+                    this.y = Box.boundingBox.bottom
+                    
+                } else {
+                    this.velocityX-=this.velocityX;     
+                    this.x = Box.boundingBox.right
+                }
+            }
+            if (isCollidingTop && isCollidingLeft) {
+                console.log("corner")
+                if (adjustedTop>=adjustedLeft) {
+                    console.log("bottom seniority")
+                    this.velocityY -= this.velocityY;
+                    this.y = Box.boundingBox.bottom
+                    
+                } else {
+                    this.velocityX-=this.velocityX;     
+                    this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
+                }
             }
         }
     }
