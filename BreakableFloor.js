@@ -18,7 +18,7 @@ class BreakableFloor {
     }
 
     collide(player) {
-        if(player.shape == 'square' && player.velocityY > this.BREAKING_VELOCITY) {
+        if(player.shape == 'square' && player.velocityY > this.BREAKING_VELOCITY && player.BoundingCircle.RectCircleColliding(this.box)) {
             this.break()
         } else if(!this.isBroken) {
             player.collideBox(this.box)
