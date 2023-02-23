@@ -46,28 +46,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":2,
-         "name":"WIn",
-         "objects":[
-                {
-                 "class":"",
-                 "height":26,
-                 "id":1,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":29,
-                 "x":3106,
-                 "y":182
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":false,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":3,
          "name":"Pit",
          "objects":[
@@ -538,9 +516,31 @@
          "visible":false,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"Win",
+         "objects":[
+                {
+                 "class":"",
+                 "height":24,
+                 "id":45,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":32,
+                 "x":3103.81818181818,
+                 "y":184.363636363636
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":45,
+ "nextlayerid":7,
+ "nextobjectid":46,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
