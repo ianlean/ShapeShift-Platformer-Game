@@ -15,7 +15,8 @@ class GameTimer {
     draw(ctx) {
         ctx.strokeStyle = 'RED';
         ctx.font = "70px Russo-Regular"
-        ctx.fillText(this.currentTime, PARAMS.CANVAS_WIDTH-200,50)
+        var result = Math.round(this.currentTime*100)/100;
+        ctx.fillText(result, PARAMS.CANVAS_WIDTH-200,50)
     }
 
     stop() {
