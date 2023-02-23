@@ -360,7 +360,7 @@ class Player {
     }
 
     jumpCheck() {
-        if (this.game.keys[" "] == true && !this.dead && !this.win) {
+        if ((this.game.keys[" "] == true || this.game.keys["w"] == true)&& !this.dead && !this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 40 * this.Acceleration;
             }
