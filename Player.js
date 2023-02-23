@@ -28,6 +28,7 @@ class Player {
         this.yadjust;
         this.xadjust
         this.cam = cam;
+        this.gametimer = new GameTimer();
     };
 
     createAnimations() {
@@ -57,11 +58,13 @@ class Player {
         // this.y += this.velocityY;
         this.updateCollision();
         this.restartCheck()
+        this.gametimer.update()
 
         //gravity and other thing effecting movement could go here
     };
 
     draw(ctx) {
+        this.gametimer.draw(ctx)
         if (this.shape == "circle") {
             this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5);
         } else {
@@ -328,17 +331,23 @@ class Player {
         // die animation/reset game
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
         this.dead = true;
+        this.stopTimer()
     }
     winner() {
         if (!this.dead) {
             this.velocityX -= this.velocityX * 0.25
             this.velocityY -= this.velocityY * 0.5
             this.win = true;
+            this.stopTimer();
         }
     }
     restartCheck() {
         if (this.game.keys["r"] == true) {
             location.reload();
         }
+    }
+
+    stopTimer() {
+        this.gametimer.stop();
     }
 };
