@@ -16,6 +16,7 @@ class Player {
         this.gravity = .09;
         this.velocityX = 0;
         this.velocityY = 0;
+        this.lastBB = this.BoundingCircle;
         this.shape = "circle";
         // Get the animations
         this.anim = "still";
@@ -160,7 +161,7 @@ class Player {
                     this.velocityY = 0;
                     this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                     this.jumpCheck();
-                } else {
+                } else if (adjustedTop<adjustedRight){
                     this.velocityX-=this.velocityX;     
                     this.x = Box.boundingBox.right
                 }
@@ -172,13 +173,13 @@ class Player {
                     this.velocityY = 0;
                     this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                     this.jumpCheck();
-                } else {
+                } else if (adjustedTop<adjustedRight){
                     this.velocityX-=this.velocityX;     
                     this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
                 }
             }
             if (isCollidingBottom && isCollidingRight) {
-                console.log("corner")
+                console.log("right bottom corner")
                 if (adjustedBottom>=adjustedRight) {
                     console.log("Bottom seniority")
                     this.velocityY -= this.velocityY;
@@ -189,9 +190,9 @@ class Player {
                     this.x = Box.boundingBox.right
                 }
             }
-            if (isCollidingTop && isCollidingLeft) {
+            if (isCollidingBottom && isCollidingLeft) {
                 console.log("corner")
-                if (adjustedTop>=adjustedLeft) {
+                if (adjustedBottom>=adjustedLeft) {
                     console.log("bottom seniority")
                     this.velocityY -= this.velocityY;
                     this.y = Box.boundingBox.bottom
@@ -370,6 +371,7 @@ class Player {
     updateCollision() {
         //this.BoundingBox = new BoundingBox(this.x, this.y, 15, 15);
         // console.log(this.y);
+        this.lastBB = this.BoundingCircle;
         this.BoundingCircle = new BoundingCircle(this.x + this.CIRCLEXOFFSET, this.y + this.CIRCLEYOFFSET, this.RADIUS);
     }
 
