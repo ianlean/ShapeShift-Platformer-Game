@@ -11,9 +11,9 @@ class Player {
         this.y = y;
         this.RADIUS = 20.5
         this.speed = 1;
-        this.MaxSpeed = 10;
-        this.Acceleration = .09;
-        this.gravity = .09;
+        this.MaxSpeed = 20;
+        this.Acceleration = .15;
+        this.gravity = .15;
         this.velocityX = 0;
         this.velocityY = 0;
         this.lastBB = this.BoundingCircle;
@@ -77,7 +77,7 @@ class Player {
                 this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .1);
             }
         } else {
-            this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
+            this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.5);
         }
         if (this.dead) {
             ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
@@ -367,7 +367,7 @@ class Player {
     jumpCheck() {
         if ((this.game.keys[" "] == true || this.game.keys["w"] == true)&& !this.dead && !this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
-                this.velocityY -= 40 * this.Acceleration;
+                this.velocityY -= 20 * this.Acceleration;
             }
         }
     }
