@@ -1,6 +1,6 @@
 class Menu {
     constructor(game,cam,levels) {
-        this.background = new Background("./assets/menuBackground.png", 0, 0, 3840 / 5, 2160 / 5)
+        this.background = new Background("./assets/menuBackground.png", 0, 0, 3840 / 10, 2160 / 10)
         this.game = game;
         this.levels = levels;
         this.menuItems= []

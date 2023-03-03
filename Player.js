@@ -37,7 +37,7 @@ class Player {
         // rolling right animation
         this.animations["d"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 9, 0.1, 0, false, true);
         //sitting still
-        this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 1, 1, 0, false, true)
+        this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 411*9, 0, 411, 411, 5, 0.1, 0, false, true)
         //rolling left animation
         this.animations["a"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 9, 0.1, 0, true, true);
         //square shift
@@ -71,7 +71,11 @@ class Player {
     draw(ctx) {
         this.gametimer.draw(ctx)
         if (this.shape == "circle") {
-            this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5/12);
+            if (this.anim == 'still') {
+                this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5/12);
+            } else {
+                this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5/12);
+            }
         } else {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
         }
