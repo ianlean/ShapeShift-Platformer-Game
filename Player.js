@@ -381,9 +381,13 @@ class Player {
 
     die() {
         // die animation/reset game
+        if (!this.win) {
         ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
+        this.velocityX -= this.velocityX * 0.25
+        this.velocityY -= this.velocityY * 0.5
         this.dead = true;
         this.stopTimer()
+        }
     }
     winner() {
         if (!this.dead) {
