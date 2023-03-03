@@ -26,8 +26,8 @@ ASSET_MANAGER.queueDownload("./assets/smileyboiSheet.png")
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
-	canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight
+	canvas.width = window.innerWidth/2;
+    canvas.height = window.innerHeight/2;
 	PARAMS.CANVAS_WIDTH = canvas.width;
 	PARAMS.CANVAS_HEIGHT = canvas.height;
 	const ctx = canvas.getContext("2d");

@@ -4,12 +4,12 @@ class Player {
         this.game = game;
         this.spritesheet = ASSET_MANAGER.getAsset("./assets/circlePixel.png");
         //this.BoundingBox;
-        this.BoundingCircle
-        this.CIRCLEXOFFSET = 7;
-        this.CIRCLEYOFFSET = 7;
+        this.BoundingCircles
+        this.CIRCLEXOFFSET = 20.5;
+        this.CIRCLEYOFFSET = 20.5;
         this.x = x;
         this.y = y;
-        this.RADIUS = 6
+        this.RADIUS = 20.5
         this.speed = 1;
         this.MaxSpeed = 10;
         this.Acceleration = .09;
