@@ -42,14 +42,20 @@
     <script type="text/javascript" src="./SceneManager.js"></script>
     <script type="text/javascript" src="./GameTimer.js"></script>
     <script type="text/javascript" src="./Main.js"></script>
+    <style>
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="canvas-container">
     <canvas id="gameWorld"
         style="background: rgb(255, 255, 255); border: 1px solid black; " tabindex="0"
-        autofocus></canvas>
-
-    <input id="restart" type="button" value="Restart" style="display: none">
+        autofocus></canvas></div>
 </body>
 <footer>
     <p>

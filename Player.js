@@ -87,7 +87,7 @@ class Player {
             ctx.font = "130px OptimusPrinceps"
             ctx.fillText("Win", 45, 115)
         }
-        if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
+       // if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
     };
 
     collisionCheck() {
