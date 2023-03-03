@@ -123,10 +123,10 @@ class Player {
         }
     }
     collideBox(Box) {
-        var adjustedTop = Math.abs(this.BoundingCircle.y - Box.boundingBox.top)
-        var adjustedBottom = Math.abs(this.BoundingCircle.y - Box.boundingBox.bottom)
-        var adjustedLeft = Math.abs(this.BoundingCircle.x - Box.boundingBox.left) 
-        var adjustedRight = Math.abs(this.BoundingCircle.x - Box.boundingBox.right)
+        var adjustedTop = Math.abs(this.lastBB.y - Box.boundingBox.top)
+        var adjustedBottom = Math.abs(this.lastBB.y - Box.boundingBox.bottom)
+        var adjustedLeft = Math.abs(this.lastBB.x - Box.boundingBox.left) 
+        var adjustedRight = Math.abs(this.lastBB.x - Box.boundingBox.right)
         if (this.BoundingCircle.RectCircleColliding(Box.boundingBox)) {
             
 
@@ -135,21 +135,7 @@ class Player {
             var isCollidingRight = adjustedRight< this.RADIUS;
             var isCollidingBottom = adjustedBottom< this.RADIUS;
             var isCollidingTop = adjustedTop< this.RADIUS;
-           
-            if (isCollidingRight&& !isCollidingTop && !isCollidingBottom) {
-                if(this.velocityX<=0){
-                    this.velocityX -= 1.5 * this.velocityX;
-                }
-                this.x = Box.boundingBox.right
-            }
-            if (isCollidingLeft&& !isCollidingTop && !isCollidingBottom) {
-                if(this.velocityX>=0){
-                    this.velocityX -= 1.5 * this.velocityX
-                }
-                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET;
-            }
-           
-            if (isCollidingTop && !isCollidingLeft && !isCollidingRight) {
+            if (isCollidingTop) {
                 this.velocityY = 0;
                 this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                 this.jumpCheck();
@@ -158,29 +144,47 @@ class Player {
                 this.y = Box.boundingBox.bottom
                 this.velocityY -= this.velocityY;
             }
-            if (isCollidingTop && isCollidingRight) {
-                console.log("corner")
-                if (adjustedTop>=adjustedRight) {
-                    console.log("top seniority")
-                    this.velocityY = 0;
-                    this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
-                    this.jumpCheck();
-                } else if (adjustedTop<adjustedRight){
-                    this.velocityX-=this.velocityX;     
-                    this.x = Box.boundingBox.right
+            if (isCollidingRight&& !isCollidingTop && !isCollidingBottom) {
+                console.log("right")
+                if(this.velocityX<=0){
+                    this.velocityX -= 1.5 * this.velocityX;
+                }if (adjustedTop<adjustedRight){
+                this.x = Box.boundingBox.right
                 }
             }
-            if (isCollidingTop && isCollidingLeft) {
+            if (isCollidingLeft && !isCollidingTop && !isCollidingBottom) {
+                console.log("left")
+                if(this.velocityX>=0){
+                    this.velocityX -= 1.5 * this.velocityX
+                }if (adjustedTop<adjustedLeft){
+                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET;
+                }
+            }
+           
+            
+            if (isCollidingTop && isCollidingRight) {
                 console.log("corner")
-                if (adjustedTop>=adjustedLeft) {
+                if (adjustedTop+this.RADIUS>=adjustedRight) {
                     console.log("top seniority")
                     this.velocityY = 0;
                     this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                     this.jumpCheck();
                 } else if (adjustedTop<adjustedRight){
                     this.velocityX-=this.velocityX;     
-                    this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
-                }
+                   this.x = Box.boundingBox.right
+                 }
+            }
+            if (isCollidingTop && isCollidingLeft) {
+                 console.log("corner")
+                 if (adjustedTop+this.RADIUS>=adjustedLeft) {
+                    console.log("top seniority")
+                    this.velocityY = 0;
+                    this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
+                    this.jumpCheck();
+                 } else if (adjustedTop<adjustedRight){
+                     this.velocityX-=this.velocityX;     
+                     this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
+                 }
             }
             if (isCollidingBottom && isCollidingRight) {
                 console.log("right bottom corner")

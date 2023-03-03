@@ -20,17 +20,6 @@
                 }, 
                 {
                  "class":"",
-                 "height":16,
-                 "id":44,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":82.6666666666666,
-                 "x":492.333333333333,
-                 "y":381
-                }, 
-                {
-                 "class":"",
                  "height":15,
                  "id":45,
                  "name":"",
@@ -39,6 +28,39 @@
                  "width":35,
                  "x":540.5,
                  "y":253.5
+                }, 
+                {
+                 "class":"",
+                 "height":16,
+                 "id":48,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":82,
+                 "x":494.666666666667,
+                 "y":382
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":8,
+         "name":"Player Spawn",
+         "objects":[
+                {
+                 "class":"",
+                 "height":11.3333333333333,
+                 "id":46,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":10.6666666666667,
+                 "x":105.333333333333,
+                 "y":198.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -465,8 +487,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":46,
+ "nextlayerid":9,
+ "nextobjectid":49,
  "orientation":"orthogonal",
  "renderorder":"left-down",
  "tiledversion":"1.9.2",
