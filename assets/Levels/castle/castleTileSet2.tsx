@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="castleTileSet2" tilewidth="579" tileheight="256" tilecount="17" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="castleTileSet2" tilewidth="579" tileheight="256" tilecount="18" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="320" height="64" source="bigger/bigger2.png"/>
@@ -51,5 +51,8 @@
  </tile>
  <tile id="16">
   <image width="15" height="24" source="bigger/Spikes.png"/>
+ </tile>
+ <tile id="17">
+  <image width="32" height="16" source="bigger/spring.png"/>
  </tile>
 </tileset>
