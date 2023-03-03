@@ -240,13 +240,3 @@ class SceneManager {
     };
 
 };
-
-// if (this.game.dot.removeFromWorld) { // if ur dead
-//     if(this.elapsedGraveTime == 0) {
-//         this.oldElapsed = performance.now() - this.start;
-//         console.log("fuck");
-//         this.elapsedGraveTime = 1;
-//     }
-//this.elapsedGraveTime = 0;
-//this.oldElapsed = 0;
-//this.start = performance.now();

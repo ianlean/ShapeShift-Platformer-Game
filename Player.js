@@ -35,11 +35,11 @@ class Player {
     createAnimations() {
         //spritesheet, xStart, yStart, width, height, frameCount, frameDuration, framePadding, reverse, loop
         // rolling right animation
-        this.animations["d"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheetCircle.png"), 0, 0, 32, 32, 9, 0.1, 0, false, true);
+        this.animations["d"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 9, 0.1, 0, false, true);
         //sitting still
-        this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/circlePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, true)
+        this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 1, 1, 0, false, true)
         //rolling left animation
-        this.animations["a"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheetCircle.png"), 0, 0, 32, 32, 9, 0.1, 0, true, true);
+        this.animations["a"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 9, 0.1, 0, true, true);
         //square shift
         this.animations["Square"] = new Animator(ASSET_MANAGER.getAsset("./assets/sqaurePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
     }
@@ -71,7 +71,7 @@ class Player {
     draw(ctx) {
         this.gametimer.draw(ctx)
         if (this.shape == "circle") {
-            this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5);
+            this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5/12);
         } else {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
         }
@@ -191,7 +191,7 @@ class Player {
                 }
             }
             if (isCollidingBottom && isCollidingLeft) {
-                console.log("corner")
+                console.log("left corner")
                 if (adjustedBottom>=adjustedLeft) {
                     console.log("bottom seniority")
                     this.velocityY -= this.velocityY;
