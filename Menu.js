@@ -17,7 +17,9 @@ class Menu {
         })
     };
     draw(ctx) {
-            this.background.draw(ctx)
+            //this.background.draw(ctx)
+            ctx.fillStyle = "#A0CEEA"
+            ctx.fillRect(0,0,PARAMS.CANVAS_WIDTH,PARAMS.CANVAS_HEIGHT)
             ctx.fillStyle = "blue"
             ctx.font = "20px Russo-Regular"
             ctx.fillText("ShapeShift", this.MENUXSTART, 15)
