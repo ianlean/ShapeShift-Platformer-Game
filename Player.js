@@ -72,9 +72,9 @@ class Player {
         this.gametimer.draw(ctx)
         if (this.shape == "circle") {
             if (this.anim == 'still') {
-                this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5/12);
+                this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y,0.1);
             } else {
-                this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .5/12);
+                this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .1);
             }
         } else {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, .5);
@@ -87,7 +87,7 @@ class Player {
             ctx.font = "130px OptimusPrinceps"
             ctx.fillText("Win", 45, 115)
         }
-        if (this.BoundingCircle != undefined) { }//this.BoundingCircle.draw(ctx); }
+        if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
     };
 
     collisionCheck() {
