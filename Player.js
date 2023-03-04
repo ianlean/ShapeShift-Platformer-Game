@@ -79,16 +79,33 @@ class Player {
         } else {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.5);
         }
-        if (this.dead) {
-            ctx.drawImage(ASSET_MANAGER.getAsset("./assets/Dead.png"), 10, 20, 278, 48);
+        if (this.dead && !this.win) {
+            this.drawDied(ctx);
         }
-        if(this.win){
-            ctx.fillStyle = "blue"
-            ctx.font = "130px OptimusPrinceps"
-            ctx.fillText("Win", 45, 115)
+        if(this.win && !this.dead){
+            this.drawWin(ctx);
         }
        // if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
     };
+
+
+    drawWin(ctx){
+            ctx.fillStyle = "blue"
+            ctx.font = "140px OptimusPrinceps"
+            ctx.fillText("YOU WON", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
+            ctx.strokeStyle = "white"
+            ctx.strokeText("YOU WON", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
+
+    }
+    drawDied(ctx){
+            ctx.fillStyle = "red"
+            ctx.font = "140px OptimusPrinceps"
+            ctx.fillText("YOU DIED", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
+            ctx.strokeStyle = "black"
+            ctx.strokeText("YOU DIED", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
+    }
+
+
 
     collisionCheck() {
         this.game.entities.forEach(entity => {
