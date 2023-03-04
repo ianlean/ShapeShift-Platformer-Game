@@ -22,6 +22,7 @@ class SceneManager {
         this.SLOPE = "Slope"
         this.LASER = "Laser"
         this.SPAWN = "Player Spawn"
+        this.FIRE = "Fire"
         this.elapsedGraveTime = 0;
         this.oldElapsed = 0;
     };
@@ -49,6 +50,7 @@ class SceneManager {
         this.loadSpikes(levelJSONObjects[this.SPIKES], layers)
         this.loadPits(levelJSONObjects[this.PIT], layers)
         this.loadSprings(levelJSONObjects[this.SPRING], layers)
+        this.loadFire(levelJSONObjects[this.FIRE], layers)
         this.loadLasers(levelJSONObjects[this.LASER], layers)
         this.loadBackground(level)
         this.loadBackgroundMusic(level)
@@ -63,6 +65,7 @@ class SceneManager {
         objects[this.WIN] = layers.findIndex(l => l["name"] == this.WIN)
         objects[this.BREAKABLEFLOORS] = layers.findIndex(l => l["name"] == this.BREAKABLEFLOORS)
         objects[this.SPIKES] = layers.findIndex(l => l["name"] == this.SPIKES)
+        objects[this.FIRE] = layers.findIndex(l => l["name"] == this.FIRE)
         objects[this.SLOPE] = layers.findIndex(l => l["name"] == this.SLOPE)
         objects[this.LASER] = layers.findIndex(l => l["name"] == this.LASER)
         objects[this.PIT] = layers.findIndex(l => l["name"] == this.PIT)
@@ -138,6 +141,17 @@ class SceneManager {
         layers[spikes]["objects"].forEach(s => {
             console.log(s)
             var sp = new spike(this.game, s["x"], s["y"], s["width"], s["height"])
+            this.game.addEntity(sp)
+            console.log(sp)
+        })
+    }
+    loadFire(fire, layers) {
+        if(fire < 0) {
+            return
+        }
+        layers[fire]["objects"].forEach(s => {
+            console.log(s)
+            var sp = new Fire(this.game, s["x"], s["y"], s["width"], s["height"])
             this.game.addEntity(sp)
             console.log(sp)
         })

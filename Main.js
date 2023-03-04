@@ -23,6 +23,9 @@ ASSET_MANAGER.queueDownload("./assets/Levels/level2/level2.png");
 ASSET_MANAGER.queueDownload("./assets/Subway Surfers Drill.mp3")
 ASSET_MANAGER.queueDownload("./assets/spritesheet_5.png")
 ASSET_MANAGER.queueDownload("./assets/smileyboiSheet.png")
+ASSET_MANAGER.queueDownload("./assets/campfire.png")
+ASSET_MANAGER.queueDownload("./assets/Fire Sprite.png")
+
 
 
 ASSET_MANAGER.downloadAll(() => {

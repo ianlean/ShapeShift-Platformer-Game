@@ -727,7 +727,7 @@ var Castle ={
     name: "Castle",
     width: 5888,
     height: 5600,
-    data : { "backgroundcolor":"#a0ceea",
+    data :{ "backgroundcolor":"#a0ceea",
     "compressionlevel":-1,
     "height":350,
     "infinite":false,
@@ -1111,7 +1111,7 @@ var Castle ={
                    }],
             "opacity":1,
             "type":"objectgroup",
-            "visible":true,
+            "visible":false,
             "x":0,
             "y":0
            }, 
@@ -1122,18 +1122,18 @@ var Castle ={
             "objects":[
                    {
                     "class":"",
-                    "height":25,
-                    "id":67,
+                    "height":24,
+                    "id":91,
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":26,
-                    "x":479,
-                    "y":4975
+                    "width":26.5,
+                    "x":681.5,
+                    "y":4951
                    }],
             "opacity":1,
             "type":"objectgroup",
-            "visible":false,
+            "visible":true,
             "x":0,
             "y":0
            }, 
@@ -1166,13 +1166,13 @@ var Castle ={
                    }, 
                    {
                     "class":"",
-                    "height":62.6666666666661,
+                    "height":62.6667,
                     "id":68,
                     "name":"",
                     "rotation":0,
                     "visible":true,
                     "width":320,
-                    "x":464.666666666667,
+                    "x":464.667,
                     "y":5008
                    }, 
                    {
@@ -1188,14 +1188,14 @@ var Castle ={
                    }, 
                    {
                     "class":"",
-                    "height":63.3333333333339,
+                    "height":63.3333,
                     "id":70,
                     "name":"",
                     "rotation":0,
                     "visible":true,
                     "width":64,
-                    "x":880.666666666667,
-                    "y":4656.66666666667
+                    "x":880.667,
+                    "y":4656.67
                    }, 
                    {
                     "class":"",
@@ -1204,20 +1204,20 @@ var Castle ={
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":62.6666666666666,
-                    "x":784.666666666667,
+                    "width":62.6667,
+                    "x":784.667,
                     "y":4496
                    }, 
                    {
                     "class":"",
-                    "height":62.666666666667,
+                    "height":62.6667,
                     "id":73,
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":62.6666666666666,
+                    "width":62.6667,
                     "x":880,
-                    "y":4351.33333333333
+                    "y":4351.33
                    }, 
                    {
                     "class":"",
@@ -1226,20 +1226,20 @@ var Castle ={
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":63.3333333333334,
-                    "x":784.666666666667,
+                    "width":63.3333,
+                    "x":784.667,
                     "y":4208
                    }, 
                    {
                     "class":"",
-                    "height":62.6666666666665,
+                    "height":62.6667,
                     "id":75,
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":62.6666666666667,
-                    "x":897.333333333333,
-                    "y":4080.66666666667
+                    "width":62.6667,
+                    "x":897.333,
+                    "y":4080.67
                    }, 
                    {
                     "class":"",
@@ -1248,42 +1248,42 @@ var Castle ={
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":0.666666666666742,
-                    "x":773.333333333333,
+                    "width":0.666667,
+                    "x":773.333,
                     "y":3974
                    }, 
                    {
                     "class":"",
-                    "height":66.6666666666665,
+                    "height":66.6667,
                     "id":77,
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":65.3333333333333,
+                    "width":65.3333,
                     "x":766,
                     "y":3966
                    }, 
                    {
                     "class":"",
-                    "height":65.3333333333335,
+                    "height":65.3333,
                     "id":78,
                     "name":"",
                     "rotation":0,
                     "visible":true,
                     "width":64,
-                    "x":879.333333333333,
-                    "y":3839.33333333333
+                    "x":879.333,
+                    "y":3839.33
                    }, 
                    {
                     "class":"",
-                    "height":65.3333333333335,
+                    "height":65.3333,
                     "id":79,
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":64.6666666666666,
+                    "width":64.6667,
                     "x":752,
-                    "y":3709.33333333333
+                    "y":3709.33
                    }, 
                    {
                     "class":"",
@@ -1292,13 +1292,13 @@ var Castle ={
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":63.3333333333333,
+                    "width":63.3333,
                     "x":896,
                     "y":3600
                    }],
             "opacity":1,
             "type":"objectgroup",
-            "visible":true,
+            "visible":false,
             "x":0,
             "y":0
            }, 
@@ -1309,25 +1309,25 @@ var Castle ={
             "objects":[
                    {
                     "class":"",
-                    "height":15.333333333333,
+                    "height":15.3333,
                     "id":81,
                     "name":"",
                     "rotation":0,
                     "visible":true,
                     "width":126,
-                    "x":656.666666666667,
+                    "x":656.667,
                     "y":4992
                    }, 
                    {
                     "class":"",
-                    "height":15.333333333333,
+                    "height":15.3333,
                     "id":82,
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":62.6666666666666,
+                    "width":62.6667,
                     "x":800,
-                    "y":4847.33333333333
+                    "y":4847.33
                    }, 
                    {
                     "class":"",
@@ -1349,7 +1349,7 @@ var Castle ={
                     "visible":true,
                     "width":64,
                     "x":784,
-                    "y":4479.33333333333
+                    "y":4479.33
                    }, 
                    {
                     "class":"",
@@ -1358,9 +1358,42 @@ var Castle ={
                     "name":"",
                     "rotation":0,
                     "visible":true,
-                    "width":63.3333333333333,
+                    "width":63.3333,
                     "x":880,
                     "y":4336
+                   }],
+            "opacity":1,
+            "type":"objectgroup",
+            "visible":false,
+            "x":0,
+            "y":0
+           }, 
+           {
+            "draworder":"topdown",
+            "id":9,
+            "name":"Fire",
+            "objects":[
+                   {
+                    "class":"",
+                    "height":31.333333333333,
+                    "id":88,
+                    "name":"",
+                    "rotation":0,
+                    "visible":true,
+                    "width":32,
+                    "x":512,
+                    "y":4976.54545454545
+                   }, 
+                   {
+                    "class":"",
+                    "height":32,
+                    "id":89,
+                    "name":"",
+                    "rotation":0,
+                    "visible":true,
+                    "width":32,
+                    "x":560,
+                    "y":4976.15151515152
                    }],
             "opacity":1,
             "type":"objectgroup",
@@ -1390,8 +1423,8 @@ var Castle ={
             "x":0,
             "y":0
            }],
-    "nextlayerid":9,
-    "nextobjectid":86,
+    "nextlayerid":10,
+    "nextobjectid":92,
     "orientation":"orthogonal",
     "renderorder":"left-down",
     "tiledversion":"1.9.2",
@@ -1409,10 +1442,7 @@ var Castle ={
     "type":"map",
     "version":"1.9",
     "width":368
-   }
-}
-
-
+   } }
 var levelDC = { 
     
     background: "./assets/Levels/levelDC/LevelDC.png",
