@@ -4,11 +4,12 @@ class Menu {
         this.game = game;
         this.levels = levels;
         this.menuItems= []
-        this.currentYVal = 35;
-        this.MENUXSTART = 45;
+        this.currentYVal = 160;
+        this.yStep = 35;
+        this.MENUXSTART = PARAMS.CANVAS_WIDTH/2;
         for(let i = 0; i < this.levels.length; i++){
             this.menuItems.push(new MenuItem(levels[i], this.MENUXSTART, this.currentYVal , game, i + 1, cam))
-            this.currentYVal += 10;
+            this.currentYVal += this.yStep;
         }
     };
     update() {
@@ -21,9 +22,9 @@ class Menu {
             ctx.fillStyle = "#A0CEEA"
             ctx.fillRect(0,0,PARAMS.CANVAS_WIDTH,PARAMS.CANVAS_HEIGHT)
             ctx.fillStyle = "blue"
-            ctx.font = "20px Russo-Regular"
-            ctx.fillText("ShapeShift", this.MENUXSTART, 15)
-            ctx.font = "10px Russo-Regular"
+            ctx.font = "120px Russo-Regular"
+            ctx.fillText("ShapeShift", this.MENUXSTART, 120)
+            ctx.font = "35px Russo-Regular"
             ctx.fillText("Hit The Number of the level you want to play", this.MENUXSTART, this.currentYVal)
             this.menuItems.forEach(m => {
                 m.draw(ctx)

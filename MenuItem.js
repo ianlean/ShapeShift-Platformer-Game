@@ -14,6 +14,7 @@ class MenuItem {
     draw(ctx) {
       //  this.BoundingBox.draw(ctx)
         ctx.fillStyle = "blue"
+        ctx.textAlign = "center";
         ctx.fillText(this.num +') '+ this.level['name'],this.x,this.y)
         }
 }
