@@ -18,6 +18,9 @@ class Player {
         this.velocityY = 0;
         this.lastBB = this.BoundingCircle;
         this.shape = "circle";
+        this.isJumping = false;
+        this.hasJumpedOnce = false;
+        this.dashWasNotUsed = true;
         // Get the animations
         this.anim = "still";
         this.animations = [];
@@ -37,23 +40,29 @@ class Player {
         // rolling right animation
         this.animations["d"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 9, 0.1, 0, false, true);
         //sitting still
-        this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 411*9, 0, 411, 411, 5, 0.1, 0, false, true)
+        this.animations["still"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 411 * 9, 0, 411, 411, 5, 0.1, 0, false, true)
         //rolling left animation
         this.animations["a"] = new Animator(ASSET_MANAGER.getAsset("./assets/spritesheet_5.png"), 0, 0, 411, 411, 9, 0.1, 0, true, true);
         //square shift
         this.animations["Square"] = new Animator(ASSET_MANAGER.getAsset("./assets/sqaurePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
+        //triangle
+        this.animations["triangle"] = new Animator(ASSET_MANAGER.getAsset("./assets/triangle.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
     }
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
+        console.log(this.shape);
+        if(this.isJumping && !this.game.keys[" "]) {
+            this.hasJumpedOnce = true;
+        }
         this.gravity = 0.09
         this.prevX = this.velocityX;
         this.prevY = this.velocityY;
         this.updateCollision();
-        if(this.velocityY+this.gravity>=this.MaxSpeed){
-            this.velocityY =this.MaxSpeed;
-        }else{
-            this.velocityY +=this.gravity;
+        if (this.velocityY + this.gravity >= this.MaxSpeed) {
+            this.velocityY = this.MaxSpeed;
+        } else {
+            this.velocityY += this.gravity;
         }
         this.keyCheck();
         this.x += this.velocityX;
@@ -72,7 +81,7 @@ class Player {
         this.gametimer.draw(ctx)
         if (this.shape == "circle") {
             if (this.anim == 'still') {
-                this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y,0.1);
+                this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 0.1);
             } else {
                 this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .1);
             }
@@ -82,27 +91,27 @@ class Player {
         if (this.dead && !this.win) {
             this.drawDied(ctx);
         }
-        if(this.win && !this.dead){
+        if (this.win && !this.dead) {
             this.drawWin(ctx);
         }
-       // if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
+        // if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
     };
 
 
-    drawWin(ctx){
-            ctx.fillStyle = "blue"
-            ctx.font = "140px OptimusPrinceps"
-            ctx.fillText("YOU WON", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
-            ctx.strokeStyle = "white"
-            ctx.strokeText("YOU WON", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
+    drawWin(ctx) {
+        ctx.fillStyle = "blue"
+        ctx.font = "140px OptimusPrinceps"
+        ctx.fillText("YOU WON", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+        ctx.strokeStyle = "white"
+        ctx.strokeText("YOU WON", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
 
     }
-    drawDied(ctx){
-            ctx.fillStyle = "red"
-            ctx.font = "140px OptimusPrinceps"
-            ctx.fillText("YOU DIED", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
-            ctx.strokeStyle = "black"
-            ctx.strokeText("YOU DIED", PARAMS.CANVAS_WIDTH/2, PARAMS.CANVAS_HEIGHT/2)
+    drawDied(ctx) {
+        ctx.fillStyle = "red"
+        ctx.font = "140px OptimusPrinceps"
+        ctx.fillText("YOU DIED", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+        ctx.strokeStyle = "black"
+        ctx.strokeText("YOU DIED", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
     }
 
 
@@ -142,89 +151,92 @@ class Player {
     collideBox(Box) {
         var adjustedTop = Math.abs(this.lastBB.y - Box.boundingBox.top)
         var adjustedBottom = Math.abs(this.lastBB.y - Box.boundingBox.bottom)
-        var adjustedLeft = Math.abs(this.lastBB.x - Box.boundingBox.left) 
+        var adjustedLeft = Math.abs(this.lastBB.x - Box.boundingBox.left)
         var adjustedRight = Math.abs(this.lastBB.x - Box.boundingBox.right)
         if (this.BoundingCircle.RectCircleColliding(Box.boundingBox)) {
-            
 
-            
-            var isCollidingLeft = adjustedLeft< this.RADIUS;
-            var isCollidingRight = adjustedRight< this.RADIUS;
-            var isCollidingBottom = adjustedBottom< this.RADIUS;
-            var isCollidingTop = adjustedTop< this.RADIUS;
+            // this.touchedGround();
+
+            var isCollidingLeft = adjustedLeft < this.RADIUS;
+            var isCollidingRight = adjustedRight < this.RADIUS;
+            var isCollidingBottom = adjustedBottom < this.RADIUS;
+            var isCollidingTop = adjustedTop < this.RADIUS;
             if (isCollidingTop) {
                 this.velocityY = 0;
                 this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                 this.jumpCheck();
+                this.touchedGround();
             }
             if (isCollidingBottom && !isCollidingLeft && !isCollidingRight) {
                 this.y = Box.boundingBox.bottom
                 this.velocityY -= this.velocityY;
             }
-            if (isCollidingRight&& !isCollidingTop && !isCollidingBottom) {
-                console.log("right")
-                if(this.velocityX<=0){
+            if (isCollidingRight && !isCollidingTop && !isCollidingBottom) {
+                // console.log("right")
+                if (this.velocityX <= 0) {
                     this.velocityX -= 1.5 * this.velocityX;
-                }if (adjustedTop<adjustedRight){
-                this.x = Box.boundingBox.right
+                } if (adjustedTop < adjustedRight) {
+                    this.x = Box.boundingBox.right
                 }
             }
             if (isCollidingLeft && !isCollidingTop && !isCollidingBottom) {
-                console.log("left")
-                if(this.velocityX>=0){
+                // console.log("left")
+                if (this.velocityX >= 0) {
                     this.velocityX -= 1.5 * this.velocityX
-                }if (adjustedTop<adjustedLeft){
+                } if (adjustedTop < adjustedLeft) {
                     this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET;
                 }
             }
-           
-            
+
+
             if (isCollidingTop && isCollidingRight) {
-                console.log("corner")
-                if (adjustedTop+this.RADIUS>=adjustedRight) {
-                    console.log("top seniority")
+                // console.log("corner")
+                this.touchedGround();
+                if (adjustedTop + this.RADIUS >= adjustedRight) {
+                    // console.log("top seniority")
                     this.velocityY = 0;
                     this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                     this.jumpCheck();
-                } else if (adjustedTop<adjustedRight){
-                    this.velocityX-=this.velocityX;     
-                   this.x = Box.boundingBox.right
-                 }
+                } else if (adjustedTop < adjustedRight) {
+                    this.velocityX -= this.velocityX;
+                    this.x = Box.boundingBox.right
+                }
             }
             if (isCollidingTop && isCollidingLeft) {
-                 console.log("corner")
-                 if (adjustedTop+this.RADIUS>=adjustedLeft) {
-                    console.log("top seniority")
+                // console.log("corner")
+                this.touchedGround();
+                if (adjustedTop + this.RADIUS >= adjustedLeft) {
+                    // console.log("top seniority")
                     this.velocityY = 0;
                     this.y = Box.boundingBox.top - (this.RADIUS + this.CIRCLEYOFFSET)
                     this.jumpCheck();
-                 } else if (adjustedTop<adjustedRight){
-                     this.velocityX-=this.velocityX;     
-                     this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
-                 }
+                } else if (adjustedTop < adjustedRight) {
+                    this.velocityX -= this.velocityX;
+                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET
+                }
             }
             if (isCollidingBottom && isCollidingRight) {
-                console.log("right bottom corner")
-                if (adjustedBottom>=adjustedRight) {
-                    console.log("Bottom seniority")
+                // console.log("right bottom corner")
+                if (adjustedBottom >= adjustedRight) {
+                    // console.log("Bottom seniority")
                     this.velocityY -= this.velocityY;
                     this.y = Box.boundingBox.bottom
-                    
+
                 } else {
-                    this.velocityX-=this.velocityX;     
+                    this.velocityX -= this.velocityX;
                     this.x = Box.boundingBox.right
                 }
             }
             if (isCollidingBottom && isCollidingLeft) {
-                console.log("left corner")
-                if (adjustedBottom>=adjustedLeft) {
-                    console.log("bottom seniority")
+                // console.log("left corner")
+                if (adjustedBottom >= adjustedLeft) {
+                    // console.log("bottom seniority")
                     this.velocityY -= this.velocityY;
                     this.y = Box.boundingBox.bottom
-                    
+
                 } else {
-                    this.velocityX-=this.velocityX;     
-                    this.x = Box.boundingBox.left- this.RADIUS - this.CIRCLEXOFFSET
+                    this.velocityX -= this.velocityX;
+                    this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET
                 }
             }
         }
@@ -294,11 +306,14 @@ class Player {
 
 
     keyCheck() {
-        let aKeyIsPressed = arr => arr.every(v => v === false);
-        if (!aKeyIsPressed(this.game.keys) || this.dead || this.win) { //no key is pressed so we idle
+        let aKeyIsPressed = key => key === false;
+        let jumpKeyPressed = (this.game.keys[" "] || this.game.keys["w"])
+        if (!this.game.keys.every(aKeyIsPressed) || this.dead || this.win) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
-        } else { // a key is pressed so we move
+        } else if(this.isJumping && this.hasJumpedOnce && jumpKeyPressed && this.dashWasNotUsed) {
+            this.dash();
+        } else {
             if (this.game.keys["d"] == true) {
                 this.mvRight();
             }
@@ -327,9 +342,10 @@ class Player {
             if (this.shape == "square") {
                 this.velocityY += this.Acceleration * 5;
                 this.anim = "Square";
-
             }
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
+        } else if(this.isJumping && !this.dashWasNotUsed && this.hasJumpedOnce) {
+            this.shapeshift("triangle");
         } else {
             this.shapeshift("Circle");
         }
@@ -374,6 +390,28 @@ class Player {
         }
     }
 
+    dash() {
+        this.dashWasNotUsed = false;
+        let horizontalMultiplyer = 10;
+        let verticalMultiplyer = 20;
+        console.log("dashed");
+        this.anim = "triangle";
+        this.shape = "triangle";
+        if(this.game.keys["d"] && this.game.keys["w"]){
+            this.velocityX += this.Acceleration * horizontalMultiplyer;
+            this.velocityY -= 20 * this.Acceleration;
+        } else if(this.game.keys["d"]) {
+            this.velocityX += this.Acceleration * horizontalMultiplyer;
+        } else if(this.game.keys["a"] && this.game.keys["w"]){
+            this.velocityX -= this.Acceleration * horizontalMultiplyer;
+            this.velocityY -= this.Acceleration * verticalMultiplyer;
+        } else if(this.game.keys["a"]) {
+            this.velocityX -= this.Acceleration * horizontalMultiplyer;
+        } else {
+            this.velocityY -= this.Acceleration * verticalMultiplyer;
+        }
+    }
+
     shapeshift(shapeType) {
         if (shapeType == "Square") {
             this.anim = "Square";
@@ -382,15 +420,28 @@ class Player {
         if (shapeType == "Circle") {
             this.shape = "circle";
         }
+
+        if(shapeType == "Triangle") {
+            this.anim = "triangle";
+            this.shape = "triangle";
+        }
+
         // console.log("changing shape");
     }
 
     jumpCheck() {
-        if ((this.game.keys[" "] == true || this.game.keys["w"] == true)&& !this.dead && !this.win) {
+        if ((this.game.keys[" "] == true || this.game.keys["w"] == true) && !this.dead && !this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 20 * this.Acceleration;
+                this.isJumping = true;
             }
         }
+    }
+
+    touchedGround() {
+        this.isJumping = false;
+        this.dashWasNotUsed = true;
+        this.hasJumpedOnce = false;
     }
 
     updateCollision() {
@@ -403,12 +454,12 @@ class Player {
     die() {
         // die animation/reset game
         if (!this.win && !this.dead) {
-        ASSET_MANAGER.pauseBackgroundMusic()
-        ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
-        this.velocityX -= this.velocityX * 0.25
-        this.velocityY -= this.velocityY * 0.5
-        this.dead = true;
-        this.stopTimer()
+            ASSET_MANAGER.pauseBackgroundMusic()
+            ASSET_MANAGER.playAsset("./assets/Minecraft Damage (Oof) - Sound Effect (HD).mp3")
+            this.velocityX -= this.velocityX * 0.25
+            this.velocityY -= this.velocityY * 0.5
+            this.dead = true;
+            this.stopTimer()
         }
     }
     winner() {

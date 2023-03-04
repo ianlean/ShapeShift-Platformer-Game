@@ -9,6 +9,7 @@ ASSET_MANAGER.queueDownload("./assets/Levels/TestLevels/Flatplane/FlatPlane.png"
 ASSET_MANAGER.queueDownload("./assets/spritesheetCircle.png");
 ASSET_MANAGER.queueDownload("./assets/circlePixel.png");
 ASSET_MANAGER.queueDownload("./assets/sqaurePixel.png");
+ASSET_MANAGER.queueDownload("./assets/triangle.png");
 ASSET_MANAGER.queueDownload("./assets/trianglePixel.png");
 ASSET_MANAGER.queueDownload("./assets/square.png");
 ASSET_MANAGER.queueDownload("./assets/spikePixel.png");
