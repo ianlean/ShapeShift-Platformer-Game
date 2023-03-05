@@ -21,7 +21,7 @@ class Player {
         this.isJumping = false;
         this.hasJumpedOnce = false;
         this.dashWasNotUsed = true;
-        // this.isNotStuckOnWall = true;
+        this.isNotStuckOnWall = true;
         // this.isNotStuckLeft = true;
         // this.isNotStuckRight = true;
         // Get the animations
@@ -36,6 +36,7 @@ class Player {
         this.xadjust
         this.cam = cam;
         this.gametimer = new GameTimer();
+        console.log(this);
     };
 
     createAnimations() {
@@ -58,7 +59,7 @@ class Player {
         if (this.isJumping && !this.game.keys[" "]) {
             this.hasJumpedOnce = true;
         }
-        // this.gravity = 0.09
+        this.gravity = 0.09
         this.prevX = this.velocityX;
         this.prevY = this.velocityY;
         this.updateCollision();
