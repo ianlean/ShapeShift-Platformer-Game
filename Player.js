@@ -13,7 +13,7 @@ class Player {
         this.speed = 1;
         this.MaxSpeed = 20;
         this.Acceleration = .15;
-        this.gravity = .15;
+        this.gravity = 0.09;
         this.velocityX = 0;
         this.velocityY = 0;
         this.lastBB = this.BoundingCircle;
@@ -21,6 +21,9 @@ class Player {
         this.isJumping = false;
         this.hasJumpedOnce = false;
         this.dashWasNotUsed = true;
+        // this.isNotStuckOnWall = true;
+        // this.isNotStuckLeft = true;
+        // this.isNotStuckRight = true;
         // Get the animations
         this.anim = "still";
         this.animations = [];
@@ -46,16 +49,16 @@ class Player {
         //square shift
         this.animations["Square"] = new Animator(ASSET_MANAGER.getAsset("./assets/sqaurePixel.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
         //triangle
-        this.animations["triangle"] = new Animator(ASSET_MANAGER.getAsset("./assets/triangle.png"), 0, 0, 32, 32, 1, 1, 0, false, true);
+        this.animations["triangle"] = new Animator(ASSET_MANAGER.getAsset("./assets/triangle.png"), 0, 0, 411, 411, 1, 1, 0, false, true);
     }
 
     // Try to keep this function small, extrapilate logic to other functions
     update() {
         console.log(this.shape);
-        if(this.isJumping && !this.game.keys[" "]) {
+        if (this.isJumping && !this.game.keys[" "]) {
             this.hasJumpedOnce = true;
         }
-        this.gravity = 0.09
+        // this.gravity = 0.09
         this.prevX = this.velocityX;
         this.prevY = this.velocityY;
         this.updateCollision();
@@ -65,8 +68,10 @@ class Player {
             this.velocityY += this.gravity;
         }
         this.keyCheck();
-        this.x += this.velocityX;
-        this.y += this.velocityY;
+        if (this.isNotStuckOnWall) {
+            this.x += this.velocityX;
+            this.y += this.velocityY;
+        }
         this.collisionCheck();
         // this.x += this.velocityX;
         // this.y += this.velocityY;
@@ -85,6 +90,9 @@ class Player {
             } else {
                 this.animations[this.anim].drawFrame(this.game.clockTick * (Math.abs(this.velocityX) / 3), ctx, this.x, this.y, .1);
             }
+        } else if (this.shape == "triangle") {
+            console.log(this.anim);
+            this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 0.1);
         } else {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.5);
         }
@@ -132,7 +140,9 @@ class Player {
             } else if (entity instanceof BreakableFloor) {
                 entity.collide(this)
             } else if (entity instanceof Spring) {
+                // this.touchedGround();
                 entity.collide(this)
+                this.isJumping = true;
             }
         });
     }
@@ -153,6 +163,7 @@ class Player {
         var adjustedBottom = Math.abs(this.lastBB.y - Box.boundingBox.bottom)
         var adjustedLeft = Math.abs(this.lastBB.x - Box.boundingBox.left)
         var adjustedRight = Math.abs(this.lastBB.x - Box.boundingBox.right)
+        // if (this.BoundingCircle.RectCircleColliding(Box.boundingBox) && this.isNotStuckOnWall) {
         if (this.BoundingCircle.RectCircleColliding(Box.boundingBox)) {
 
             // this.touchedGround();
@@ -173,19 +184,32 @@ class Player {
             }
             if (isCollidingRight && !isCollidingTop && !isCollidingBottom) {
                 // console.log("right")
+                if (this.shape == "triangle" && this.isNotStuckOnWall) {
+                    // this.stickToWall();
+                    this.isNotStuckRight = false;
+                }
                 if (this.velocityX <= 0) {
                     this.velocityX -= 1.5 * this.velocityX;
-                } if (adjustedTop < adjustedRight) {
+                }
+                if (adjustedTop < adjustedRight) {
                     this.x = Box.boundingBox.right
                 }
             }
             if (isCollidingLeft && !isCollidingTop && !isCollidingBottom) {
                 // console.log("left")
+
+                if (this.shape == "triangle" && this.isNotStuckOnWall) {
+                    // this.stickToWall();
+                    this.isNotStuckLeft = false;
+                }
                 if (this.velocityX >= 0) {
                     this.velocityX -= 1.5 * this.velocityX
-                } if (adjustedTop < adjustedLeft) {
+                }
+                if (adjustedTop < adjustedLeft) {
                     this.x = Box.boundingBox.left - this.RADIUS - this.CIRCLEXOFFSET;
                 }
+
+
             }
 
 
@@ -307,13 +331,12 @@ class Player {
 
     keyCheck() {
         let aKeyIsPressed = key => key === false;
-        let jumpKeyPressed = (this.game.keys[" "] || this.game.keys["w"])
         if (!this.game.keys.every(aKeyIsPressed) || this.dead || this.win) { //no key is pressed so we idle
             // If the player is not pressing a key
             this.anim = "still";
-        } else if(this.isJumping && this.hasJumpedOnce && jumpKeyPressed && this.dashWasNotUsed) {
+        } else if (this.isJumping && this.hasJumpedOnce && this.game.keys[" "] && this.dashWasNotUsed) {
             this.dash();
-        } else {
+        } else if (this.shape != "triangle" && this.isNotStuckOnWall) {
             if (this.game.keys["d"] == true) {
                 this.mvRight();
             }
@@ -342,9 +365,10 @@ class Player {
             if (this.shape == "square") {
                 this.velocityY += this.Acceleration * 5;
                 this.anim = "Square";
+                this.touchedGround();
             }
             //this should probably get pulled into it own function with some kind of way to rotate between all shapes 
-        } else if(this.isJumping && !this.dashWasNotUsed && this.hasJumpedOnce) {
+        } else if (this.isJumping && !this.dashWasNotUsed && this.hasJumpedOnce) {
             this.shapeshift("triangle");
         } else {
             this.shapeshift("Circle");
@@ -392,24 +416,46 @@ class Player {
 
     dash() {
         this.dashWasNotUsed = false;
-        let horizontalMultiplyer = 10;
-        let verticalMultiplyer = 20;
+        let horizontalMultiplyer = 20;
+        let verticalMultiplyer = 30;
         console.log("dashed");
         this.anim = "triangle";
         this.shape = "triangle";
-        if(this.game.keys["d"] && this.game.keys["w"]){
+        // this.collisionCheck();
+
+        if (this.game.keys["d"] && this.game.keys["w"] && this.isNotStuckRight) {
             this.velocityX += this.Acceleration * horizontalMultiplyer;
             this.velocityY -= 20 * this.Acceleration;
-        } else if(this.game.keys["d"]) {
+            this.isNotStuckLeft = true;
+        } else if (this.game.keys["d"] && this.isNotStuckRight) {
             this.velocityX += this.Acceleration * horizontalMultiplyer;
-        } else if(this.game.keys["a"] && this.game.keys["w"]){
+            this.isNotStuckLeft = true;
+        } else if (this.game.keys["a"] && this.game.keys["w"] && this.isNotStuckLeft) {
             this.velocityX -= this.Acceleration * horizontalMultiplyer;
             this.velocityY -= this.Acceleration * verticalMultiplyer;
-        } else if(this.game.keys["a"]) {
+            this.isNotStuckRight = true;
+        } else if (this.game.keys["a"] && this.isNotStuckLeft) {
             this.velocityX -= this.Acceleration * horizontalMultiplyer;
-        } else {
+            this.isNotStuckRight = true;
+        } else if (this.isNotStuckOnWall) {
             this.velocityY -= this.Acceleration * verticalMultiplyer;
         }
+        // this.isNotStuckOnWall = true;
+        this.collisionCheck();
+    }
+
+    stickToWall() {
+        this.gravity = 0;
+        this.velocityX = 0;
+        this.velocityY = 0;
+        this.dashWasNotUsed = true;
+        this.isNotStuckOnWall = false;
+        this.anim = "triangle";
+        this.shape = "triangle";
+    }
+
+    wallJump() {
+
     }
 
     shapeshift(shapeType) {
@@ -421,7 +467,7 @@ class Player {
             this.shape = "circle";
         }
 
-        if(shapeType == "Triangle") {
+        if (shapeType == "Triangle") {
             this.anim = "triangle";
             this.shape = "triangle";
         }
@@ -430,7 +476,7 @@ class Player {
     }
 
     jumpCheck() {
-        if ((this.game.keys[" "] == true || this.game.keys["w"] == true) && !this.dead && !this.win) {
+        if (this.game.keys[" "] == true && !this.dead && !this.win) {
             if ((-this.velocityY) < this.MaxSpeed) {
                 this.velocityY -= 20 * this.Acceleration;
                 this.isJumping = true;
@@ -442,6 +488,10 @@ class Player {
         this.isJumping = false;
         this.dashWasNotUsed = true;
         this.hasJumpedOnce = false;
+        this.isNotStuckLeft = true;
+        this.isNotStuckRight = true;
+        this.isNotStuckOnWall = true;
+        this.gravity = 0.09;
     }
 
     updateCollision() {
