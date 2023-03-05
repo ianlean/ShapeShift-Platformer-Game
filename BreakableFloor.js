@@ -3,7 +3,7 @@ class BreakableFloor {
         Object.assign(this, { game, x, y, width, height });
         this.box = new Box(this.game, this.x, this.y, this.width, this.height)
         this.originalX = this.x;
-        this.BREAKING_VELOCITY = 1;
+        this.BREAKING_VELOCITY = 15;
         this.isBroken = false;
     };
 

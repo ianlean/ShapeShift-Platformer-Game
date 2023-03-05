@@ -2,7 +2,7 @@
 class Spring {
     constructor(game, x, y, width, height) {
         Object.assign(this, {game, x, y, width, height})
-        this.SPRING_VELOCITY = 0.5
+        this.SPRING_VELOCITY = 0.1
         this.boundingBox = new BoundingBox(this.x, this.y, this.width, this.height)
     }
 
@@ -20,7 +20,7 @@ class Spring {
 
     collide(player) {
         if(player.BoundingCircle.RectCircleColliding(this.boundingBox)) {
-            player.velocityY -= this.SPRING_VELOCITY
+            player.velocityY -= this.SPRING_VELOCITY - (player.velocityY / 2)
         }
     }
 }
