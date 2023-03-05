@@ -10,7 +10,7 @@ class SceneManager {
         this.playerSpawnY = 0;
         this.levelLoaded = false;
         this.elapsedTime = 0;
-        this.levels = [level1, level2, slope, breakablefloor, FlatPlane, Castle, Castle2]
+        this.levels = [level1, level2, FlatPlane, Castle, Castle2]
         this.menu = new Menu(game,this,this.levels)
         this.FLOORS = "Floor"
         this.BOXES = "Box"
@@ -38,6 +38,7 @@ class SceneManager {
     }
 
     loadLevel(level, x, y) {
+        this.currentLevel = level;
         var layers = level.data["layers"]
         var levelJSONObjects = this.getLevelJSONObjects(layers)
         console.log(level)
@@ -252,5 +253,12 @@ class SceneManager {
             this.menu.draw(ctx);
         }
     };
+
+    loadNextLevel(){
+        if(typeof this.currentLevel["nextLevel"] != 'undefined'){
+            this.clearEntities();
+            this.loadLevel(this.currentLevel["nextLevel"],0,0);
+        }
+    }
 
 };

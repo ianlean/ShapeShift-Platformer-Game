@@ -519,6 +519,7 @@ class Player {
             this.velocityY -= this.velocityY * 0.5
             this.win = true;
             this.stopTimer();
+            this.cam.loadNextLevel();
         }
     }
     restartCheck() {
