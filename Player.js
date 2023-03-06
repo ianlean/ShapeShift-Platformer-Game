@@ -57,6 +57,9 @@ class Player {
     // Try to keep this function small, extrapilate logic to other functions
     update() {
         console.log(this.shape);
+        if(this.win){
+            this.winner();
+        }
         if (this.isJumping && !this.game.keys[" "]) {
             this.hasJumpedOnce = true;
         }
@@ -79,8 +82,7 @@ class Player {
         // this.y += this.velocityY;
         this.updateCollision();
         this.restartCheck()
-        this.gametimer.update()
-
+        this.gametimer.update();
         //gravity and other thing effecting movement could go here
     };
 
@@ -517,11 +519,12 @@ class Player {
     winner() {
         if (!this.dead) {
             this.velocityX -= this.velocityX * 0.25
-            this.velocityY -= this.velocityY * 0.5
+            this.velocityY -= this.velocityY * 0.80
             this.win = true;
             this.stopTimer();
+            console.log(this.waitTimer)
             this.waitTimer-=1;
-            if(this.waitTimer==0){
+            if(this.waitTimer<=0){
             this.cam.loadNextLevel();
             }
         }

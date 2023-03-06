@@ -10,7 +10,7 @@ class SceneManager {
         this.playerSpawnY = 0;
         this.levelLoaded = false;
         this.elapsedTime = 0;
-        this.levels = [level1, level2, FlatPlane, Castle, Castle2]
+        this.levels = [level1, level2, FlatPlane, Castle, Castle2, JumpingDashingFalling]
         this.menu = new Menu(game,this,this.levels)
         this.FLOORS = "Floor"
         this.BOXES = "Box"
