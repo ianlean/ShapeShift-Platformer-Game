@@ -37,6 +37,7 @@ class Player {
         this.cam = cam;
         this.gametimer = new GameTimer();
         this.waitTimer = 250;
+        this.firstWin = true;
         console.log(this);
     };
 
@@ -101,30 +102,15 @@ class Player {
             this.animations[this.anim].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.5);
         }
         if (this.dead && !this.win) {
-            this.drawDied(ctx);
+            drawDied(ctx);
         }
         if (this.win && !this.dead) {
-            this.drawWin(ctx);
+            drawWin(ctx);
         }
         // if (this.BoundingCircle != undefined) { this.BoundingCircle.draw(ctx)}//this.BoundingCircle.draw(ctx); }
     };
 
 
-    drawWin(ctx) {
-        ctx.fillStyle = "blue"
-        ctx.font = "140px OptimusPrinceps"
-        ctx.fillText("YOU WON", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
-        ctx.strokeStyle = "white"
-        ctx.strokeText("YOU WON", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
-
-    }
-    drawDied(ctx) {
-        ctx.fillStyle = "red"
-        ctx.font = "140px OptimusPrinceps"
-        ctx.fillText("YOU DIED", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
-        ctx.strokeStyle = "black"
-        ctx.strokeText("YOU DIED", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
-    }
 
 
 
@@ -157,9 +143,10 @@ class Player {
         }
     }
     collideWin(Wins) {
-        if (this.BoundingCircle.RectCircleColliding(Wins.boundingBox)) {
+        if (this.BoundingCircle.RectCircleColliding(Wins.boundingBox) && this.firstWin) {
             console.log("Won")
             this.winner();
+            this.firstWin = false;
         }
     }
     collideBox(Box) {
@@ -524,8 +511,8 @@ class Player {
             this.stopTimer();
             console.log(this.waitTimer)
             this.waitTimer-=1;
-            if(this.waitTimer<=0){
-            this.cam.loadNextLevel();
+            if(this.waitTimer < 0){
+                this.cam.loadNextLevel();
             }
         }
         

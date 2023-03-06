@@ -1,3 +1,31 @@
+const  drawWin = (ctx)=> {
+    ctx.fillStyle = "blue"
+    ctx.font = "140px OptimusPrinceps"
+    ctx.fillText("YOU WON", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+    ctx.strokeStyle = "white"
+    ctx.strokeText("YOU WON", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+
+}
+const drawDied = (ctx)=> {
+    ctx.fillStyle = "red"
+    ctx.font = "140px OptimusPrinceps"
+    ctx.fillText("YOU DIED", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+    ctx.strokeStyle = "black"
+    ctx.strokeText("YOU DIED", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+}
+const  drawLevelBeat = (ctx)=> {
+    ctx.fillStyle = "blue"
+    ctx.font = "140px OptimusPrinceps"
+    ctx.fillText("LEVEL BEAT", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+    ctx.strokeStyle = "white"
+    ctx.strokeText("LEVEL BEAT", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2)
+
+}
+
+
+
+
+
 
 /** Global Parameters Object */
 const params = { };
