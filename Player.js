@@ -36,6 +36,7 @@ class Player {
         this.xadjust
         this.cam = cam;
         this.gametimer = new GameTimer();
+        this.waitTimer = 250;
         console.log(this);
     };
 
@@ -519,8 +520,13 @@ class Player {
             this.velocityY -= this.velocityY * 0.5
             this.win = true;
             this.stopTimer();
+            this.waitTimer-=1;
+            if(this.waitTimer==0){
             this.cam.loadNextLevel();
+            }
         }
+        
+        
     }
     restartCheck() {
         if (this.game.keys["r"] == true) {
