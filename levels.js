@@ -3125,7 +3125,7 @@ var FlatPlane = {
    }
 }
 var level2={
-    nextLevel:JumpingDashingFalling,
+    nextLevel:FlatPlane,
     background: "./assets/Levels/level2/level2.png",
     name:"level2",
     width: 1600,
