@@ -232,6 +232,17 @@
                  "width":573.369135997473,
                  "x":3394.40846627705,
                  "y":2242.9316063813
+                }, 
+                {
+                 "class":"",
+                 "height":152.284263959391,
+                 "id":115,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":12766.4974619289,
+                 "x":50.761421319797,
+                 "y":3096.44670050761
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -331,6 +342,50 @@
                  "width":765.370138017566,
                  "x":2688.65388062377,
                  "y":3127.80068112565
+                }, 
+                {
+                 "class":"",
+                 "height":133.971291866029,
+                 "id":110,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8076.55502392345,
+                 "x":0,
+                 "y":3043.06220095694
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":111,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":5578.94736842105,
+                 "y":4124.4019138756
+                }, 
+                {
+                 "class":"",
+                 "height":146.103896103896,
+                 "id":113,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":3652.5974025974,
+                 "x":8073.59307359307,
+                 "y":3046.5367965368
+                }, 
+                {
+                 "class":"",
+                 "height":163.636363636364,
+                 "id":114,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":1063.63636363636,
+                 "x":11727.2727272727,
+                 "y":3036.36363636364
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -356,12 +411,34 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"Laser",
+         "objects":[
+                {
+                 "class":"",
+                 "height":0,
+                 "id":109,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":4096.95484774239,
+                 "y":2194.60973048652
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":109,
+ "nextlayerid":8,
+ "nextobjectid":116,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
