@@ -20,7 +20,7 @@ class Spring {
 
     collide(player) {
         if(player.BoundingCircle.RectCircleColliding(this.boundingBox)) {
-            player.velocityY -= this.SPRING_VELOCITY - (player.velocityY / 2)
+            player.velocityY -= this.SPRING_VELOCITY - (player.velocityY /3)
         }
     }
 }
