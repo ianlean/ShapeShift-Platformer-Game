@@ -360,6 +360,7 @@ var JumpingDashingFalling = {
        name: "JumpingDashingFalling",
        width: 11200,
        height: 1600,
+       nextLevel: Dungeon,
        data:{ "compressionlevel":-1,
        "height":100,
        "infinite":false,
