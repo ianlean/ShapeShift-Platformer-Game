@@ -4,7 +4,7 @@
  <tile id="0">
   <image width="134" height="132" source="Screenshot 2023-03-06 at 5.29.03 PM.png"/>
  </tile>
- <tile id="17">
-  <image width="64" height="64" source="Spikes.png"/>
+ <tile id="19">
+  <image width="64" height="32" source="Spikes.png"/>
  </tile>
 </tileset>
