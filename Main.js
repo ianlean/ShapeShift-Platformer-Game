@@ -28,6 +28,7 @@ ASSET_MANAGER.queueDownload("./assets/smileyboiSheet.png")
 ASSET_MANAGER.queueDownload("./assets/campfire.png")
 ASSET_MANAGER.queueDownload("./assets/Fire Sprite.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/ian_level/space.png")
+ASSET_MANAGER.queueDownload("./assets/Levels/thing/dungeon.png")
 
 
 
