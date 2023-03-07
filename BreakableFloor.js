@@ -26,6 +26,7 @@ class BreakableFloor {
     }
 
     break() {
+        ASSET_MANAGER.playAsset("./assets/wall smash sound effects (for animations).mp3");
         this.isBroken = true;
         this.removeFromWorld = true;
     }

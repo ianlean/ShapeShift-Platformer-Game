@@ -18,7 +18,7 @@ class floor {
 
     draw(ctx) {
         if (this.line != undefined) {
-            this.line.draw(ctx);
+          //  this.line.draw(ctx);
         }
     };
 

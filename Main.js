@@ -30,7 +30,7 @@ ASSET_MANAGER.queueDownload("./assets/Fire Sprite.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/ian_level/space.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/thing/dungeon.png")
 ASSET_MANAGER.queueDownload("./assets/Levels/Tutorial/tutorial.png")
-
+ASSET_MANAGER.queueDownload("./assets/wall smash sound effects (for animations).mp3");
 
 
 
